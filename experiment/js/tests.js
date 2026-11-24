@@ -47,13 +47,16 @@ SRL.tests = (function () {
     if (S.debug) UI.debug(`${t.type} | ${s.id} | target pos ${targetPos}`);
     const t0 = U.now();
     let audioDone = false;
-    SRL.audio.play(clipId(t)).then(() => (audioDone = true));
+    const audioP = SRL.audio.play(clipId(t)).then(() => (audioDone = true));
     const idx = await new Promise((resolve) => {
       pg.querySelectorAll('.ts-opt').forEach((b) => (b.onclick = () => resolve(+b.dataset.i)));
       if (S.auto) setTimeout(() => resolve(U.randInt(t.options.length)), 200);
     });
-    const rt = Math.round(U.now() - t0);
-    pg.querySelectorAll('.ts-opt')[idx].classList.add('sel');
+    const rt = Math.round(U.now() - t0), early = audioDone ? 0 : 1;
+    pg.querySelectorAll('.ts-opt').forEach((b, i) => { b.onclick = null; b.disabled = true; b.classList.toggle('sel', i === idx); });
+    // A response during the spoken question is allowed (and timed), but the trial waits for the question to finish so
+    // the next prompt never overlaps it.
+    await audioP;
     let conf = null;
     await U.sleep(150);
     if (SRL_CONFIG.CONFIDENCE_RATINGS) conf = await confidence(el, S);
@@ -68,7 +71,7 @@ SRL.tests = (function () {
       foil_ids: t.options.filter((o) => !o.target).map((o) => o.id).join('|'),
       option_order: t.options.map((o) => o.id).join('|'),
       target_position: targetPos, response_position: idx + 1, response_id: resp.id,
-      correct: resp.target ? 1 : 0, rt_ms: rt, responded_before_prompt_end: audioDone ? 0 : 1,
+      correct: resp.target ? 1 : 0, rt_ms: rt, responded_before_prompt_end: early,
       word: s.word, incidental_type: s.incidental, stranger_id: s.stranger.id, confidence: conf
     };
   }

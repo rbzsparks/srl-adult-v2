@@ -123,7 +123,8 @@ html.srl-active, html.srl-active body { overflow: hidden !important; }
 .ts-prompt { font-size: 28px; margin: 18px 0 26px; text-align: center; }
 .ts-options { display: flex; gap: 22px; justify-content: center; align-items: center; flex: 1; }
 .ts-opt { background: #fff; border: 2.5px solid #E3DACB; border-radius: 16px; padding: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-.ts-opt:hover { border-color: #9DB3D9; }
+.ts-opt:hover:not(:disabled) { border-color: #9DB3D9; }
+.ts-opt:disabled { cursor: default; color: inherit; opacity: 1; }
 .ts-opt.sel { border-color: #2F5DA8; background: #EEF3FB; }
 .ts-identity .ts-opt { padding: 8px 6px 0; background: #F1EBE1; }
 
