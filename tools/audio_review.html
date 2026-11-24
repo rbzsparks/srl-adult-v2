@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Audio Take Review</title>
+<!-- Every ElevenLabs take of every clip (audio_src/elevenlabs/takes), filterable by kind and voice, with the automatic QC
+     notes (duration; for greetings, the longest break inside "Hi, Name!"). "(in use)" marks the take in selection.json;
+     after changing picks, Save, then run python tools/elevenlabs_tts.py finalize to rebuild experiment/audio/.
+     Open through python tools/dev_server.py: http://localhost:8000/tools/audio_review.html -->
 <style>
   :root { --bg: #FAF7F2; --card: #fff; --line: #E3DACB; --ink: #222; --muted: #6a6a6a; --accent: #2F5DA8; --flag: #A3302A; }
   * { box-sizing: border-box; }
@@ -33,11 +37,17 @@
   <h1>Audio take review</h1>
   <span class="filters">
     <label><input type="radio" name="f" value="all" checked> all</label>
-    <label><input type="radio" name="f" value="label"> labels</label>
     <label><input type="radio" name="f" value="greet"> greetings</label>
+    <label><input type="radio" name="f" value="label"> labels</label>
+    <label><input type="radio" name="f" value="sel"> voice samples</label>
+    <label><input type="radio" name="f" value="check"> sound checks</label>
     <label><input type="radio" name="f" value="test"> narrator</label>
-    <label><input type="radio" name="f" value="flagged"> flagged</label>
+    <label><input type="radio" name="f" value="qc"> QC warnings</label>
+    <label><input type="radio" name="f" value="flagged"> marked for regeneration</label>
   </span>
+  <label class="filters">Voice <select id="voice"><option value="">all</option><option value="fy">fy · Sarah</option><option value="my">my · Will</option>
+    <option value="fm">fm · Bella</option><option value="mm">mm · Chris</option><option value="fo">fo · Carol</option><option value="mo">mo · Bill</option>
+    <option value="narrator">narrator</option></select></label>
   <button class="primary" id="save">Save selection</button>
   <span id="status"></span>
 </header>
@@ -53,13 +63,21 @@
   const sel = Object.assign({}, saved); delete sel._regenerate;
   const flagged = new Set(saved._regenerate || []);
   const list = document.getElementById('list'), status = document.getElementById('status');
-  const qcNote = (f) => { const q = qc[f]; if (!q) return ''; return ` · ${q.dur}s` + (q.ok ? ' ✓' : ` <span style="color:var(--flag)" title="${q.notes.join('; ')}">⚠ ${q.notes[0].split(':')[0]}</span>`); };
+  const qcNote = (f) => { const q = qc[f]; if (!q) return ''; return ` · ${q.dur}s` + (q.gap_s !== undefined && /^greet_/.test(q.clip_id) ? ` · break ${q.gap_s}s` : '') +
+    (q.ok ? ' ✓' : ` <span style="color:var(--flag)" title="${q.notes.join('; ')}">⚠ ${q.notes[0].split(':')[0].split('(')[0]}</span>`); };
+  const VOICES = ['fy', 'my', 'fm', 'mm', 'fo', 'mo'];
+  const kindOf = (cid) => (/^(sel|greet|label|check)_/.test(cid) ? cid.split('_')[0] : 'test');
+  const voiceOf = (cid) => { const v = cid.split('_').pop(); return VOICES.indexOf(v) >= 0 ? v : 'narrator'; };
+  const hasWarning = (e) => e.takes.some((t) => qc[t.file] && !qc[t.file].ok);
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  function render(filter) {
+  let filter = 'all';
+  function render() {
     list.innerHTML = '';
-    Object.values(index).forEach((e) => {
-      const kind = e.clip_id.startsWith('label') ? 'label' : e.clip_id.startsWith('greet') ? 'greet' : 'test';
-      if (filter === 'flagged' ? !flagged.has(e.clip_id) : (filter !== 'all' && filter !== kind)) return;
+    const voice = document.getElementById('voice').value;
+    Object.values(index).sort((a, b) => (voiceOf(a.clip_id) + a.clip_id).localeCompare(voiceOf(b.clip_id) + b.clip_id)).forEach((e) => {
+      const kind = kindOf(e.clip_id);
+      if (voice && voiceOf(e.clip_id) !== voice) return;
+      if (filter === 'flagged' ? !flagged.has(e.clip_id) : filter === 'qc' ? !hasWarning(e) : (filter !== 'all' && filter !== kind)) return;
       const d = document.createElement('div');
       d.className = 'clip' + (flagged.has(e.clip_id) ? ' flagged' : '');
       const chosen = +(sel[e.clip_id] || 1);
@@ -67,7 +85,7 @@
         <span class="meta">${esc(e.pronunciation || '')} · ${esc(e.speaker_id)} · ${esc(e.takes[0] ? e.takes[0].voice : '')}</span>
         <label class="flag"><input type="checkbox" ${flagged.has(e.clip_id) ? 'checked' : ''}> needs regeneration</label></div>
         <div class="takes">${e.takes.map((t, i) => `<label class="take${chosen === i + 1 ? ' sel' : ''}"><input type="radio" name="${esc(e.clip_id)}" value="${i + 1}" ${chosen === i + 1 ? 'checked' : ''}>
-          ${i + 1}<audio controls preload="none" src="${base}takes/${esc(t.file)}"></audio><span class="meta">${esc(t.model)}${qcNote(t.file)}</span></label>`).join('')}</div>`;
+          ${i + 1}${chosen === i + 1 ? ' (in use)' : ''}<audio controls preload="none" src="${base}takes/${esc(t.file)}"></audio><span class="meta">${esc(t.model)}${qcNote(t.file)}</span></label>`).join('')}</div>`;
       d.querySelectorAll('input[type=radio]').forEach((r) => (r.onchange = () => {
         sel[e.clip_id] = +r.value;
         d.querySelectorAll('.take').forEach((t) => t.classList.toggle('sel', t.contains(r)));
@@ -82,13 +100,14 @@
       list.appendChild(d);
     });
   }
-  document.querySelectorAll('input[name=f]').forEach((r) => (r.onchange = () => render(r.value)));
+  document.querySelectorAll('input[name=f]').forEach((r) => (r.onchange = () => { filter = r.value; render(); }));
+  document.getElementById('voice').onchange = render;
   document.getElementById('save').onclick = async () => {
     const body = JSON.stringify(Object.assign({}, sel, { _regenerate: [...flagged] }), null, 1);
     const r = await fetch('/__save?path=' + encodeURIComponent('audio_src/elevenlabs/selection.json'), { method: 'POST', body });
     status.textContent = r.ok ? `saved (${Object.keys(sel).length} chosen, ${flagged.size} flagged for regeneration)` : 'save failed: is tools/dev_server.py running?';
   };
-  render('all');
+  render();
 })();
 </script>
 </body>

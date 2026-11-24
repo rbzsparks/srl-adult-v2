@@ -4,6 +4,8 @@ For each take: duration and the pause structure found by the same detector the e
 (20 ms RMS frames, < 8% of peak, >= 100 ms, not at the edges).
   label clips  need >= 2 pauses (after "Look!" and after "It's a X!"), otherwise the gaze falls back to proportional timing
   all clips    flagged if much longer than the median of their kind (e.g. IPA read out as text, or a stray extra phrase)
+  greetings    flagged if there is a break inside "Hi, Name!" (longest internal gap >= 0.12 s, 10 ms frames, < 12% of peak):
+               such takes sound like two separate utterances. gap_s is recorded for every take.
 Writes takes/qc.json and, unless selection.json exists, a suggested selection.json (first take that passes).
 
 Usage: python tools/audio_qc.py
@@ -45,6 +47,20 @@ def pauses(x):
     return gaps
 
 
+def max_gap(x, thr_frac=0.12, frame=0.01):
+    """Longest run of quiet 10 ms frames between the first and last sound (seconds)."""
+    n = int(frame * SR)
+    env = np.array([np.sqrt(np.mean(x[i:i + n] ** 2)) for i in range(0, len(x), n)])
+    on = np.where(env >= env.max() * thr_frac)[0]
+    if not len(on):
+        return 0.0
+    best = run = 0
+    for v in env[on[0]:on[-1] + 1] < env.max() * thr_frac:
+        run = run + 1 if v else 0
+        best = max(best, run)
+    return round(best * frame, 2)
+
+
 def kind(cid):
     for k in ('sel', 'greet', 'label', 'test_word', 'test_incid', 'test_identity', 'check'):
         if cid.startswith(k):
@@ -59,7 +75,7 @@ def main():
     for cid, e in index.items():
         for t in e['takes']:
             x = decode(ffmpeg, os.path.join(TAKES, t['file']))
-            qc[t['file']] = {'clip_id': cid, 'dur': round(len(x) / SR, 2), 'pauses': pauses(x)}
+            qc[t['file']] = {'clip_id': cid, 'dur': round(len(x) / SR, 2), 'pauses': pauses(x), 'gap_s': max_gap(x)}
     kinds = {}
     for f, q in qc.items():
         kinds.setdefault(kind(q['clip_id']), []).append(q['dur'])
@@ -70,6 +86,8 @@ def main():
         notes = []
         if cid.startswith('label') and len(q['pauses']) < 2:
             notes.append('fewer than 2 pauses: gaze timing will be approximate')
+        if cid.startswith('greet') and q['gap_s'] >= 0.12:
+            notes.append(f'break inside the greeting ({q["gap_s"]} s): sounds like two utterances')
         if q['dur'] > 1.45 * med[k]:
             notes.append(f'long ({q["dur"]} s vs typical {med[k]:.1f} s): check for extra words')
         q['ok'] = not notes
