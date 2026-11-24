@@ -4,7 +4,7 @@
  * shown); novel object on a low table between them, below eye level, so a look at the object reads differently from a
  * look at the partner; the background (colour-test) object on a wall shelf, top right, above the stranger's head and
  * never covered. Gaze is aimed at the actual position of its target (look()).
- * Timeline: avatar slides in → "Hi, [stranger]!" → stranger smiles, raises eyebrows and waves → "Look! It's a X! A X!"
+ * Timeline: avatar slides in → "Hi, [stranger]!" → stranger smiles and nods → "Look! It's a X! A X!"
  * with the avatar's gaze sequence; the stranger's eyes follow to the object → stranger nods → SPACE enabled 1 s after
  * the label ends → auto-advance 15 s after. Identical in both conditions; only the avatar, its name and voice differ. */
 SRL.scene = (function () {
@@ -53,7 +53,7 @@ SRL.scene = (function () {
         <path d="M778 169 L778 188 L796 169 Z M882 169 L882 188 L864 169 Z" fill="#9A7752"/>
         <rect x="750" y="160" width="160" height="9" rx="2" fill="#B08A64"/>
         <g class="sc-incidental">${O.incidentalSvg(sc.incidental, colorHex, `x="${POS.incidental.x}" y="${POS.incidental.y}" width="${POS.incidental.w}" height="${POS.incidental.h}"`)}</g>
-        <g class="sc-listener">${P.svg(sc.stranger, { facing: -1, cacheHair: true, hands: true, attrs: pAttr(POS.listener, POS.listener.x) })}</g>
+        <g class="sc-listener">${P.svg(sc.stranger, { facing: -1, cacheHair: true, attrs: pAttr(POS.listener, POS.listener.x) })}</g>
         <g class="sc-talker">${P.svg(ctx.avatarSpec, { facing: 1, cacheHair: true, attrs: pAttr(POS.talker, POS.talker.startX) })}</g>
         <rect x="452" y="548" width="96" height="12" rx="4" fill="#8A6644"/>
         <rect x="489" y="524" width="22" height="28" fill="#8A6644"/>
@@ -140,16 +140,13 @@ SRL.scene = (function () {
     });
     A.set({ mouth: 0, nod: GAZE.talker.listener.nod });
 
-    // 3. The stranger responds: smile, eyebrow raise, small head tilt and bounce, and a wave (hand up, two swings, down).
+    // 3. The stranger responds: a smile and one small nod, still looking at the avatar (v3.0.5; no wave, no eyebrow
+    //    raise, so the stranger moves about as much as the object does).
     const base = GAZE.listener.talker;
     await U.tween(T.RESPONSE, (t) => {
-      const up = Math.min(1, t * 4), down = t > 0.8 ? (t - 0.8) * 5 : 0;
-      const handUp = U.clamp(t / 0.18, 0, 1) * (1 - U.clamp((t - 0.82) / 0.18, 0, 1));
-      const swing = t > 0.18 && t < 0.82 ? Math.sin((t - 0.18) / 0.64 * Math.PI * 4) * 14 : 0;
-      L.set({ smile: U.lerp(0.2, 1, up), brow: up - down, rot: base.rot - 4 * (up - down), bounce: Math.sin(Math.min(1, t * 2) * Math.PI) * 5,
-        hand: handUp, handRot: swing });
+      L.set({ smile: U.lerp(0.2, 0.9, Math.min(1, t * 3)), nod: base.nod + Math.sin(Math.min(1, t * 1.6) * Math.PI) * 2.6 });
     }, (x) => x);
-    L.set({ brow: 0, rot: base.rot, bounce: 0, smile: 0.8, hand: 0, handRot: 0 });
+    L.set({ nod: base.nod, smile: 0.8 });
     await U.sleep(T.BEFORE_LABEL_PAUSE);
 
     // 4. Label: "Look! It's a X! A X!" with the gaze sequence driven by the clip's pause structure; the stranger's eyes

@@ -39,11 +39,11 @@
   };
   let r;
   Object.keys(stim.stranger_sets).forEach((k) => {
-    r = sec(`Stranger set ${k} (front / turned left, as in the scenes, with the hand raised)`);
+    r = sec(`Stranger set ${k} (front / turned left, as in the scenes)`);
     stim.stranger_sets[k].forEach((e) => {
       const st = e.stranger, tag = `${st.id} · ${st.gender} ${st.age} · ${e.scene_set_id}`;
       cell(r, 'p', P.svg(st), tag, `people/${st.id}_front.svg`);
-      cell(r, 'p', P.svg(st, { facing: -1, hands: true, hand: 1, handRot: 10 }), st.id + ' waving', `people/${st.id}_wave.svg`);
+      cell(r, 'p', P.svg(st, { facing: -1 }), st.id + ' turned left', `people/${st.id}_left.svg`);
     });
   });
   const N = (o) => Object.assign({}, P.NEUTRAL, o);

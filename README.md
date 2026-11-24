@@ -2,7 +2,7 @@
 
 jsPsych 8.2.1 experiment, embedded in a **Qualtrics** survey (classic layout), recruited on **Prolific**. The full design
 and every decision behind it is in **[docs/V2_SPEC.md](docs/V2_SPEC.md)**; this README covers how to run, deploy and
-analyse it. Experiment version: `3.0.4` (`VERSION` in `experiment/config.js`).
+analyse it. Experiment version: `3.0.5` (`VERSION` in `experiment/config.js`).
 
 This repo started from the pilot-1 code (`rbzsparks/srl-adult-prolific`, tag `v2.4.2-pilot1`), which stays frozen
 there with its data.
@@ -36,8 +36,8 @@ Between subjects, two conditions:
 Then, for everyone:
 1. An audio check in the chosen voice.
 2. A 10 s countdown.
-3. **12 scenes** (6 scene sets × 2). The avatar walks in and says **"Hi, [stranger]!"**. The stranger smiles, raises
-   their eyebrows and waves. Then the avatar says **"Look! It's a bosa! A bosa!"**, and the stranger follows the
+3. **12 scenes** (6 scene sets × 2). The avatar walks in and says **"Hi, [stranger]!"**. The stranger smiles and gives
+   one small nod. Then the avatar says **"Look! It's a bosa! A bosa!"**, and the stranger follows the
    avatar's gaze and nods.
 4. Three check-ins about the avatar person.
 5. "While watching, how much did [name] feel like someone you know?" (1–7).
@@ -62,7 +62,7 @@ experiment/                 everything GitHub Pages serves
   js/binding.js             closeness, contact, picture + notes, voice selector, confirmation, matching, check-ins, "felt like"
   js/designer.js            avatar designer + likeness rating
   js/scene.js               one scene (layout, animation, audio timing)
-  js/people.js              avatar drawing and animation (incl. the waving hand)
+  js/people.js              avatar drawing and animation
   js/avatar_rules.js        the foil avatar for the matching task
   js/stimuli.js             participant design: scene order, test foils and positions, colours
   js/tests.js               the three tests

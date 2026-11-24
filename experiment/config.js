@@ -4,7 +4,7 @@
  * Design: docs/V2_SPEC.md.
  * ===================================================================== */
 window.SRL_CONFIG = {
-  VERSION: '3.0.4',
+  VERSION: '3.0.5',
 
   /* ---------- Qualtrics ---------- */
   // 'legacy' = classic layouts: Qualtrics.SurveyEngine.setEmbeddedData. 'nste' = New Survey Taking Experience (UNTESTED).
@@ -44,7 +44,7 @@ window.SRL_CONFIG = {
   TIMING: {
     AVATAR_ENTER: 600,
     AFTER_ENTER_PAUSE: 300,
-    RESPONSE: 1500,             // stranger's response to the greeting: smile, eyebrow raise, wave
+    RESPONSE: 900,              // stranger's response to the greeting: smile and one small nod
     BEFORE_LABEL_PAUSE: 300,
     JOINT_ATTENTION_LAG: 300,   // the stranger's eyes follow the avatar's gaze to the object
     OBJECT_PULSE: 300,

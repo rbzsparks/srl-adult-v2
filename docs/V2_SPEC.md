@@ -84,7 +84,8 @@ memory only, as in pilot 1.
 - **Timeline per scene:**
   1. The stranger is in place.
   2. The avatar enters and says "Hi, [stranger name]!"
-  3. The stranger smiles, waves and raises their eyebrows.
+  3. The stranger smiles and gives one small nod (0.9 s). Since v3.0.5 there is no wave and no eyebrow raise, so the
+     stranger moves about as much as the object does: extra movement on the stranger could act as an attention cue.
   4. The avatar looks at the object: "Look! It's a [word]! A [word]!"
   5. The stranger follows the avatar's gaze to the object and nods.
   6. Same idle and exit as in pilot 1.
