@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Relevance Study</title>
+<style>body { margin: 0; background: #F6F2EC; font-family: system-ui, sans-serif; }</style>
+</head>
+<body>
+<!--
+  Local runner (same code the Qualtrics question loads).
+  URL parameters:
+    PROLIFIC_PID, STUDY_ID, SESSION_ID   as Prolific sends them
+    category = acquaintance | moderate | close   (random if missing)
+    list     = A | B                             (random if missing)
+    design_version = unique12 | repeat6          (missing: config DESIGN_VERSION, recorded as design_version_source = config_fallback)
+    stranger_set   = X | Y                       (repeat6 only; random if missing)
+    debug=1    shortened fillers, on-screen condition/stimulus IDs, data downloaded instead of saved
+    auto=1     (with debug=1) auto-pilot: clicks through the whole study by itself
+    devsave=1  (with tools/dev_server.py) write the output files into sample_data/ instead of downloading
+    reset=1    clear the reload marker for this PROLIFIC_PID before starting
+    name_label=0|1  hide / show the name text beneath the person in scenes (overrides config SHOW_NAME_LABEL)
+    binding=0|1     turn the recall, revision and matching steps off / on (overrides the config switches)
+    checkins=0|1    turn the person check-ins during the scenes off / on (overrides CHECKINS_ENABLED)
+    prototype=1     load Prototype.js 1.7.1 first, as Qualtrics' classic layouts do (it replaces Array.from, map, find, ...)
+-->
+<script src="js/loader.js"></script>
+<script>
+  const q = new URLSearchParams(location.search);
+  const params = {};
+  ['PROLIFIC_PID', 'STUDY_ID', 'SESSION_ID', 'category', 'list', 'design_version', 'stranger_set', 'debug', 'auto', 'devsave', 'reset', 'name_label', 'binding', 'checkins'].forEach((k) => { if (q.has(k)) params[k] = q.get(k); });
+  const start = () => window.SRL_LOAD({
+    base: './', mode: 'local', params, version: String(Date.now()),
+    finish: () => { document.body.innerHTML = '<p style="padding:24px">Finished. (In Qualtrics, the survey would now advance to the post-test questions.)</p>'; },
+    onError: (e) => { document.body.innerHTML = '<p style="padding:24px">Error loading the study: ' + e.message + '</p>'; }
+  });
+  if (q.get('prototype') === '1') {
+    const p = document.createElement('script');
+    p.src = 'https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.1.0/prototype.js';
+    p.onload = start; p.onerror = () => { document.body.textContent = 'Could not load Prototype.js'; };
+    document.head.appendChild(p);
+  } else start();
+</script>
+</body>
+</html>

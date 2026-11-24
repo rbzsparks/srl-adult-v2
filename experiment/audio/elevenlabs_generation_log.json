@@ -1,0 +1,410 @@
+{
+ "label_s01": {
+  "model": "eleven_v4",
+  "voice": "Sarah - Mature, Reassuring, Confident",
+  "voice_id": "EXAVITQu4vr4xnSDxMaL",
+  "sent_text": "Look! ... It's a /ˈboʊsɑ/! ... A /ˈboʊsɑ/!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s01": {
+  "model": "eleven_v4",
+  "voice": "Sarah - Mature, Reassuring, Confident",
+  "voice_id": "EXAVITQu4vr4xnSDxMaL",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s02": {
+  "model": "eleven_v4",
+  "voice": "Will - Relaxed Optimist",
+  "voice_id": "bIHbv24MWmeRgasZH58o",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "label_s02": {
+  "model": "eleven_v4",
+  "voice": "Will - Relaxed Optimist",
+  "voice_id": "bIHbv24MWmeRgasZH58o",
+  "sent_text": "Look! ... It's a /ˈtɛfoʊ/! ... A /ˈtɛfoʊ/!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s03": {
+  "model": "eleven_v4",
+  "voice": "Bella - Professional, Bright, Warm",
+  "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "label_s03": {
+  "model": "eleven_v4",
+  "voice": "Bella - Professional, Bright, Warm",
+  "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+  "sent_text": "Look! ... It's a /ˈfiku/! ... A /ˈfiku/!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s04": {
+  "model": "eleven_v4",
+  "voice": "Chris - Charming, Down-to-Earth",
+  "voice_id": "iP95p4xoKVk53GoZ742B",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "label_s04": {
+  "model": "eleven_v4",
+  "voice": "Chris - Charming, Down-to-Earth",
+  "voice_id": "iP95p4xoKVk53GoZ742B",
+  "sent_text": "Look! ... It's a /ˈlufi/! ... A /ˈlufi/!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s05": {
+  "model": "eleven_v4",
+  "voice": "Carol - Relatable, Real, Likeable Grandma",
+  "voice_id": "5u41aNhyCU6hXOcjPPv0",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "label_s05": {
+  "model": "eleven_v4",
+  "voice": "Carol - Relatable, Real, Likeable Grandma",
+  "voice_id": "5u41aNhyCU6hXOcjPPv0",
+  "sent_text": "Look! ... It's a /ˈmɑvoʊ/! ... A /ˈmɑvoʊ/!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s06": {
+  "model": "eleven_v4",
+  "voice": "Bill - Wise, Mature, Balanced",
+  "voice_id": "pqHfZKP75CvOlQylNhV4",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "label_s06": {
+  "model": "eleven_v4",
+  "voice": "Bill - Wise, Mature, Balanced",
+  "voice_id": "pqHfZKP75CvOlQylNhV4",
+  "sent_text": "Look! ... It's a /ˈzibu/! ... A /ˈzibu/!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s07": {
+  "model": "eleven_v4",
+  "voice": "Jessica - Playful, Bright, Warm",
+  "voice_id": "cgSgspJ2msm6clMCkdW9",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "label_s07": {
+  "model": "eleven_v4",
+  "voice": "Jessica - Playful, Bright, Warm",
+  "voice_id": "cgSgspJ2msm6clMCkdW9",
+  "sent_text": "Look! ... It's a /ˈdæksɑ/! ... A /ˈdæksɑ/!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s08": {
+  "model": "eleven_v4",
+  "voice": "Liam - Energetic, Social Media Creator",
+  "voice_id": "TX3LPaxmHKxFdv7VOQHJ",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "label_s08": {
+  "model": "eleven_v4",
+  "voice": "Liam - Energetic, Social Media Creator",
+  "voice_id": "TX3LPaxmHKxFdv7VOQHJ",
+  "sent_text": "Look! ... It's a /ˈhoʊsi/! ... A /ˈhoʊsi/!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s09": {
+  "model": "eleven_v4",
+  "voice": "Adeline - Feminine and Conversational",
+  "voice_id": "5l5f8iK3YPeGga21rQIX",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "label_s09": {
+  "model": "eleven_v4",
+  "voice": "Adeline - Feminine and Conversational",
+  "voice_id": "5l5f8iK3YPeGga21rQIX",
+  "sent_text": "Look! ... It's a /ˈpɛmoʊ/! ... A /ˈpɛmoʊ/!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s10": {
+  "model": "eleven_v4",
+  "voice": "Eric - Smooth, Trustworthy",
+  "voice_id": "cjVigY5qzO86Huf0OWal",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "label_s10": {
+  "model": "eleven_v4",
+  "voice": "Eric - Smooth, Trustworthy",
+  "voice_id": "cjVigY5qzO86Huf0OWal",
+  "sent_text": "Look! ... It's a /ˈkɛku/! ... A /ˈkɛku/!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s11": {
+  "model": "eleven_v4",
+  "voice": "Julie - Warm, Mature",
+  "voice_id": "g12yXXabMWeFoLMzxPrF",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "label_s11": {
+  "model": "eleven_v4",
+  "voice": "Julie - Warm, Mature",
+  "voice_id": "g12yXXabMWeFoLMzxPrF",
+  "sent_text": "Look! ... It's a /ˈɡimu/! ... A /ˈɡimu/!",
+  "seed": 1000,
+  "take": 1
+ },
+ "greet_s12": {
+  "model": "eleven_v4",
+  "voice": "Marv ",
+  "voice_id": "3HVqMrtg7gWyWkIQWUAC",
+  "sent_text": "Hi! Good to see you!",
+  "seed": 1000,
+  "take": 1
+ },
+ "label_s12": {
+  "model": "eleven_v4",
+  "voice": "Marv ",
+  "voice_id": "3HVqMrtg7gWyWkIQWUAC",
+  "sent_text": "Look! ... It's a /ˈvunoʊ/! ... A /ˈvunoʊ/!",
+  "seed": 2114042446,
+  "take": 3
+ },
+ "test_word_bosa": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈboʊsɑ/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_word_tefo": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈtɛfoʊ/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_word_fiku": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈfiku/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_word_lufi": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈlufi/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_word_mavo": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈmɑvoʊ/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_word_zibu": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈzibu/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_word_daxa": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈdæksɑ/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_word_hosi": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈhoʊsi/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_word_pemo": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈpɛmoʊ/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_word_keku": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈkɛku/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_word_gimu": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈɡimu/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_word_vuno": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which one is the /ˈvunoʊ/?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_face": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "Which of these people did you see?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_mug": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the mug?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_lamp": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the lamp?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_clock": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the clock?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_bowl": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the bowl?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_frame": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the picture frame?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_watering_can": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the watering can?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_vase": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the vase?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_book": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the book?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_teapot": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the teapot?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_candle": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the candle?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_jar": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the jar?",
+  "seed": 1000,
+  "take": 1
+ },
+ "test_incid_bottle": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "What color was the bottle?",
+  "seed": 1000,
+  "take": 1
+ },
+ "check_window": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "window",
+  "seed": 1000,
+  "take": 1
+ },
+ "check_garden": {
+  "model": "eleven_v4",
+  "voice": "Matilda - Knowledgable, Professional",
+  "voice_id": "XrExE9yKIg1WjnnlVkGX",
+  "sent_text": "garden",
+  "seed": 1000,
+  "take": 1
+ }
+}

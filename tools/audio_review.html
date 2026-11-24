@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audio Take Review</title>
+<style>
+  :root { --bg: #FAF7F2; --card: #fff; --line: #E3DACB; --ink: #222; --muted: #6a6a6a; --accent: #2F5DA8; --flag: #A3302A; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+  header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 12px 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; z-index: 2; }
+  header h1 { font-size: 18px; margin: 0 12px 0 0; }
+  button { font: inherit; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  #status { color: var(--muted); font-size: 14px; }
+  main { padding: 12px 16px 60px; max-width: 1100px; }
+  .clip { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 10px 0; }
+  .clip.flagged { border-color: var(--flag); }
+  .top { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+  .cid { font: 600 14px ui-monospace, Consolas, monospace; }
+  .txt { font-size: 16px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .takes { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+  .take { display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 8px; border: 1.5px solid transparent; }
+  .take.sel { border-color: var(--accent); background: #EEF3FB; }
+  .take audio { height: 32px; width: 230px; }
+  label.flag { color: var(--flag); font-size: 14px; margin-left: auto; }
+  .filters label { font-size: 14px; margin-right: 8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Audio take review</h1>
+  <span class="filters">
+    <label><input type="radio" name="f" value="all" checked> all</label>
+    <label><input type="radio" name="f" value="label"> labels</label>
+    <label><input type="radio" name="f" value="greet"> greetings</label>
+    <label><input type="radio" name="f" value="test"> narrator</label>
+    <label><input type="radio" name="f" value="flagged"> flagged</label>
+  </span>
+  <button class="primary" id="save">Save selection</button>
+  <span id="status"></span>
+</header>
+<main id="list"><p>Loading… (run <code>python tools/elevenlabs_tts.py generate</code> first, and open this page through <code>tools/dev_server.py</code>.)</p></main>
+<script>
+(async function () {
+  const base = '../audio_src/elevenlabs/';
+  const index = await (await fetch(base + 'takes/index.json', { cache: 'no-store' })).json();
+  let qc = {};
+  try { const r = await fetch(base + 'takes/qc.json', { cache: 'no-store' }); if (r.ok) qc = await r.json(); } catch (e) { /* run tools/audio_qc.py */ }
+  let saved = {};
+  try { const r = await fetch(base + 'selection.json', { cache: 'no-store' }); if (r.ok) saved = await r.json(); } catch (e) { /* none yet */ }
+  const sel = Object.assign({}, saved); delete sel._regenerate;
+  const flagged = new Set(saved._regenerate || []);
+  const list = document.getElementById('list'), status = document.getElementById('status');
+  const qcNote = (f) => { const q = qc[f]; if (!q) return ''; return ` · ${q.dur}s` + (q.ok ? ' ✓' : ` <span style="color:var(--flag)" title="${q.notes.join('; ')}">⚠ ${q.notes[0].split(':')[0]}</span>`); };
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  function render(filter) {
+    list.innerHTML = '';
+    Object.values(index).forEach((e) => {
+      const kind = e.clip_id.startsWith('label') ? 'label' : e.clip_id.startsWith('greet') ? 'greet' : 'test';
+      if (filter === 'flagged' ? !flagged.has(e.clip_id) : (filter !== 'all' && filter !== kind)) return;
+      const d = document.createElement('div');
+      d.className = 'clip' + (flagged.has(e.clip_id) ? ' flagged' : '');
+      const chosen = +(sel[e.clip_id] || 1);
+      d.innerHTML = `<div class="top"><span class="cid">${esc(e.clip_id)}</span><span class="txt">${esc(e.text)}</span>
+        <span class="meta">${esc(e.pronunciation || '')} · ${esc(e.speaker_id)} · ${esc(e.takes[0] ? e.takes[0].voice : '')}</span>
+        <label class="flag"><input type="checkbox" ${flagged.has(e.clip_id) ? 'checked' : ''}> needs regeneration</label></div>
+        <div class="takes">${e.takes.map((t, i) => `<label class="take${chosen === i + 1 ? ' sel' : ''}"><input type="radio" name="${esc(e.clip_id)}" value="${i + 1}" ${chosen === i + 1 ? 'checked' : ''}>
+          ${i + 1}<audio controls preload="none" src="${base}takes/${esc(t.file)}"></audio><span class="meta">${esc(t.model)}${qcNote(t.file)}</span></label>`).join('')}</div>`;
+      d.querySelectorAll('input[type=radio]').forEach((r) => (r.onchange = () => {
+        sel[e.clip_id] = +r.value;
+        d.querySelectorAll('.take').forEach((t) => t.classList.toggle('sel', t.contains(r)));
+        status.textContent = 'unsaved changes';
+      }));
+      d.querySelector('.flag input').onchange = (ev) => {
+        if (ev.target.checked) flagged.add(e.clip_id); else flagged.delete(e.clip_id);
+        d.classList.toggle('flagged', ev.target.checked); status.textContent = 'unsaved changes';
+      };
+      // Only one clip plays at a time.
+      d.querySelectorAll('audio').forEach((a) => a.addEventListener('play', () => document.querySelectorAll('audio').forEach((o) => { if (o !== a) o.pause(); })));
+      list.appendChild(d);
+    });
+  }
+  document.querySelectorAll('input[name=f]').forEach((r) => (r.onchange = () => render(r.value)));
+  document.getElementById('save').onclick = async () => {
+    const body = JSON.stringify(Object.assign({}, sel, { _regenerate: [...flagged] }), null, 1);
+    const r = await fetch('/__save?path=' + encodeURIComponent('audio_src/elevenlabs/selection.json'), { method: 'POST', body });
+    status.textContent = r.ok ? `saved (${Object.keys(sel).length} chosen, ${flagged.size} flagged for regeneration)` : 'save failed: is tools/dev_server.py running?';
+  };
+  render('all');
+})();
+</script>
+</body>
+</html>

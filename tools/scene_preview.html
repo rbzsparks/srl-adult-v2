@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scene Preview</title>
+<style>
+  body { margin: 0; font-family: system-ui, sans-serif; background: #EDE8E0; color: #222; }
+  .bar { padding: 10px 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 14px; }
+  .bar select, .bar input, .bar button { font: inherit; padding: 4px 8px; }
+  #wrap { position: relative; width: 1000px; height: 625px; margin: 0 16px 16px; background: #FBF8F3; box-shadow: 0 1px 8px rgba(0,0,0,.1); }
+  #log { font: 12px ui-monospace, monospace; margin: 0 16px; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<div class="bar">
+  Scene set <select id="set"></select>
+  Condition <select id="cond"><option>known</option><option>unfamiliar</option></select>
+  Known name <input id="nm" value="Alex" size="10">
+  <label><input type="checkbox" id="shownm" checked> show name text</label>
+  <button id="play">▶ Play scene</button>
+  <button id="final">Show final frame</button>
+  <span>(Press SPACE to end a playing scene.)</span>
+</div>
+<div id="wrap" class="srl-viewport-lite"></div>
+<div id="log"></div>
+<link rel="stylesheet" href="../experiment/css/experiment.css">
+<script src="../experiment/config.js"></script>
+<script src="../experiment/js/util.js"></script>
+<script src="../experiment/js/people.js"></script>
+<script src="../experiment/js/avatar_rules.js"></script>
+<script src="../experiment/js/objects.js"></script>
+<script src="../experiment/js/stimuli.js"></script>
+<script src="../experiment/js/audio.js"></script>
+<script src="../experiment/js/ui.js"></script>
+<script src="../experiment/js/scene.js"></script>
+<script>
+(async function () {
+  const base = '../experiment/';
+  await SRL.stimuli.load(base);
+  await SRL.audio.preload(base, SRL.stimuli.clipIds());
+  const design = SRL.stimuli.design('A');
+  const sel = document.getElementById('set');
+  design.sets.forEach((s) => sel.add(new Option(`${s.id} (${s.word}, ${s.incidental})`, s.id)));
+  const known = Object.assign({}, SRL.people.NEUTRAL, { age: 'young', skinL: 0.35, skinU: 0.6, lid: 'mono', texture: 'straight', length: 'medium', hairStyle: 'bangs', hairColor: 0, glasses: 'round', shirt: 'navy' });
+  const unf = SRL.avatarRules.unfamiliar(known, 12345, SRL_CONFIG).spec;
+  const wrap = document.getElementById('wrap'), log = document.getElementById('log');
+  const ctx = () => ({ knownSpec: known, unfamiliarSpec: unf, knownName: document.getElementById('nm').value, unfamiliarName: 'Jordan',
+    timing: Object.assign({}, SRL_CONFIG.TIMING, { ISI: 0 }), debug: false, auto: false, list: 'A', showName: document.getElementById('shownm').checked });
+  const scene = () => Object.assign({}, design.byId[sel.value], { condition: document.getElementById('cond').value });
+  document.getElementById('play').onclick = async () => {
+    await SRL.audio.unlock();
+    log.textContent = 'playing…';
+    const r = await SRL.scene.run(wrap, scene(), ctx());
+    log.textContent = JSON.stringify(r, null, 1);
+  };
+  // Final frame without animation: run with zero-length timings and simulated audio, then freeze.
+  document.getElementById('final').onclick = async () => {
+    const c = ctx();
+    c.timing = Object.assign({}, c.timing, { STRANGER_ENTER: 1, AFTER_ENTER_PAUSE: 0, RESPONSE: 1, BEFORE_LABEL_PAUSE: 0, SPACE_ENABLE_AFTER_LABEL: 0 });
+    const origPlay = SRL.audio.play;
+    SRL.audio.play = (id, o) => { if (o && o.onSegment) { o.onSegment(0); o.onSegment(1); o.onSegment(2); } return Promise.resolve({ duration_ms: 0 }); };
+    const p = SRL.scene.run(wrap, scene(), c);
+    setTimeout(() => {
+      const clone = wrap.innerHTML;
+      window.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space', key: ' ' }));
+      p.then(() => { wrap.innerHTML = clone; SRL.audio.play = origPlay; log.textContent = 'final frame (AOIs, normalized): ' + JSON.stringify(SRL.scene.AOI_NORM); });
+    }, 1200);
+  };
+  window.SRL_PREVIEW_READY = true;
+})();
+</script>
+</body>
+</html>

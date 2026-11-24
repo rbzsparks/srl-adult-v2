@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hair Motion</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #FAF7F2; color: #222; margin: 16px; }
+  h1 { font-size: 20px; margin: 0 0 6px; }
+  p { max-width: 900px; font-size: 14px; line-height: 1.45; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0 14px; font-size: 14px; }
+  .bar button { font: inherit; padding: 5px 12px; border-radius: 8px; border: 1.5px solid #CFC6B8; background: #fff; cursor: pointer; }
+  .bar button.sel { border-color: #2F5DA8; background: #EEF3FB; font-weight: 600; }
+  .grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .card { background: #fff; border-radius: 10px; padding: 6px; text-align: center; font-size: 12px; color: #555; }
+  .card svg { display: block; width: 190px; height: 228px; }
+  .state { font-weight: 600; color: #2F5DA8; }
+</style>
+</head>
+<body>
+<h1>Hair motion: the look at the object</h1>
+<p>Each figure runs the scene's own head movement: it looks at its partner, then down at the object (eyes, head tilt and
+  drop exactly as in the scenes, from <code>SRL.scene.GAZE</code>), then back. Top row: as the <b>stranger</b> (on the left,
+  turned to the right). Bottom row: as the <b>known / unfamiliar person</b> (on the right, turned to the left). Use the buttons
+  to hold a pose. Open through <code>python tools/dev_server.py</code>.</p>
+<div class="bar">
+  <span>Pose:</span>
+  <button data-m="loop" class="sel">Loop</button><button data-m="partner">Hold: at partner</button><button data-m="object">Hold: at object</button>
+  <span style="margin-left:16px">Skin / hair:</span>
+  <button data-l="0" class="sel">deep / black</button><button data-l="1">medium / brown</button><button data-l="2">light / blonde</button>
+</div>
+<div id="out"></div>
+<script src="../experiment/config.js"></script>
+<script src="../experiment/js/util.js"></script>
+<script src="../experiment/js/people.js"></script>
+<script src="../experiment/js/avatar_rules.js"></script>
+<script src="../experiment/js/objects.js"></script>
+<script src="../experiment/js/stimuli.js"></script>
+<script src="../experiment/js/audio.js"></script>
+<script src="../experiment/js/ui.js"></script>
+<script src="../experiment/js/scene.js"></script>
+<script>
+  const P = SRL.people, G = SRL.scene.GAZE;
+  const LOOKS = [{ skinL: 0.9, skinU: 0.45, hairColor: 0 }, { skinL: 0.5, skinU: 0.6, hairColor: 0.4 }, { skinL: 0.15, skinU: 0.4, hairColor: 0.9 }];
+  const STYLES = [
+    ['Short coils', { hairStyle: 'coils_short', texture: 'coily', length: 'short' }],
+    ['Curls / coils, medium', { hairStyle: 'curly_mid', texture: 'coily', length: 'medium' }],
+    ['Afro', { hairStyle: 'afro', texture: 'coily', length: 'medium' }],
+    ['Puff', { hairStyle: 'bun', texture: 'coily', length: 'medium' }],
+    ['Curls, long', { hairStyle: 'curly_long', texture: 'curly', length: 'long' }],
+    ['Locs', { hairStyle: 'locs', texture: 'coily', length: 'long' }],
+    ['Braids', { hairStyle: 'braids', texture: 'coily', length: 'long' }],
+    ['Bob with bangs', { hairStyle: 'bangs', texture: 'straight', length: 'medium' }],
+    ['Bob', { hairStyle: 'bob', texture: 'wavy', length: 'medium' }],
+    ['Shoulder length', { hairStyle: 'shoulder', texture: 'straight', length: 'medium' }],
+    ['Long', { hairStyle: 'long', texture: 'straight', length: 'long' }],
+    ['Full beard', { hairStyle: 'coils_short', texture: 'coily', length: 'short', facial: 'fullbeard' }],
+    ['Hijab', { hairStyle: 'long', texture: 'straight', length: 'long', covering: 'hijab', coverColor: 'plum' }]
+  ];
+  let mode = 'loop', look = 0, rigs = [], timer = null;
+  function build() {
+    const out = document.getElementById('out');
+    out.innerHTML = '';
+    rigs = [];
+    for (const [role, facing] of [['stranger', 1], ['other', -1]]) {
+      const row = document.createElement('div'); row.className = 'grid'; row.style.marginBottom = '12px';
+      for (const [name, st] of STYLES) {
+        const spec = Object.assign({}, P.NEUTRAL, { age: 'young', shirt: Object.keys(P.DESIGNER_SHIRTS)[2] }, LOOKS[look], st);
+        const card = document.createElement('div'); card.className = 'card';
+        card.innerHTML = P.svg(spec, { facing, cacheHair: true }) + `<div>${name} · ${role === 'stranger' ? 'stranger' : 'known / unfamiliar'}</div><div class="state"></div>`;
+        row.appendChild(card);
+        const g = G[role], at = role === 'stranger' ? g.other : g.stranger;
+        rigs.push({ rig: new P.PersonRig(card.querySelector('svg'), spec, facing, at), at, obj: g.object, label: card.querySelector('.state') });
+      }
+      out.appendChild(row);
+    }
+    run();
+  }
+  const pose = (r, which) => { r.rig.set(Object.assign({}, which === 'object' ? r.obj : r.at)); r.label.textContent = 'at ' + which; };
+  async function run() {
+    if (timer) clearTimeout(timer);
+    if (mode !== 'loop') { rigs.forEach((r) => pose(r, mode)); return; }
+    const myBuild = rigs;
+    const step = async (which) => {
+      if (rigs !== myBuild || mode !== 'loop') return;
+      await Promise.all(rigs.map((r) => { r.label.textContent = 'to ' + which; return r.rig.to(Object.assign({}, which === 'object' ? r.obj : r.at), 350); }));
+      rigs.forEach((r) => (r.label.textContent = 'at ' + which));
+      timer = setTimeout(() => step(which === 'object' ? 'partner' : 'object'), 1100);
+    };
+    step('object');
+  }
+  document.querySelectorAll('[data-m]').forEach((b) => (b.onclick = () => { document.querySelectorAll('[data-m]').forEach((x) => x.classList.toggle('sel', x === b)); mode = b.dataset.m; run(); }));
+  document.querySelectorAll('[data-l]').forEach((b) => (b.onclick = () => { document.querySelectorAll('[data-l]').forEach((x) => x.classList.toggle('sel', x === b)); look = +b.dataset.l; build(); }));
+  build();
+</script>
+</body>
+</html>

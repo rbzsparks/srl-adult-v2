@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Check</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #FAF7F2; color: #222; margin: 16px; max-width: 980px; }
+  li.bad { color: #A3302A; font-weight: 600; }
+  li.ok { color: #2E6B45; }
+  code { font-size: 12px; }
+  #status { font-weight: 600; }
+</style>
+</head>
+<body>
+<!--
+  Runs one full automatic session of the real experiment code in "qualtrics" mode, with a stand-in for
+  Qualtrics.SurveyEngine that records every embedded-data value the experiment writes. The autopilot types a random
+  made-up name and random made-up recall notes. Afterwards, the page searches every place the experiment could leave
+  them: all embedded-data fields (including full_data_json), the full JSON backup (= the DataPipe payload), the jsPsych
+  trial data, localStorage, sessionStorage, cookies, every network request made during the run, the page DOM, and
+  (for the notes) the experiment's in-memory state. It must find neither the name nor any part of the notes.
+
+  Open through python tools/dev_server.py:  tools/privacy_check.html?design=repeat6   (or unique12)
+  Options: &binding=0|1  &checkins=0|1  &prototype=1 (load Qualtrics' Prototype.js 1.7.1 first)
+-->
+<h1 style="font-size:20px">Privacy check: typed name and recall notes</h1>
+<p id="status">Running a full automatic session (about 3 minutes)…</p>
+<ul id="checks"></ul>
+<h2 style="font-size:16px">Check-in wording against tested items</h2>
+<ul id="wording"><li>Waiting…</li></ul>
+<script>
+(function () {
+  const q = new URLSearchParams(location.search);
+  const design = q.get('design') === 'unique12' ? 'unique12' : 'repeat6';
+  // Random made-up name and notes: letters only, so the name passes the name-entry check; long distinctive tokens so
+  // a match cannot be a coincidence.
+  const syl = ['ka', 'zo', 'mir', 'vel', 'tha', 'quo', 'rin', 'dax', 'plo', 'shu', 'nev', 'gor'];
+  const rnd = (n) => { let s = ''; for (let i = 0; i < n; i++) s += syl[Math.floor(Math.random() * syl.length)]; return s; };
+  const name = (rnd(4)).replace(/^./, (c) => c.toUpperCase());
+  // Each note has two random made-up words; those words (not the template words around them, which also appear in
+  // this page's own source) are what the search looks for, along with each whole note.
+  const tok = [[rnd(4), rnd(3)], [rnd(3), rnd(4)], [rnd(4), rnd(3)]];
+  const notes = [`At the ${tok[0][0]} market on ${tok[0][1]} street`, `A ${tok[1][0]} scarf with ${tok[1][1]} buttons`, `Eyes ${tok[2][0]} and dimples ${tok[2][1]}`];
+  window.SRL_AUTOPILOT_TEXT = { name, notes };
+  const needles = [['typed name', name]].concat(notes.map((n, i) => ['note ' + (i + 1) + ' (full)', n]));
+  tok.forEach((t, i) => t.forEach((w) => needles.push(['note ' + (i + 1) + ' word "' + w + '"', w])));
+
+  // Stand-in for Qualtrics: record everything the experiment writes.
+  const captured = {};
+  window.Qualtrics = { SurveyEngine: { setEmbeddedData: (k, v) => { captured[k] = v; }, setJSEmbeddedData: (k, v) => { captured[k] = v; } } };
+  // Record every network request made during the run.
+  const net = [];
+  const of = window.fetch;
+  window.fetch = function (url, o) { net.push(String(url) + ' ' + (o && o.body ? String(o.body) : '')); return of.apply(this, arguments); };
+  const ox = XMLHttpRequest.prototype.open, os = XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.open = function (m, url) { this._u = url; return ox.apply(this, arguments); };
+  XMLHttpRequest.prototype.send = function (b) { net.push(String(this._u) + ' ' + (b ? String(b) : '')); return os.apply(this, arguments); };
+  if (navigator.sendBeacon) { const ob = navigator.sendBeacon.bind(navigator); navigator.sendBeacon = (url, b) => { net.push(String(url) + ' ' + String(b || '')); return ob(url, b); }; }
+
+  const params = { debug: '1', auto: '1', reset: '1', PROLIFIC_PID: 'privacycheck', STUDY_ID: 'privacy', category: 'close', list: 'A', design_version: design };
+  if (design === 'repeat6') params.stranger_set = 'X';
+  ['binding', 'checkins'].forEach((k) => { if (q.has(k)) params[k] = q.get(k); });
+
+  const contains = (hay, needle) => String(hay).toLowerCase().indexOf(needle.toLowerCase()) >= 0;
+  function safeJson(o) {
+    const seen = new WeakSet();
+    return JSON.stringify(o, (k, v) => { if (typeof v === 'object' && v) { if (seen.has(v)) return; seen.add(v); } return typeof v === 'function' ? undefined : v; });
+  }
+
+  async function report() {
+    const S = window.SRL_STATE_FOR_DEBUG;
+    const storage = (st) => { let s = ''; try { for (let i = 0; i < st.length; i++) s += st.key(i) + '=' + st.getItem(st.key(i)) + '\n'; } catch (e) { s = '(unavailable)'; } return s; };
+    const sources = [
+      ['Qualtrics embedded data (all ' + Object.keys(captured).length + ' fields, names and values)', safeJson(captured)],
+      ['full JSON backup (= DataPipe payload)', S ? SRL.data.fullJson(S) : ''],
+      ['jsPsych trial data', S && S.jsPsychJson ? S.jsPsychJson() : '(not available)'],
+      ['localStorage', storage(localStorage)],
+      ['sessionStorage', storage(sessionStorage)],
+      ['cookies', document.cookie],
+      ['network requests during the run (' + net.length + ')', net.join('\n')],
+      ['page DOM after the run', document.documentElement.outerHTML]
+    ];
+    const lines = [];
+    let bad = 0;
+    sources.forEach(([label, text]) => {
+      const hits = needles.filter(([, n]) => contains(text, n)).map(([w]) => w);
+      if (hits.length) bad++;
+      lines.push(`<li class="${hits.length ? 'bad' : 'ok'}">${hits.length ? '✗' : '✓'} ${label}: ${hits.length ? 'FOUND ' + hits.join(', ') : 'neither the name nor the notes'}</li>`);
+    });
+    // In-memory state: the name is meant to stay in memory (S.knownName, for the scenes); the notes must be gone.
+    const mem = S ? safeJson(Object.assign({}, S, { knownName: undefined })) : '';
+    const memHits = needles.filter(([w]) => w.indexOf('note') === 0).filter(([, n]) => contains(mem, n)).map(([w]) => w);
+    if (memHits.length) bad++;
+    lines.push(`<li class="${memHits.length ? 'bad' : 'ok'}">${memHits.length ? '✗' : '✓'} experiment state in memory after the run: ${memHits.length ? 'notes still held: ' + memHits.join(', ') : 'notes cleared'} (S.notes = ${S ? JSON.stringify(S.notes) : '?'})</li>`);
+    const steps = ['recall_enabled', 'revision_enabled', 'revised', 'matching_enabled', 'checkins_enabled'].map((k) => k + '=' + captured[k]).join(', ');
+    lines.push(`<li>Run: ${design}, ${steps}, recall_chars = ${captured.recall_chars_1}/${captured.recall_chars_2}/${captured.recall_chars_3}; made-up name <code>${name}</code>, notes <code>${notes.join(' | ')}</code></li>`);
+    document.getElementById('checks').innerHTML = lines.join('');
+    document.getElementById('status').textContent = bad ? `FAILED: ${bad} source(s) contain the name or notes.` : 'PASSED: the name and notes were found nowhere.';
+    window.PRIVACY_RESULT = { ok: !bad, bad, design, fields: Object.keys(captured).length };
+    wording();
+  }
+
+  // Check-in questions and options must not mention or imply any tested item, colours, objects, meeting people or learning.
+  async function wording() {
+    const stim = await Promise.all(['stimuli.json', 'stimuli_repeat6.json'].map((f) => fetch('../experiment/stimuli/' + f).then((r) => r.json())));
+    const banned = new Set(['colour', 'color', 'object', 'objects', 'meet', 'meeting', 'met', 'learn', 'learning', 'word', 'words', 'remember', 'memory', 'test', 'stranger', 'strangers', 'scene', 'scenes', 'new']);
+    stim.forEach((d) => {
+      Object.keys(d.incidental_colors || {}).forEach((c) => banned.add(c));
+      d.scene_sets.forEach((s) => { banned.add(s.word); banned.add(String(s.incidental).replace(/_/g, ' ')); String(s.incidental).split('_').forEach((w) => banned.add(w)); });
+      (d.objects || []).forEach((o) => o.label && banned.add(String(o.label).toLowerCase()));
+    });
+    const out = [];
+    Object.keys(SRL.binding.CHECKIN_Q).forEach((id) => {
+      const Q = SRL.binding.CHECKIN_Q[id];
+      const text = (Q.q('') + ' ' + Q.opts.join(' ')).toLowerCase();
+      const words = text.replace(/[^a-z' ]/g, ' ').split(/\s+/);
+      const hits = [];
+      banned.forEach((b) => { if (b && (b.indexOf(' ') >= 0 ? text.indexOf(b) >= 0 : words.indexOf(b) >= 0)) hits.push(b); });
+      out.push(`<li class="${hits.length ? 'bad' : 'ok'}">${hits.length ? '✗' : '✓'} <b>${id}</b>: "${Q.q('[name]')}" (${Q.opts.join(' / ')}) ${hits.length ? '— mentions ' + hits.join(', ') : ''}</li>`);
+    });
+    out.push(`<li>Checked against ${banned.size} terms: the novel words, incidental objects and colours of both versions, plus colour/object/meeting/learning/memory/test terms.</li>`);
+    document.getElementById('wording').innerHTML = out.join('');
+  }
+
+  const run = () => window.SRL_LOAD({ base: '../experiment/', mode: 'qualtrics', params, version: String(Date.now()),
+    finish: () => report(), onError: (e) => { document.getElementById('status').textContent = 'Error: ' + e.message; } });
+  const loadLoader = () => { const s = document.createElement('script'); s.src = '../experiment/js/loader.js?v=' + Date.now(); s.onload = run; document.head.appendChild(s); };
+  if (q.get('prototype') === '1') {
+    const p = document.createElement('script');
+    p.src = 'https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.1.0/prototype.js';
+    p.onload = loadLoader; document.head.appendChild(p);
+  } else loadLoader();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Designer Preview</title>
+<link rel="stylesheet" href="../experiment/css/experiment.css">
+<style>
+  body { margin: 0; background: #EDE8E0; font-family: system-ui, sans-serif; }
+  .srl-viewport { position: relative; inset: auto; width: 1000px; height: 625px; margin: 16px; }
+  .srl-canvas { position: relative; left: 0; top: 0; transform: none; }
+  #log { font: 12px ui-monospace, monospace; margin: 0 16px 16px; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<p style="margin:16px 16px 0">Runs the avatar designer and the likeness question on their own (stage at 100%), then shows the generated unfamiliar
+  person and the recorded values. Add <code>?auto=1</code> to click through automatically.</p>
+<div class="srl-viewport"><div class="srl-canvas" id="stage"></div></div>
+<div id="log"></div>
+<script src="../experiment/config.js"></script>
+<script src="../experiment/js/util.js"></script>
+<script src="../experiment/js/people.js"></script>
+<script src="../experiment/js/avatar_rules.js"></script>
+<script src="../experiment/js/ui.js"></script>
+<script src="../experiment/js/designer.js"></script>
+<script>
+(async function () {
+  const el = document.getElementById('stage'), log = document.getElementById('log');
+  const S = { knownName: 'Alex', auto: /auto=1/.test(location.search) };
+  const d = await SRL.designer.run(el, S);
+  const l = await SRL.designer.likeness(el, S, d.spec);
+  const u = SRL.avatarRules.unfamiliar(d.spec, 12345, SRL_CONFIG);
+  el.innerHTML = `<div class="srl-page"><h1>Known and unfamiliar person</h1><div style="display:flex;gap:30px">${SRL.people.svg(d.spec, { attrs: 'width="250" height="300"' })}${SRL.people.svg(u.spec, { attrs: 'width="250" height="300"' })}</div></div>`;
+  log.textContent = JSON.stringify(Object.assign({}, d, l, { known: SRL.people.vecString(d.spec), unfamiliar: SRL.people.vecString(u.spec), changes: u.changes, distance: u.distance }), null, 1);
+  window.DESIGNER_RESULT = { d, l, u };
+})();
+</script>
+</body>
+</html>

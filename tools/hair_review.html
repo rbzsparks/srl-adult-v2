@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hair Review</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #FAF7F2; color: #222; margin: 16px; }
+  h1 { font-size: 20px; margin: 0 0 6px; }
+  h2 { font-size: 15px; margin: 22px 0 6px; }
+  p { max-width: 900px; font-size: 14px; line-height: 1.45; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; }
+  .pair { display: flex; gap: 2px; padding: 4px; border-radius: 10px; background: #EFE8DC; }
+  .cell { text-align: center; font-size: 11px; color: #555; }
+  .cell svg { display: block; background: #fff; border-radius: 8px; }
+  .old svg { opacity: 0.92; }
+  label { font-size: 14px; margin-right: 14px; }
+  .big .cell svg { width: 240px; height: 288px; }
+  .sm .cell svg { width: 120px; height: 144px; }
+</style>
+</head>
+<body>
+<h1>Hair review: every hair style, facial hair and head covering</h1>
+<p>Each pair shows the <b>v2.2 drawing (left, "old")</b> and the <b>v2.3 drawing (right, "new")</b> with the same face, skin tone and
+  hair colour. The new curly and coily styles have clustered curls of varied size along the edge and coil or ringlet texture inside,
+  instead of a ring of identical circles. Locs and braids are drawn rope by rope: locs thick and uneven with knobbly texture,
+  braids even with a plait pattern and parted sections, over the crown from a centre part, framing the face and falling behind
+  and in front of the shoulders. The bob is fuller and longer, with the ends curving in; "Bob" (no bangs) is new in v2.3,
+  so it has no old version. Every other style was redrawn too: buzz cuts with grain that matches the hair type, a bald
+  fringe that sits behind the ears, crops and side parts with strands and soft hairlines, shoulder-length and long hair ending
+  in soft tips, stubble and beards with hair texture, a hijab with folds and a turban with layered pleats. Open through <code>python tools/dev_server.py</code>.</p>
+<p><label><input type="checkbox" id="onlyNew"> New only</label>
+  <label>Size <select id="size"><option value="sm">small (designer thumbnail ~ scene size)</option><option value="big" selected>large (designer preview)</option></select></label></p>
+<div id="out"></div>
+<script src="../experiment/config.js"></script>
+<script src="../experiment/js/util.js"></script>
+<script src="legacy/people_v2.2.js"></script>
+<script src="../experiment/js/people.js"></script>
+<script>
+  const P = SRL.people, O = SRL.peopleOld;
+  // Skin tone (skinL: 0 light .. 1 deep, skinU undertone) and hair colour (0 black .. 1 blonde on the natural scale).
+  const LOOKS = [
+    { name: 'deep skin, black hair', skinL: 0.9, skinU: 0.45, hairColor: 0 },
+    { name: 'deep-medium skin, dark brown hair', skinL: 0.72, skinU: 0.55, hairColor: 0.2 },
+    { name: 'medium skin, brown hair', skinL: 0.5, skinU: 0.6, hairColor: 0.4 },
+    { name: 'light skin, auburn hair', skinL: 0.18, skinU: 0.3, hairColor: 0.72 },
+    { name: 'light skin, blonde hair', skinL: 0.12, skinU: 0.45, hairColor: 0.95 }
+  ];
+  const GROUPS = [
+    ['Short coils (coily)', { hairStyle: 'coils_short', texture: 'coily', length: 'short' }],
+    ['Short curls (curly)', { hairStyle: 'curly_short', texture: 'curly', length: 'short' }],
+    ['Curls / coils, medium (coily)', { hairStyle: 'curly_mid', texture: 'coily', length: 'medium' }],
+    ['Curls / coils, medium (curly)', { hairStyle: 'curly_mid', texture: 'curly', length: 'medium' }],
+    ['Afro (coily)', { hairStyle: 'afro', texture: 'coily', length: 'medium' }],
+    ['Afro (curly)', { hairStyle: 'afro', texture: 'curly', length: 'medium' }],
+    ['Puff (coily)', { hairStyle: 'bun', texture: 'coily', length: 'medium' }],
+    ['Puff (curly)', { hairStyle: 'bun', texture: 'curly', length: 'medium' }],
+    ['Bun (straight)', { hairStyle: 'bun', texture: 'straight', length: 'medium' }],
+    ['Bun (wavy)', { hairStyle: 'bun', texture: 'wavy', length: 'long' }],
+    ['Curls, long (curly)', { hairStyle: 'curly_long', texture: 'curly', length: 'long' }],
+    ['Full beard with short coils', { hairStyle: 'coils_short', texture: 'coily', length: 'short', facial: 'fullbeard', jaw: 0.7 }],
+    ['Bob with bangs (straight)', { hairStyle: 'bangs', texture: 'straight', length: 'medium' }],
+    ['Bob with bangs (wavy)', { hairStyle: 'bangs', texture: 'wavy', length: 'medium' }],
+    ['Bob, no bangs (straight), new style', { hairStyle: 'bob', texture: 'straight', length: 'medium' }],
+    ['Bob, no bangs (wavy), new style', { hairStyle: 'bob', texture: 'wavy', length: 'medium' }],
+    ['Locs (coily)', { hairStyle: 'locs', texture: 'coily', length: 'long' }],
+    ['Locs (curly)', { hairStyle: 'locs', texture: 'curly', length: 'long' }],
+    ['Braids (coily)', { hairStyle: 'braids', texture: 'coily', length: 'long' }],
+    ['Braids (curly)', { hairStyle: 'braids', texture: 'curly', length: 'long' }],
+    ['Buzz (coily)', { hairStyle: 'buzz', texture: 'coily', length: 'short' }],
+    ['Buzz (straight)', { hairStyle: 'buzz', texture: 'straight', length: 'short' }],
+    ['Bald / receding (older, grey)', { hairStyle: 'bald', texture: 'coily', length: 'short', age: 'older', hairGray: 0.6 }],
+    ['Bald / receding', { hairStyle: 'bald', texture: 'straight', length: 'short', age: 'middle' }],
+    ['Short crop (straight)', { hairStyle: 'crop', texture: 'straight', length: 'short' }],
+    ['Short crop (wavy)', { hairStyle: 'crop', texture: 'wavy', length: 'short' }],
+    ['Side part (straight)', { hairStyle: 'sidepart', texture: 'straight', length: 'short' }],
+    ['Side part (wavy)', { hairStyle: 'sidepart', texture: 'wavy', length: 'short' }],
+    ['Shoulder length (straight)', { hairStyle: 'shoulder', texture: 'straight', length: 'medium' }],
+    ['Shoulder length (wavy)', { hairStyle: 'shoulder', texture: 'wavy', length: 'medium' }],
+    ['Long (straight)', { hairStyle: 'long', texture: 'straight', length: 'long' }],
+    ['Long (wavy)', { hairStyle: 'long', texture: 'wavy', length: 'long' }],
+    ['Stubble', { hairStyle: 'crop', texture: 'straight', length: 'short', facial: 'stubble', jaw: 0.7 }],
+    ['Mustache', { hairStyle: 'crop', texture: 'straight', length: 'short', facial: 'mustache', jaw: 0.7 }],
+    ['Short beard', { hairStyle: 'sidepart', texture: 'straight', length: 'short', facial: 'beard', jaw: 0.7 }],
+    ['Full beard (straight / wavy hair)', { hairStyle: 'crop', texture: 'wavy', length: 'short', facial: 'fullbeard', jaw: 0.7 }],
+    ['Hijab', { hairStyle: 'long', texture: 'straight', length: 'long', covering: 'hijab', coverColor: 'plum' }],
+    ['Turban', { hairStyle: 'crop', texture: 'straight', length: 'short', covering: 'turban', coverColor: 'saffron', facial: 'fullbeard', jaw: 0.7 }]
+  ];
+  function draw() {
+    const onlyNew = document.getElementById('onlyNew').checked, size = document.getElementById('size').value;
+    const w = size === 'big' ? 240 : 120, h = w * 1.2;
+    let html = '';
+    for (const [title, style] of GROUPS) {
+      html += `<h2>${title}</h2><div class="row ${size}">`;
+      for (const L of LOOKS) {
+        const spec = Object.assign({}, P.NEUTRAL, { age: 'young', shirt: Object.keys(P.DESIGNER_SHIRTS)[2] }, L, style);
+        delete spec.name;
+        const hasOld = O.STYLES[spec.hairStyle];
+        html += `<div class="pair">`;
+        if (!onlyNew) html += `<div class="cell old">${hasOld ? O.svg(spec, { attrs: `width="${w}" height="${h}"` }) : `<div style="width:${w}px;height:${h}px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:8px">no old version</div>`}old</div>`;
+        html += `<div class="cell">${P.svg(spec, { attrs: `width="${w}" height="${h}"` })}new · ${L.name}</div></div>`;
+      }
+      html += '</div>';
+    }
+    document.getElementById('out').innerHTML = html;
+  }
+  document.getElementById('onlyNew').onchange = draw;
+  document.getElementById('size').onchange = draw;
+  draw();
+</script>
+</body>
+</html>

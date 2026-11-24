@@ -1,0 +1,4812 @@
+{
+ "SurveyEntry": {
+  "SurveyID": "SV_lb1ix6O6aDeGigd",
+  "SurveyName": "Social relevance study (Prolific) - repeat6",
+  "SurveyDescription": null,
+  "SurveyOwnerID": "UR_placeholder",
+  "SurveyBrandID": "placeholder",
+  "DivisionID": null,
+  "SurveyLanguage": "EN",
+  "SurveyActiveResponseSet": "RS_FtP5dPI9taTLnVz",
+  "SurveyStatus": "Inactive",
+  "SurveyStartDate": "0000-00-00 00:00:00",
+  "SurveyExpirationDate": "0000-00-00 00:00:00",
+  "SurveyCreationDate": "2026-11-13 00:00:00",
+  "CreatorID": "UR_placeholder",
+  "LastModified": "2026-11-13 00:00:00",
+  "LastAccessed": "0000-00-00 00:00:00",
+  "LastActivated": "0000-00-00 00:00:00",
+  "Deleted": null
+ },
+ "SurveyElements": [
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "BL",
+   "PrimaryAttribute": "Survey Blocks",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": [
+    {
+     "Type": "Default",
+     "Description": "Device check",
+     "ID": "BL_zdJhMtbt4FaPRV3",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID1"
+      }
+     ],
+     "Options": {
+      "BlockLocking": "false",
+      "RandomizeQuestions": "false",
+      "BlockVisibility": "Expanded"
+     }
+    },
+    {
+     "Type": "Standard",
+     "Description": "Device screen-out message",
+     "ID": "BL_RtGS8BqZdF2WzvR",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID2"
+      }
+     ],
+     "Options": {
+      "BlockLocking": "false",
+      "RandomizeQuestions": "false",
+      "BlockVisibility": "Expanded"
+     }
+    },
+    {
+     "Type": "Standard",
+     "Description": "Consent",
+     "ID": "BL_UsiZk524ewEWZ7z",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID3"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID4"
+      }
+     ],
+     "Options": {
+      "BlockLocking": "false",
+      "RandomizeQuestions": "false",
+      "BlockVisibility": "Expanded"
+     }
+    },
+    {
+     "Type": "Standard",
+     "Description": "Declined consent",
+     "ID": "BL_rYzuHdHCQVAwIDg",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID5"
+      }
+     ],
+     "Options": {
+      "BlockLocking": "false",
+      "RandomizeQuestions": "false",
+      "BlockVisibility": "Expanded"
+     }
+    },
+    {
+     "Type": "Standard",
+     "Description": "Experiment (JS)",
+     "ID": "BL_s1rbaVkSkRR92ie",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID6"
+      }
+     ],
+     "Options": {
+      "BlockLocking": "false",
+      "RandomizeQuestions": "false",
+      "BlockVisibility": "Expanded"
+     }
+    },
+    {
+     "Type": "Standard",
+     "Description": "Post-test questions",
+     "ID": "BL_ExjGnyuRpnAuf3L",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID7"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID8"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID9"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID10"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID11"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID12"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID13"
+      }
+     ],
+     "Options": {
+      "BlockLocking": "false",
+      "RandomizeQuestions": "false",
+      "BlockVisibility": "Expanded"
+     }
+    },
+    {
+     "Type": "Standard",
+     "Description": "Demographics [confirm list with IRB]",
+     "ID": "BL_W93f8Hk0MpTGB0T",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID14"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID15"
+      }
+     ],
+     "Options": {
+      "BlockLocking": "false",
+      "RandomizeQuestions": "false",
+      "BlockVisibility": "Expanded"
+     }
+    },
+    {
+     "Type": "Standard",
+     "Description": "Debrief",
+     "ID": "BL_TNVeZi2bYTNJPM1",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID16"
+      }
+     ],
+     "Options": {
+      "BlockLocking": "false",
+      "RandomizeQuestions": "false",
+      "BlockVisibility": "Expanded"
+     }
+    },
+    {
+     "Type": "Trash",
+     "Description": "Trash / Unused Questions",
+     "ID": "BL_a175Wl4A2NQiWHn",
+     "BlockElements": [],
+     "Options": {
+      "BlockLocking": "false",
+      "RandomizeQuestions": "false",
+      "BlockVisibility": "Expanded"
+     }
+    }
+   ]
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "FL",
+   "PrimaryAttribute": "Survey Flow",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "Type": "Root",
+    "FlowID": "FL_1",
+    "Flow": [
+     {
+      "Type": "EmbeddedData",
+      "FlowID": "FL_25",
+      "EmbeddedData": [
+       {
+        "Description": "PROLIFIC_PID",
+        "Type": "Recipient",
+        "Field": "PROLIFIC_PID",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "STUDY_ID",
+        "Type": "Recipient",
+        "Field": "STUDY_ID",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "SESSION_ID",
+        "Type": "Recipient",
+        "Field": "SESSION_ID",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "debug",
+        "Type": "Recipient",
+        "Field": "debug",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "name_label",
+        "Type": "Recipient",
+        "Field": "name_label",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "binding",
+        "Type": "Recipient",
+        "Field": "binding",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkins",
+        "Type": "Recipient",
+        "Field": "checkins",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "design_version",
+        "Type": "Custom",
+        "Field": "design_version",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false,
+        "Value": "repeat6"
+       },
+       {
+        "Description": "category",
+        "Type": "Recipient",
+        "Field": "category",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "list",
+        "Type": "Recipient",
+        "Field": "list",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "stranger_set",
+        "Type": "Recipient",
+        "Field": "stranger_set",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "device_ok",
+        "Type": "Recipient",
+        "Field": "device_ok",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "device_reason",
+        "Type": "Recipient",
+        "Field": "device_reason",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "device_screen",
+        "Type": "Recipient",
+        "Field": "device_screen",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "device_window",
+        "Type": "Recipient",
+        "Field": "device_window",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "device_pointer",
+        "Type": "Recipient",
+        "Field": "device_pointer",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "design_version_source",
+        "Type": "Recipient",
+        "Field": "design_version_source",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "relationship_type",
+        "Type": "Recipient",
+        "Field": "relationship_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "is_kin",
+        "Type": "Recipient",
+        "Field": "is_kin",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "ios",
+        "Type": "Recipient",
+        "Field": "ios",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "contact_inperson",
+        "Type": "Recipient",
+        "Field": "contact_inperson",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "contact_remote",
+        "Type": "Recipient",
+        "Field": "contact_remote",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "contact_max",
+        "Type": "Recipient",
+        "Field": "contact_max",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "duration",
+        "Type": "Recipient",
+        "Field": "duration",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "name_length",
+        "Type": "Recipient",
+        "Field": "name_length",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "name_flagged_title",
+        "Type": "Recipient",
+        "Field": "name_flagged_title",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "name_suspect",
+        "Type": "Recipient",
+        "Field": "name_suspect",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "recall_enabled",
+        "Type": "Recipient",
+        "Field": "recall_enabled",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "revision_enabled",
+        "Type": "Recipient",
+        "Field": "revision_enabled",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "matching_enabled",
+        "Type": "Recipient",
+        "Field": "matching_enabled",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkins_enabled",
+        "Type": "Recipient",
+        "Field": "checkins_enabled",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "steps_source",
+        "Type": "Recipient",
+        "Field": "steps_source",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "recall_ms",
+        "Type": "Recipient",
+        "Field": "recall_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "recall_chars_1",
+        "Type": "Recipient",
+        "Field": "recall_chars_1",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "recall_chars_2",
+        "Type": "Recipient",
+        "Field": "recall_chars_2",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "recall_chars_3",
+        "Type": "Recipient",
+        "Field": "recall_chars_3",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "known_avatar",
+        "Type": "Recipient",
+        "Field": "known_avatar",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "unfamiliar_avatar",
+        "Type": "Recipient",
+        "Field": "unfamiliar_avatar",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "unfam_changes",
+        "Type": "Recipient",
+        "Field": "unfam_changes",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "unfam_k",
+        "Type": "Recipient",
+        "Field": "unfam_k",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "unfam_identity_dist",
+        "Type": "Recipient",
+        "Field": "unfam_identity_dist",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "unfamiliar_name",
+        "Type": "Recipient",
+        "Field": "unfamiliar_name",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "control_name",
+        "Type": "Recipient",
+        "Field": "control_name",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "target_avatar",
+        "Type": "Recipient",
+        "Field": "target_avatar",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "copy_intro_ms",
+        "Type": "Recipient",
+        "Field": "copy_intro_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "copy_err_1",
+        "Type": "Recipient",
+        "Field": "copy_err_1",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "copy_n_miss_1",
+        "Type": "Recipient",
+        "Field": "copy_n_miss_1",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "copy_miss_1",
+        "Type": "Recipient",
+        "Field": "copy_miss_1",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "copy_err",
+        "Type": "Recipient",
+        "Field": "copy_err",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "copy_n_miss",
+        "Type": "Recipient",
+        "Field": "copy_n_miss",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "copy_miss",
+        "Type": "Recipient",
+        "Field": "copy_miss",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "likeness_rating",
+        "Type": "Recipient",
+        "Field": "likeness_rating",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "likeness_rt_ms",
+        "Type": "Recipient",
+        "Field": "likeness_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "likeness_1",
+        "Type": "Recipient",
+        "Field": "likeness_1",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "revision_offered",
+        "Type": "Recipient",
+        "Field": "revision_offered",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "revised",
+        "Type": "Recipient",
+        "Field": "revised",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "likeness_2",
+        "Type": "Recipient",
+        "Field": "likeness_2",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "designer_ms_2",
+        "Type": "Recipient",
+        "Field": "designer_ms_2",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "designer_edits_2",
+        "Type": "Recipient",
+        "Field": "designer_edits_2",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "confirm_ms",
+        "Type": "Recipient",
+        "Field": "confirm_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "jordan_intro_ms",
+        "Type": "Recipient",
+        "Field": "jordan_intro_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_keymap",
+        "Type": "Recipient",
+        "Field": "match_keymap",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_acc_kk",
+        "Type": "Recipient",
+        "Field": "match_acc_kk",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_acc_uu",
+        "Type": "Recipient",
+        "Field": "match_acc_uu",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_acc_ku",
+        "Type": "Recipient",
+        "Field": "match_acc_ku",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_acc_uk",
+        "Type": "Recipient",
+        "Field": "match_acc_uk",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_rt_med_kk",
+        "Type": "Recipient",
+        "Field": "match_rt_med_kk",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_rt_med_uu",
+        "Type": "Recipient",
+        "Field": "match_rt_med_uu",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_rt_med_ku",
+        "Type": "Recipient",
+        "Field": "match_rt_med_ku",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_rt_med_uk",
+        "Type": "Recipient",
+        "Field": "match_rt_med_uk",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_acc_total",
+        "Type": "Recipient",
+        "Field": "match_acc_total",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_n_timeout",
+        "Type": "Recipient",
+        "Field": "match_n_timeout",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "match_flag",
+        "Type": "Recipient",
+        "Field": "match_flag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_order",
+        "Type": "Recipient",
+        "Field": "checkin_order",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_1_qid",
+        "Type": "Recipient",
+        "Field": "checkin_1_qid",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_1_first",
+        "Type": "Recipient",
+        "Field": "checkin_1_first",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_1_after_trial",
+        "Type": "Recipient",
+        "Field": "checkin_1_after_trial",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_1_known_resp",
+        "Type": "Recipient",
+        "Field": "checkin_1_known_resp",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_1_known_rt_ms",
+        "Type": "Recipient",
+        "Field": "checkin_1_known_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_1_unf_resp",
+        "Type": "Recipient",
+        "Field": "checkin_1_unf_resp",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_1_unf_rt_ms",
+        "Type": "Recipient",
+        "Field": "checkin_1_unf_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_2_qid",
+        "Type": "Recipient",
+        "Field": "checkin_2_qid",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_2_first",
+        "Type": "Recipient",
+        "Field": "checkin_2_first",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_2_after_trial",
+        "Type": "Recipient",
+        "Field": "checkin_2_after_trial",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_2_known_resp",
+        "Type": "Recipient",
+        "Field": "checkin_2_known_resp",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_2_known_rt_ms",
+        "Type": "Recipient",
+        "Field": "checkin_2_known_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_2_unf_resp",
+        "Type": "Recipient",
+        "Field": "checkin_2_unf_resp",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_2_unf_rt_ms",
+        "Type": "Recipient",
+        "Field": "checkin_2_unf_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_3_qid",
+        "Type": "Recipient",
+        "Field": "checkin_3_qid",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_3_first",
+        "Type": "Recipient",
+        "Field": "checkin_3_first",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_3_after_trial",
+        "Type": "Recipient",
+        "Field": "checkin_3_after_trial",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_3_known_resp",
+        "Type": "Recipient",
+        "Field": "checkin_3_known_resp",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_3_known_rt_ms",
+        "Type": "Recipient",
+        "Field": "checkin_3_known_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_3_unf_resp",
+        "Type": "Recipient",
+        "Field": "checkin_3_unf_resp",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "checkin_3_unf_rt_ms",
+        "Type": "Recipient",
+        "Field": "checkin_3_unf_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "represent_rating",
+        "Type": "Recipient",
+        "Field": "represent_rating",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "represent_rt_ms",
+        "Type": "Recipient",
+        "Field": "represent_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "designer_edits",
+        "Type": "Recipient",
+        "Field": "designer_edits",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "designer_resets",
+        "Type": "Recipient",
+        "Field": "designer_resets",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "designer_tabs_visited",
+        "Type": "Recipient",
+        "Field": "designer_tabs_visited",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "designer_edits_skin",
+        "Type": "Recipient",
+        "Field": "designer_edits_skin",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "designer_edits_face",
+        "Type": "Recipient",
+        "Field": "designer_edits_face",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "designer_edits_eyes",
+        "Type": "Recipient",
+        "Field": "designer_edits_eyes",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "designer_edits_nosemouth",
+        "Type": "Recipient",
+        "Field": "designer_edits_nosemouth",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "designer_edits_hair",
+        "Type": "Recipient",
+        "Field": "designer_edits_hair",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "designer_edits_extras",
+        "Type": "Recipient",
+        "Field": "designer_edits_extras",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_designer_skin_ms",
+        "Type": "Recipient",
+        "Field": "t_designer_skin_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_designer_face_ms",
+        "Type": "Recipient",
+        "Field": "t_designer_face_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_designer_eyes_ms",
+        "Type": "Recipient",
+        "Field": "t_designer_eyes_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_designer_nosemouth_ms",
+        "Type": "Recipient",
+        "Field": "t_designer_nosemouth_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_designer_hair_ms",
+        "Type": "Recipient",
+        "Field": "t_designer_hair_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_designer_extras_ms",
+        "Type": "Recipient",
+        "Field": "t_designer_extras_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "audio_check_pass",
+        "Type": "Recipient",
+        "Field": "audio_check_pass",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "audio_check_attempts",
+        "Type": "Recipient",
+        "Field": "audio_check_attempts",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "filler2_accuracy",
+        "Type": "Recipient",
+        "Field": "filler2_accuracy",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "filler2_n_attempted",
+        "Type": "Recipient",
+        "Field": "filler2_n_attempted",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "filler2_n_timeout",
+        "Type": "Recipient",
+        "Field": "filler2_n_timeout",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "filler2_low_engagement",
+        "Type": "Recipient",
+        "Field": "filler2_low_engagement",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_fast_advance_count",
+        "Type": "Recipient",
+        "Field": "fam_fast_advance_count",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_timeout_count",
+        "Type": "Recipient",
+        "Field": "fam_timeout_count",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fullscreen_exits",
+        "Type": "Recipient",
+        "Field": "fullscreen_exits",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "tab_switches",
+        "Type": "Recipient",
+        "Field": "tab_switches",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "total_ms",
+        "Type": "Recipient",
+        "Field": "total_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_block_order",
+        "Type": "Recipient",
+        "Field": "test_block_order",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "reload_pre_fam",
+        "Type": "Recipient",
+        "Field": "reload_pre_fam",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "reloaded_post_fam",
+        "Type": "Recipient",
+        "Field": "reloaded_post_fam",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "reload_stage",
+        "Type": "Recipient",
+        "Field": "reload_stage",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_intro_ms",
+        "Type": "Recipient",
+        "Field": "t_intro_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_setup_ms",
+        "Type": "Recipient",
+        "Field": "t_setup_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_recall_ms",
+        "Type": "Recipient",
+        "Field": "t_recall_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_designer_ms",
+        "Type": "Recipient",
+        "Field": "t_designer_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_binding_ms",
+        "Type": "Recipient",
+        "Field": "t_binding_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_matching_ms",
+        "Type": "Recipient",
+        "Field": "t_matching_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_audio_check_ms",
+        "Type": "Recipient",
+        "Field": "t_audio_check_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_filler1_ms",
+        "Type": "Recipient",
+        "Field": "t_filler1_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_fam_ms",
+        "Type": "Recipient",
+        "Field": "t_fam_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_checkin_ms",
+        "Type": "Recipient",
+        "Field": "t_checkin_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_filler2_ms",
+        "Type": "Recipient",
+        "Field": "t_filler2_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "t_test_ms",
+        "Type": "Recipient",
+        "Field": "t_test_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "js_start_epoch_ms",
+        "Type": "Recipient",
+        "Field": "js_start_epoch_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "js_end_epoch_ms",
+        "Type": "Recipient",
+        "Field": "js_end_epoch_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "exp_version",
+        "Type": "Recipient",
+        "Field": "exp_version",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "qualtrics_engine",
+        "Type": "Recipient",
+        "Field": "qualtrics_engine",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "surprise_test",
+        "Type": "Recipient",
+        "Field": "surprise_test",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "name_label_shown",
+        "Type": "Recipient",
+        "Field": "name_label_shown",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "mouseview_on",
+        "Type": "Recipient",
+        "Field": "mouseview_on",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "seed",
+        "Type": "Recipient",
+        "Field": "seed",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "browser",
+        "Type": "Recipient",
+        "Field": "browser",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "screen_w",
+        "Type": "Recipient",
+        "Field": "screen_w",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "screen_h",
+        "Type": "Recipient",
+        "Field": "screen_h",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "window_w",
+        "Type": "Recipient",
+        "Field": "window_w",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "window_h",
+        "Type": "Recipient",
+        "Field": "window_h",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "window_small_prompt",
+        "Type": "Recipient",
+        "Field": "window_small_prompt",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "audio_load_errors",
+        "Type": "Recipient",
+        "Field": "audio_load_errors",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "audio_simulated_scenes",
+        "Type": "Recipient",
+        "Field": "audio_simulated_scenes",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "word_foil_vowel_relaxed",
+        "Type": "Recipient",
+        "Field": "word_foil_vowel_relaxed",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "js_error",
+        "Type": "Recipient",
+        "Field": "js_error",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_01_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_presentation",
+        "Type": "Recipient",
+        "Field": "fam_01_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_01_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_lag",
+        "Type": "Recipient",
+        "Field": "fam_01_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_condition",
+        "Type": "Recipient",
+        "Field": "fam_01_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_01_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_word",
+        "Type": "Recipient",
+        "Field": "fam_01_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_01_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_01_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_01_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_01_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_01_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_01_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_02_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_presentation",
+        "Type": "Recipient",
+        "Field": "fam_02_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_02_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_lag",
+        "Type": "Recipient",
+        "Field": "fam_02_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_condition",
+        "Type": "Recipient",
+        "Field": "fam_02_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_02_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_word",
+        "Type": "Recipient",
+        "Field": "fam_02_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_02_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_02_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_02_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_02_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_02_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_02_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_03_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_presentation",
+        "Type": "Recipient",
+        "Field": "fam_03_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_03_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_lag",
+        "Type": "Recipient",
+        "Field": "fam_03_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_condition",
+        "Type": "Recipient",
+        "Field": "fam_03_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_03_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_word",
+        "Type": "Recipient",
+        "Field": "fam_03_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_03_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_03_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_03_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_03_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_03_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_03_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_04_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_presentation",
+        "Type": "Recipient",
+        "Field": "fam_04_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_04_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_lag",
+        "Type": "Recipient",
+        "Field": "fam_04_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_condition",
+        "Type": "Recipient",
+        "Field": "fam_04_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_04_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_word",
+        "Type": "Recipient",
+        "Field": "fam_04_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_04_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_04_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_04_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_04_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_04_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_04_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_05_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_presentation",
+        "Type": "Recipient",
+        "Field": "fam_05_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_05_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_lag",
+        "Type": "Recipient",
+        "Field": "fam_05_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_condition",
+        "Type": "Recipient",
+        "Field": "fam_05_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_05_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_word",
+        "Type": "Recipient",
+        "Field": "fam_05_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_05_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_05_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_05_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_05_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_05_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_05_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_06_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_presentation",
+        "Type": "Recipient",
+        "Field": "fam_06_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_06_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_lag",
+        "Type": "Recipient",
+        "Field": "fam_06_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_condition",
+        "Type": "Recipient",
+        "Field": "fam_06_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_06_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_word",
+        "Type": "Recipient",
+        "Field": "fam_06_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_06_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_06_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_06_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_06_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_06_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_06_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_07_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_presentation",
+        "Type": "Recipient",
+        "Field": "fam_07_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_07_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_lag",
+        "Type": "Recipient",
+        "Field": "fam_07_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_condition",
+        "Type": "Recipient",
+        "Field": "fam_07_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_07_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_word",
+        "Type": "Recipient",
+        "Field": "fam_07_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_07_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_07_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_07_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_07_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_07_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_07_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_08_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_presentation",
+        "Type": "Recipient",
+        "Field": "fam_08_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_08_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_lag",
+        "Type": "Recipient",
+        "Field": "fam_08_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_condition",
+        "Type": "Recipient",
+        "Field": "fam_08_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_08_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_word",
+        "Type": "Recipient",
+        "Field": "fam_08_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_08_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_08_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_08_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_08_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_08_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_08_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_09_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_presentation",
+        "Type": "Recipient",
+        "Field": "fam_09_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_09_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_lag",
+        "Type": "Recipient",
+        "Field": "fam_09_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_condition",
+        "Type": "Recipient",
+        "Field": "fam_09_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_09_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_word",
+        "Type": "Recipient",
+        "Field": "fam_09_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_09_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_09_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_09_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_09_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_09_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_09_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_10_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_presentation",
+        "Type": "Recipient",
+        "Field": "fam_10_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_10_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_lag",
+        "Type": "Recipient",
+        "Field": "fam_10_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_condition",
+        "Type": "Recipient",
+        "Field": "fam_10_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_10_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_word",
+        "Type": "Recipient",
+        "Field": "fam_10_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_10_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_10_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_10_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_10_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_10_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_10_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_11_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_presentation",
+        "Type": "Recipient",
+        "Field": "fam_11_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_11_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_lag",
+        "Type": "Recipient",
+        "Field": "fam_11_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_condition",
+        "Type": "Recipient",
+        "Field": "fam_11_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_11_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_word",
+        "Type": "Recipient",
+        "Field": "fam_11_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_11_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_11_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_11_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_11_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_11_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_11_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_scene_set_id",
+        "Type": "Recipient",
+        "Field": "fam_12_scene_set_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_presentation",
+        "Type": "Recipient",
+        "Field": "fam_12_presentation",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_serial_position",
+        "Type": "Recipient",
+        "Field": "fam_12_serial_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_lag",
+        "Type": "Recipient",
+        "Field": "fam_12_lag",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_condition",
+        "Type": "Recipient",
+        "Field": "fam_12_condition",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_stranger_id",
+        "Type": "Recipient",
+        "Field": "fam_12_stranger_id",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_word",
+        "Type": "Recipient",
+        "Field": "fam_12_word",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_incidental_type",
+        "Type": "Recipient",
+        "Field": "fam_12_incidental_type",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_incidental_color",
+        "Type": "Recipient",
+        "Field": "fam_12_incidental_color",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_view_ms",
+        "Type": "Recipient",
+        "Field": "fam_12_view_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_timed_out",
+        "Type": "Recipient",
+        "Field": "fam_12_timed_out",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "fam_12_label_audio_ms",
+        "Type": "Recipient",
+        "Field": "fam_12_label_audio_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss1_choice",
+        "Type": "Recipient",
+        "Field": "test_word_ss1_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss1_correct",
+        "Type": "Recipient",
+        "Field": "test_word_ss1_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss1_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_word_ss1_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss1_foils",
+        "Type": "Recipient",
+        "Field": "test_word_ss1_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss1_position",
+        "Type": "Recipient",
+        "Field": "test_word_ss1_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss2_choice",
+        "Type": "Recipient",
+        "Field": "test_word_ss2_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss2_correct",
+        "Type": "Recipient",
+        "Field": "test_word_ss2_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss2_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_word_ss2_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss2_foils",
+        "Type": "Recipient",
+        "Field": "test_word_ss2_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss2_position",
+        "Type": "Recipient",
+        "Field": "test_word_ss2_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss3_choice",
+        "Type": "Recipient",
+        "Field": "test_word_ss3_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss3_correct",
+        "Type": "Recipient",
+        "Field": "test_word_ss3_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss3_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_word_ss3_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss3_foils",
+        "Type": "Recipient",
+        "Field": "test_word_ss3_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss3_position",
+        "Type": "Recipient",
+        "Field": "test_word_ss3_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss4_choice",
+        "Type": "Recipient",
+        "Field": "test_word_ss4_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss4_correct",
+        "Type": "Recipient",
+        "Field": "test_word_ss4_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss4_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_word_ss4_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss4_foils",
+        "Type": "Recipient",
+        "Field": "test_word_ss4_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss4_position",
+        "Type": "Recipient",
+        "Field": "test_word_ss4_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss5_choice",
+        "Type": "Recipient",
+        "Field": "test_word_ss5_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss5_correct",
+        "Type": "Recipient",
+        "Field": "test_word_ss5_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss5_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_word_ss5_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss5_foils",
+        "Type": "Recipient",
+        "Field": "test_word_ss5_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss5_position",
+        "Type": "Recipient",
+        "Field": "test_word_ss5_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss6_choice",
+        "Type": "Recipient",
+        "Field": "test_word_ss6_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss6_correct",
+        "Type": "Recipient",
+        "Field": "test_word_ss6_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss6_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_word_ss6_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss6_foils",
+        "Type": "Recipient",
+        "Field": "test_word_ss6_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_word_ss6_position",
+        "Type": "Recipient",
+        "Field": "test_word_ss6_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss1_choice",
+        "Type": "Recipient",
+        "Field": "test_face_ss1_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss1_correct",
+        "Type": "Recipient",
+        "Field": "test_face_ss1_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss1_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_face_ss1_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss1_foils",
+        "Type": "Recipient",
+        "Field": "test_face_ss1_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss1_position",
+        "Type": "Recipient",
+        "Field": "test_face_ss1_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss2_choice",
+        "Type": "Recipient",
+        "Field": "test_face_ss2_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss2_correct",
+        "Type": "Recipient",
+        "Field": "test_face_ss2_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss2_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_face_ss2_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss2_foils",
+        "Type": "Recipient",
+        "Field": "test_face_ss2_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss2_position",
+        "Type": "Recipient",
+        "Field": "test_face_ss2_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss3_choice",
+        "Type": "Recipient",
+        "Field": "test_face_ss3_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss3_correct",
+        "Type": "Recipient",
+        "Field": "test_face_ss3_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss3_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_face_ss3_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss3_foils",
+        "Type": "Recipient",
+        "Field": "test_face_ss3_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss3_position",
+        "Type": "Recipient",
+        "Field": "test_face_ss3_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss4_choice",
+        "Type": "Recipient",
+        "Field": "test_face_ss4_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss4_correct",
+        "Type": "Recipient",
+        "Field": "test_face_ss4_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss4_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_face_ss4_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss4_foils",
+        "Type": "Recipient",
+        "Field": "test_face_ss4_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss4_position",
+        "Type": "Recipient",
+        "Field": "test_face_ss4_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss5_choice",
+        "Type": "Recipient",
+        "Field": "test_face_ss5_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss5_correct",
+        "Type": "Recipient",
+        "Field": "test_face_ss5_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss5_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_face_ss5_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss5_foils",
+        "Type": "Recipient",
+        "Field": "test_face_ss5_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss5_position",
+        "Type": "Recipient",
+        "Field": "test_face_ss5_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss6_choice",
+        "Type": "Recipient",
+        "Field": "test_face_ss6_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss6_correct",
+        "Type": "Recipient",
+        "Field": "test_face_ss6_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss6_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_face_ss6_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss6_foils",
+        "Type": "Recipient",
+        "Field": "test_face_ss6_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_face_ss6_position",
+        "Type": "Recipient",
+        "Field": "test_face_ss6_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss1_choice",
+        "Type": "Recipient",
+        "Field": "test_incid_ss1_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss1_correct",
+        "Type": "Recipient",
+        "Field": "test_incid_ss1_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss1_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_incid_ss1_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss1_foils",
+        "Type": "Recipient",
+        "Field": "test_incid_ss1_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss1_position",
+        "Type": "Recipient",
+        "Field": "test_incid_ss1_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss2_choice",
+        "Type": "Recipient",
+        "Field": "test_incid_ss2_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss2_correct",
+        "Type": "Recipient",
+        "Field": "test_incid_ss2_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss2_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_incid_ss2_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss2_foils",
+        "Type": "Recipient",
+        "Field": "test_incid_ss2_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss2_position",
+        "Type": "Recipient",
+        "Field": "test_incid_ss2_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss3_choice",
+        "Type": "Recipient",
+        "Field": "test_incid_ss3_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss3_correct",
+        "Type": "Recipient",
+        "Field": "test_incid_ss3_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss3_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_incid_ss3_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss3_foils",
+        "Type": "Recipient",
+        "Field": "test_incid_ss3_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss3_position",
+        "Type": "Recipient",
+        "Field": "test_incid_ss3_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss4_choice",
+        "Type": "Recipient",
+        "Field": "test_incid_ss4_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss4_correct",
+        "Type": "Recipient",
+        "Field": "test_incid_ss4_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss4_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_incid_ss4_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss4_foils",
+        "Type": "Recipient",
+        "Field": "test_incid_ss4_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss4_position",
+        "Type": "Recipient",
+        "Field": "test_incid_ss4_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss5_choice",
+        "Type": "Recipient",
+        "Field": "test_incid_ss5_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss5_correct",
+        "Type": "Recipient",
+        "Field": "test_incid_ss5_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss5_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_incid_ss5_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss5_foils",
+        "Type": "Recipient",
+        "Field": "test_incid_ss5_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss5_position",
+        "Type": "Recipient",
+        "Field": "test_incid_ss5_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss6_choice",
+        "Type": "Recipient",
+        "Field": "test_incid_ss6_choice",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss6_correct",
+        "Type": "Recipient",
+        "Field": "test_incid_ss6_correct",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss6_rt_ms",
+        "Type": "Recipient",
+        "Field": "test_incid_ss6_rt_ms",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss6_foils",
+        "Type": "Recipient",
+        "Field": "test_incid_ss6_foils",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "test_incid_ss6_position",
+        "Type": "Recipient",
+        "Field": "test_incid_ss6_position",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "full_data_json_1",
+        "Type": "Recipient",
+        "Field": "full_data_json_1",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "full_data_json_2",
+        "Type": "Recipient",
+        "Field": "full_data_json_2",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "full_data_json_3",
+        "Type": "Recipient",
+        "Field": "full_data_json_3",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "full_data_json_4",
+        "Type": "Recipient",
+        "Field": "full_data_json_4",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "full_data_json_n",
+        "Type": "Recipient",
+        "Field": "full_data_json_n",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       },
+       {
+        "Description": "full_data_json_truncated",
+        "Type": "Recipient",
+        "Field": "full_data_json_truncated",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false
+       }
+      ]
+     },
+     {
+      "Type": "Block",
+      "ID": "BL_zdJhMtbt4FaPRV3",
+      "FlowID": "FL_26",
+      "Autofill": []
+     },
+     {
+      "Type": "Branch",
+      "FlowID": "FL_2",
+      "Description": "New Branch",
+      "BranchLogic": {
+       "0": {
+        "0": {
+         "LogicType": "EmbeddedField",
+         "LeftOperand": "device_ok",
+         "Operator": "EqualTo",
+         "RightOperand": "0",
+         "_HiddenExpression": false,
+         "Type": "Expression",
+         "Description": "<span class=\"ConjDesc\">If</span> <span class=\"LeftOpDesc\">device_ok</span> <span class=\"OpDesc\">Is Equal to</span> <span class=\"RightOpDesc\"> 0 </span>"
+        },
+        "Type": "If"
+       },
+       "Type": "BooleanExpression"
+      },
+      "Flow": [
+       {
+        "Type": "Block",
+        "ID": "BL_RtGS8BqZdF2WzvR",
+        "FlowID": "FL_3",
+        "Autofill": []
+       },
+       {
+        "Type": "EndSurvey",
+        "FlowID": "FL_4",
+        "EndingType": "Advanced",
+        "Options": {
+         "Advanced": "true",
+         "SurveyTermination": "Redirect",
+         "EOSRedirectURL": "https://app.prolific.com/submissions/complete?cc=SCREENOUT_CODE"
+        }
+       }
+      ]
+     },
+     {
+      "Type": "Block",
+      "ID": "BL_UsiZk524ewEWZ7z",
+      "FlowID": "FL_27",
+      "Autofill": []
+     },
+     {
+      "Type": "Branch",
+      "FlowID": "FL_5",
+      "Description": "New Branch",
+      "BranchLogic": {
+       "0": {
+        "0": {
+         "LogicType": "Question",
+         "QuestionID": "QID4",
+         "QuestionIsInLoop": "no",
+         "ChoiceLocator": "q://QID4/SelectableChoice/2",
+         "Operator": "Selected",
+         "QuestionIDFromLocator": "QID4",
+         "LeftOperand": "q://QID4/SelectableChoice/2",
+         "Type": "Expression",
+         "Description": "<span class=\"ConjDesc\">If</span> <span class=\"QuestionDesc\">consent</span> <span class=\"LeftOpDesc\">I do not agree</span> <span class=\"OpDesc\">Is Selected</span> "
+        },
+        "Type": "If"
+       },
+       "Type": "BooleanExpression"
+      },
+      "Flow": [
+       {
+        "Type": "Block",
+        "ID": "BL_rYzuHdHCQVAwIDg",
+        "FlowID": "FL_6",
+        "Autofill": []
+       },
+       {
+        "Type": "EndSurvey",
+        "FlowID": "FL_7",
+        "EndingType": "Advanced",
+        "Options": {
+         "Advanced": "true",
+         "SurveyTermination": "Redirect",
+         "EOSRedirectURL": "https://app.prolific.com/submissions/complete?cc=NOCONSENT_CODE"
+        }
+       }
+      ]
+     },
+     {
+      "Type": "BlockRandomizer",
+      "FlowID": "FL_24",
+      "SubSet": "1",
+      "EvenPresentation": true,
+      "Flow": [
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_8",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "acquaintance"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "A"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "X"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_9",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "acquaintance"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "A"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "Y"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_10",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "acquaintance"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "B"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "X"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_11",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "acquaintance"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "B"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "Y"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_12",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "moderate"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "A"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "X"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_13",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "moderate"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "A"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "Y"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_14",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "moderate"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "B"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "X"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_15",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "moderate"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "B"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "Y"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_16",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "close"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "A"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "X"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_17",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "close"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "A"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "Y"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_18",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "close"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "B"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "X"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_19",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "close"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "B"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "Y"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_20",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "control"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "A"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "X"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_21",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "control"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "A"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "Y"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_22",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "control"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "B"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "X"
+         }
+        ]
+       },
+       {
+        "Type": "EmbeddedData",
+        "FlowID": "FL_23",
+        "EmbeddedData": [
+         {
+          "Description": "category",
+          "Type": "Custom",
+          "Field": "category",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "control"
+         },
+         {
+          "Description": "list",
+          "Type": "Custom",
+          "Field": "list",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "B"
+         },
+         {
+          "Description": "stranger_set",
+          "Type": "Custom",
+          "Field": "stranger_set",
+          "VariableType": "String",
+          "DataVisibility": [],
+          "AnalyzeText": false,
+          "Value": "Y"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "Type": "Block",
+      "ID": "BL_s1rbaVkSkRR92ie",
+      "FlowID": "FL_28",
+      "Autofill": []
+     },
+     {
+      "Type": "Block",
+      "ID": "BL_ExjGnyuRpnAuf3L",
+      "FlowID": "FL_29",
+      "Autofill": []
+     },
+     {
+      "Type": "Block",
+      "ID": "BL_W93f8Hk0MpTGB0T",
+      "FlowID": "FL_30",
+      "Autofill": []
+     },
+     {
+      "Type": "Block",
+      "ID": "BL_TNVeZi2bYTNJPM1",
+      "FlowID": "FL_31",
+      "Autofill": []
+     },
+     {
+      "Type": "EndSurvey",
+      "FlowID": "FL_32",
+      "EndingType": "Advanced",
+      "Options": {
+       "Advanced": "true",
+       "SurveyTermination": "Redirect",
+       "EOSRedirectURL": "https://app.prolific.com/submissions/complete?cc=COMPLETION_CODE"
+      }
+     }
+    ],
+    "Properties": {
+     "Count": 32,
+     "RemovedFieldsets": []
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SO",
+   "PrimaryAttribute": "Survey Options",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "BackButton": "false",
+    "SaveAndContinue": "true",
+    "SurveyProtection": "PublicSurvey",
+    "BallotBoxStuffingPrevention": "false",
+    "NoIndex": "Yes",
+    "SecureResponseFiles": "true",
+    "SurveyExpiration": "None",
+    "SurveyTermination": "Redirect",
+    "EOSRedirectURL": "https://app.prolific.com/submissions/complete?cc=COMPLETION_CODE",
+    "Header": "",
+    "Footer": "",
+    "ProgressBarDisplay": "None",
+    "PartialData": "+1 week",
+    "ValidationMessage": "",
+    "PreviousButton": "",
+    "NextButton": " → ",
+    "SurveyTitle": "Social relevance study",
+    "SkinLibrary": "",
+    "SkinType": "templated",
+    "Skin": "",
+    "NewScoring": 1,
+    "CustomStyles": [],
+    "QuestionsPerPage": "",
+    "PageTransition": "None",
+    "AvailableLanguages": {
+     "EN": []
+    },
+    "ProtectSelectionIds": true
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "RS",
+   "PrimaryAttribute": "RS_FtP5dPI9taTLnVz",
+   "SecondaryAttribute": "Default Response Set",
+   "TertiaryAttribute": null,
+   "Payload": null
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "QC",
+   "PrimaryAttribute": "Survey Question Count",
+   "SecondaryAttribute": "16",
+   "TertiaryAttribute": null,
+   "Payload": null
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID1",
+   "SecondaryAttribute": "device_check",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Checking your device…",
+    "DataExportTag": "device_check",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "device_check",
+    "ChoiceOrder": [],
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "QuestionID": "QID1",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "QuestionJS": "Qualtrics.SurveyEngine.addOnload(function () {\n  /* Device check before consent: desktop/laptop with a screen of at least 1024 x 650 (either orientation).\n   * Screen size is measured in physical pixels (CSS pixels x devicePixelRatio), so display scaling (e.g. Windows at\n   * 125-175%) or browser zoom does not make an ordinary laptop screen look too small. */\n  var q = this;\n  q.hideNextButton();\n  var ua = navigator.userAgent || '';\n  var mobileUA = /Mobi|Android|iPhone|iPad|iPod|Tablet|Kindle|Silk|PlayBook|BlackBerry|Opera Mini/i.test(ua);\n  var iPadOS = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;\n  // Pointer type is recorded but does not screen anyone out: browsers (and Qualtrics' preview) report it unreliably,\n  // e.g. a MacBook trackpad reported as \"no fine pointer\". Phones and tablets are caught by the user agent above.\n  var mm = function (m) { return window.matchMedia ? window.matchMedia(m).matches : null; };\n  var pointer = 'fine=' + mm('(any-pointer: fine)') + ' hover=' + mm('(any-hover: hover)') + ' touch=' + (navigator.maxTouchPoints || 0);\n  var sw = screen.width, sh = screen.height, dpr = window.devicePixelRatio || 1;\n  var pw = Math.round(sw * dpr), ph = Math.round(sh * dpr);\n  var bigEnough = Math.max(pw, ph) >= 1024 && Math.min(pw, ph) >= 650;\n  var reason = mobileUA || iPadOS ? 'mobile' : (!bigEnough ? 'small_screen' : '');\n  var set = function (k, v) { Qualtrics.SurveyEngine.setEmbeddedData(k, String(v)); };\n  set('device_ok', reason ? 0 : 1);\n  set('device_reason', reason);\n  set('device_screen', pw + 'x' + ph + ' px (' + sw + 'x' + sh + ' at scale ' + Math.round(dpr * 100) / 100 + ')');\n  set('device_window', window.innerWidth + 'x' + window.innerHeight);\n  set('device_pointer', pointer);\n  setTimeout(function () { q.clickNextButton(); }, 400);\n});\n"
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID2",
+   "SecondaryAttribute": "device_screenout_msg",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "<p>Sorry, this study needs a <b>desktop or laptop computer</b> with a screen of at least 1024 × 650 pixels.</p><p>Click the arrow to return to Prolific.</p><p style=\"font-size:12px;color:#777\">Technical details: ${e://Field/device_reason} · screen ${e://Field/device_screen}</p>",
+    "DataExportTag": "device_screenout_msg",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "device_screenout_msg",
+    "ChoiceOrder": [],
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "QuestionID": "QID2",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID3",
+   "SecondaryAttribute": "consent_text",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "<p><b>[PLACEHOLDER: IRB-APPROVED CONSENT TEXT]</b></p><p>This study takes about <b>20 minutes</b>. It requires <b>sound</b> (headphones or speakers) and a desktop or laptop computer.</p><p>You'll make a simple cartoon avatar. Some participants design it to look like someone they know, first typing that person's first name and some brief notes about them; others copy an avatar we show them. Any name and notes you type are not saved.</p><p>[Purpose, procedures, risks, benefits, compensation, confidentiality, voluntary participation, contact information.]</p>",
+    "DataExportTag": "consent_text",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "consent_text",
+    "ChoiceOrder": [],
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "QuestionID": "QID3",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID4",
+   "SecondaryAttribute": "consent",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Do you agree to take part in this study?",
+    "DataExportTag": "consent",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "consent",
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 3,
+    "NextAnswerId": 1,
+    "QuestionID": "QID4",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "I agree to take part"
+     },
+     "2": {
+      "Display": "I do not agree"
+     }
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID5",
+   "SecondaryAttribute": "declined_msg",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "<p>You chose not to take part. Thank you for your time.</p><p>Click the arrow to go back to Prolific, which will ask you to <b>return</b> this study.</p>",
+    "DataExportTag": "declined_msg",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "declined_msg",
+    "ChoiceOrder": [],
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "QuestionID": "QID5",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID6",
+   "SecondaryAttribute": "experiment",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "<div id=\"srl-loading\" style=\"font-size:18px\">Loading the study… This can take a few seconds.</div>",
+    "DataExportTag": "experiment",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "experiment",
+    "ChoiceOrder": [],
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "QuestionID": "QID6",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "QuestionJS": "Qualtrics.SurveyEngine.addOnload(function () {\n  /* Loads the externally hosted experiment (GitHub Pages). Edit BASE_URL / VERSION here if they change. */\n  var q = this;\n  q.hideNextButton();\n  if (q.hidePreviousButton) { q.hidePreviousButton(); }\n  var BASE_URL = 'https://rbzsparks.github.io/srl-adult-prolific/experiment/';\n  var VERSION = '2.4.2';\n  var params = {\n    PROLIFIC_PID: \"${e://Field/PROLIFIC_PID}\", STUDY_ID: \"${e://Field/STUDY_ID}\", SESSION_ID: \"${e://Field/SESSION_ID}\",\n    category: \"${e://Field/category}\", list: \"${e://Field/list}\", design_version: \"${e://Field/design_version}\", stranger_set: \"${e://Field/stranger_set}\", debug: \"${e://Field/debug}\", name_label: \"${e://Field/name_label}\", binding: \"${e://Field/binding}\", checkins: \"${e://Field/checkins}\", ResponseID: \"${e://Field/ResponseID}\"\n  };\n  function fail(e) {\n    var c = q.getQuestionContainer ? q.getQuestionContainer() : document.body;\n    c.innerHTML = '<p style=\"font-size:18px;line-height:1.5\">Sorry, the study could not load. Please check your internet connection and reload this page. ' +\n      'If this keeps happening, please contact the researchers through Prolific.</p>';\n  }\n  var s = document.createElement('script');\n  s.src = BASE_URL + 'js/loader.js?v=' + VERSION;\n  s.onload = function () {\n    window.SRL_LOAD({ base: BASE_URL, mode: 'qualtrics', params: params, version: VERSION,\n      finish: function () { q.clickNextButton(); }, onError: fail });\n  };\n  s.onerror = fail;\n  document.head.appendChild(s);\n});\n"
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID7",
+   "SecondaryAttribute": "expected_test",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Before the memory questions, did you expect to be tested on what you saw?",
+    "DataExportTag": "expected_test",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "expected_test",
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3"
+    ],
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "QuestionID": "QID7",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Yes"
+     },
+     "2": {
+      "Display": "No"
+     },
+     "3": {
+      "Display": "Not sure"
+     }
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID8",
+   "SecondaryAttribute": "strategy",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Did you use any strategy to remember things? (optional)",
+    "DataExportTag": "strategy",
+    "QuestionType": "TE",
+    "Selector": "ESTB",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText",
+     "InputWidth": 600,
+     "InputHeight": 90
+    },
+    "QuestionDescription": "strategy",
+    "ChoiceOrder": [],
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "QuestionID": "QID8",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "DefaultChoices": false
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID9",
+   "SecondaryAttribute": "exp_easy",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "The scenes were easy to follow.",
+    "DataExportTag": "exp_easy",
+    "QuestionType": "MC",
+    "Selector": "SAHR",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "exp_easy",
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 6,
+    "NextAnswerId": 1,
+    "QuestionID": "QID9",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Strongly disagree"
+     },
+     "2": {
+      "Display": "Somewhat disagree"
+     },
+     "3": {
+      "Display": "Neither agree nor disagree"
+     },
+     "4": {
+      "Display": "Somewhat agree"
+     },
+     "5": {
+      "Display": "Strongly agree"
+     }
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID10",
+   "SecondaryAttribute": "attention_check_1",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "To show that you are reading carefully, please select \"Strongly disagree\" for this item.",
+    "DataExportTag": "attention_check_1",
+    "QuestionType": "MC",
+    "Selector": "SAHR",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "attention_check_1",
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 6,
+    "NextAnswerId": 1,
+    "QuestionID": "QID10",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Strongly disagree"
+     },
+     "2": {
+      "Display": "Somewhat disagree"
+     },
+     "3": {
+      "Display": "Neither agree nor disagree"
+     },
+     "4": {
+      "Display": "Somewhat agree"
+     },
+     "5": {
+      "Display": "Strongly agree"
+     }
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID11",
+   "SecondaryAttribute": "exp_sound",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "The sound in the scenes was clear.",
+    "DataExportTag": "exp_sound",
+    "QuestionType": "MC",
+    "Selector": "SAHR",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "exp_sound",
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 6,
+    "NextAnswerId": 1,
+    "QuestionID": "QID11",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Strongly disagree"
+     },
+     "2": {
+      "Display": "Somewhat disagree"
+     },
+     "3": {
+      "Display": "Neither agree nor disagree"
+     },
+     "4": {
+      "Display": "Somewhat agree"
+     },
+     "5": {
+      "Display": "Strongly agree"
+     }
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID12",
+   "SecondaryAttribute": "attention_check_2",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Please select \"Somewhat agree\" for this item.",
+    "DataExportTag": "attention_check_2",
+    "QuestionType": "MC",
+    "Selector": "SAHR",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "attention_check_2",
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 6,
+    "NextAnswerId": 1,
+    "QuestionID": "QID12",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Strongly disagree"
+     },
+     "2": {
+      "Display": "Somewhat disagree"
+     },
+     "3": {
+      "Display": "Neither agree nor disagree"
+     },
+     "4": {
+      "Display": "Somewhat agree"
+     },
+     "5": {
+      "Display": "Strongly agree"
+     }
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID13",
+   "SecondaryAttribute": "tech_problems",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Did you have any technical problems (for example with sound, video, or full screen)? (optional)",
+    "DataExportTag": "tech_problems",
+    "QuestionType": "TE",
+    "Selector": "ESTB",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText",
+     "InputWidth": 600,
+     "InputHeight": 70
+    },
+    "QuestionDescription": "tech_problems",
+    "ChoiceOrder": [],
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "QuestionID": "QID13",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "DefaultChoices": false
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID14",
+   "SecondaryAttribute": "age",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "What is your age (in years)?",
+    "DataExportTag": "age",
+    "QuestionType": "TE",
+    "Selector": "SL",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText",
+     "InputWidth": 120
+    },
+    "QuestionDescription": "age",
+    "ChoiceOrder": [],
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "ContentType",
+      "ContentType": "ValidNumber",
+      "ValidDateType": "DateWithFormat",
+      "ValidPhoneType": "ValidUSPhone",
+      "ValidZipType": "ValidUSZip",
+      "ValidNumber": {
+       "Min": "18",
+       "Max": "110",
+       "NumDecimals": "0"
+      }
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "QuestionID": "QID14",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "DefaultChoices": false
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID15",
+   "SecondaryAttribute": "gender",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "What is your gender?",
+    "DataExportTag": "gender",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "gender",
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 6,
+    "NextAnswerId": 1,
+    "QuestionID": "QID15",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Woman"
+     },
+     "2": {
+      "Display": "Man"
+     },
+     "3": {
+      "Display": "Non-binary"
+     },
+     "4": {
+      "Display": "Prefer to self-describe:",
+      "TextEntry": "true"
+     },
+     "5": {
+      "Display": "Prefer not to say"
+     }
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_lb1ix6O6aDeGigd",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID16",
+   "SecondaryAttribute": "debrief",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "<p><b>[PLACEHOLDER: IRB-APPROVED DEBRIEF TEXT]</b></p><p>[Explain the purpose: whether seeing someone you know changes what people notice and remember about a stranger, the words they teach, and background details. Explain the surprise memory test. Contact information.]</p><p>Click the arrow to finish and return to Prolific.</p>",
+    "DataExportTag": "debrief",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "debrief",
+    "ChoiceOrder": [],
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "GradingData": [],
+    "Language": [],
+    "NextChoiceId": 4,
+    "NextAnswerId": 1,
+    "QuestionID": "QID16",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    }
+   }
+  }
+ ]
+}
