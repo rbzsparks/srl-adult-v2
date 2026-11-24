@@ -168,13 +168,11 @@ html.srl-active, html.srl-active body { overflow: hidden !important; }
 .bd-ci-btn { font: inherit; font-size: 18px; padding: 10px 18px; border-radius: 10px; border: 2px solid #D8CFC1; background: #fff; cursor: pointer; }
 .bd-ci-btn:hover { border-color: #2F5DA8; background: #EEF3FB; }
 .bd-center .srl-actions { margin-top: 18px; }
-/* Control condition (v2.4): the avatar to copy beside the participant's avatar */
-.dz-preview-xs { width: 180px; height: 216px; }
-.bd-lab { font-size: 15px; font-weight: 650; color: #6A6152; margin-bottom: 4px; }
-.dz-like-wrap
 /* v3.0: 1-7 scales, voice selector, odd/even task, identity test */
 .bd-scale { display: flex; gap: 8px; justify-content: center; margin: 22px 0 10px; }
-.bd-scale-page .bd-center { margin-bottom: 8px; }
+.bd-scale-page .bd-center { margin-bottom: 4px; }
+.bd-scale .dz-like-btn { width: 104px; height: 90px; padding: 4px; }
+.bd-scale .dz-like-btn span { font-size: 12px; }
 .vc-wrap { display: flex; gap: 40px; align-items: flex-start; margin-top: 10px; }
 .vc-main { flex: 1; }
 .vc-list { display: flex; flex-direction: column; gap: 6px; margin: 12px 0 6px; }

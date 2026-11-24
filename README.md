@@ -2,7 +2,7 @@
 
 jsPsych 8.2.1 experiment, embedded in a **Qualtrics** survey (classic layout), recruited on **Prolific**. The full design
 and every decision behind it is in **[docs/V2_SPEC.md](docs/V2_SPEC.md)**; this README covers how to run, deploy and
-analyse it. Experiment version: `3.0.0` (`VERSION` in `experiment/config.js`).
+analyse it. Experiment version: `3.0.1` (`VERSION` in `experiment/config.js`).
 
 This repo started from the pilot-1 code (`rbzsparks/srl-adult-prolific`, tag `v2.4.2-pilot1`), which stays frozen
 there with its data.

@@ -4,7 +4,7 @@
  * Design: docs/V2_SPEC.md.
  * ===================================================================== */
 window.SRL_CONFIG = {
-  VERSION: '3.0.0',
+  VERSION: '3.0.1',
 
   /* ---------- Qualtrics ---------- */
   // 'legacy' = classic layouts: Qualtrics.SurveyEngine.setEmbeddedData. 'nste' = New Survey Taking Experience (UNTESTED).

@@ -305,7 +305,7 @@ SRL.binding = (function () {
   async function represent(el, S) {
     const nm = esc(S.knownName);
     const a = await scale7(el, S, `While watching, how much did ${nm} feel like someone you know?`,
-      `<div class="bd-center">${figure(S.knownSpec, S.knownName, 200)}</div>`, { 1: 'Not at all', 7: 'Completely' }, S.control ? 2 : 6);
+      `<div class="bd-center">${figure(S.knownSpec, S.knownName, 170)}</div>`, { 1: 'Not at all', 7: 'Completely' }, S.control ? 2 : 6);
     return { represent_rating: a.value, represent_rt_ms: a.rt };
   }
 
