@@ -1,6 +1,6 @@
 # SRL adult v2: design spec
 
-Status: **draft for sign-off** (2026-11-24). Pilot 1 code is frozen at `rbzsparks/srl-adult-prolific`, tag
+Status: **signed off** (2026-11-24). Pilot 1 code is frozen at `rbzsparks/srl-adult-prolific`, tag
 `v2.4.2-pilot1`. Everything below is decided unless marked **Check**.
 
 ## 1. Design in one paragraph
@@ -37,7 +37,7 @@ a bosa! A bosa!"). A 30 s odd/even task follows, then three surprise 4-option te
 |---|---|---|---|
 | 1 | Consent, device check (Qualtrics) | same | same |
 | 2 | Intro | same | same |
-| 3 | Person setup | "Think of one of your **closest** friends or family members" → first name (no family titles, no romantic partner) → relationship type → closeness 1–7 → contact (in person, remote) → how long known (**Check**: not in your list; I'd keep it, known only) | "In this study you'll create a person named **Sam**" (no questions) |
+| 3 | Person setup | "Think of one of your **closest** friends or family members" → first name (no family titles, no romantic partner) → relationship type → closeness 1–7 → contact (in person, remote) → how long known | "In this study you'll create a person named **Sam**" (no questions) |
 | 4 | Picture page (8 s minimum) | "Picture the last time you saw [name]…" | "Picture what Sam might be like: where you might run into them, what they might wear, what their smile is like." |
 | 5 | Notes beside the designer (never saved) | Where were you? / What was [name] doing or wearing? / What does [name]'s face look like when they smile or laugh? | Where might you run into Sam? / What might Sam be doing or wearing? / What does Sam's face look like when they smile or laugh? |
 | 6 | Designer | design [name] | design Sam (pilot-1 controls copied a random avatar; v2 controls design freely) |
@@ -94,7 +94,8 @@ memory only, as in pilot 1.
   - about 1.5× its pilot-1 size;
   - never blocked by anything;
   - same position and colour in both showings of a scene.
-- **Colours:** red, blue, yellow, green (as distinct as possible; exact hexes to be checked for colour-vision deficiency).
+- **Colours:** red `#B3122E`, blue `#2D6FD6`, yellow `#FFD000`, green `#2FB36A`. The smallest pairwise OKLab ΔE is
+  26 with normal vision, 16 protan, 18 deutan and 12 tritan (target ≥ 8).
   Each colour is the target 1–2 times across the 6 sets, balanced. `COLOUR_CHOICES` in config (4 now; 2 is the fallback).
 - **Timeouts:** `fam_timeout_count` is kept, as are view times and fast advances (recorded, not used as attention measures).
 
@@ -128,8 +129,8 @@ memory only, as in pilot 1.
 - **Rules,** all checked in the browser:
   1. A stranger or foil name is swapped if it matches the typed name, ignoring case. It's also swapped if it nearly
      matches: edit distance ≤ 2, or the same first 3 letters.
-  2. A stranger name is swapped if it starts with the same sound as the control name. "Same sound" is defined by a
-     small onset table: Sam/s, Alex/vowel, Jamie/dʒ. In practice this swaps Avery when the control is Alex.
+  2. A stranger name is swapped if it starts with the same sound as the control name (onset table: Sam /s/, Alex /æ/,
+     Jamie /dʒ/). None of the 6 main names does; Avery (/eɪ/) is not swapped for Alex.
   3. A swapped name takes its own backup. If the backup also fails, it takes the next unused backup.
 - **Recorded:** `name_swaps` (count), `swapped_names` (which list names were replaced, never the typed name), and
   `name_face_map` (e.g. `str01=Quinn;str02=Riley;…`).
@@ -185,7 +186,12 @@ Not exclusions:
 - **Known condition only:** closeness, voice closeness, likeness and "felt like" as predictors (exploratory).
 - **Manipulation check:** "felt like" known vs. control.
 - **Hypothesis signatures:** the four accounts map onto the condition × test pattern for word, identity and colour.
-- **Power:** see `analysis/power_v2.R`. Pilot 2 (N = 100) is sized for feasibility, not for the confirmatory test.
+- **Power** (`analysis/power_v2.R`, 1,000 simulations per cell; results in `analysis/power_out/`):
+  - Effect: a 10-point difference in mean accuracy between conditions, word and identity tested separately.
+  - Total N needed (half per condition): 80% power at about 290, 90% at about 400–420.
+  - If the participant SD is 1.0 rather than the pilot's 1.59: 80% at about 210–225, 90% at about 300.
+  - Pilot 2 (N = 100) has 80% power only for a difference of about 17 points. It is sized for feasibility, not for the
+    confirmatory test.
 
 ## 13. Pilot 2 logistics
 
@@ -213,8 +219,7 @@ Not exclusions:
 - The 45 s arithmetic as the default.
 - The unique12 design.
 
-## 15. Check before building
+## 15. Decided at sign-off (2026-11-24)
 
-- **Relationship duration ("How long have you known…"):** keep, known condition only?
-- **Exact colour hexes:** red/blue/yellow/green chosen to stay distinct with colour-vision deficiency. I'll validate
-  them and show you a swatch.
+- Relationship duration is kept, known condition only.
+- Avery is not swapped when the control name is Alex.
