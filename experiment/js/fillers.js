@@ -1,8 +1,8 @@
 /* fillers.js
  * Filler 1: "Get ready" screen with a countdown (TIMING.FILLER1), shown after the scene instructions; the first scene starts automatically.
  * Filler 2 (the delay after the scenes, TIMING.FILLER2), one of (config FILLER_TASK):
- *   parity (v3.0, default): a two-digit number every TIMING.PARITY_SOA ms; F = odd, J = even; each number stays up until
- *     the next, no feedback. parity_flag = accuracy among answered < PARITY_FLAG_ACC or misses >= PARITY_FLAG_MISSES.
+ *   parity (default): self-paced two-digit numbers, F = odd, J = even; each number stays up until a key press, at most
+ *     TIMING.PARITY_MAX_MS; the pressed key lights up (no right/wrong feedback). parity_flag = accuracy among answered < PARITY_FLAG_ACC or misses >= PARITY_FLAG_MISSES.
  *   arithmetic (pilot 1): verification ("7 + 5 = 13?") with a per-problem deadline (TIMING.FILLER2_DEADLINE); a problem
  *     not answered in time counts as an error. Below FILLER2_ENGAGEMENT_MIN sets filler2_low_engagement. */
 SRL.fillers = (function () {
@@ -109,58 +109,75 @@ SRL.fillers = (function () {
     };
   }
 
-  /* Odd/even. Numbers 10-99, half odd and half even in random order, no more than 4 of one parity in a row, and never
-   * the same number twice in a row. The first F/J press per number counts; later presses are ignored. */
+  /* Odd/even numbers 10-99: parity chosen at random but never more than 4 of one parity in a row, and never the same
+   * number twice in a row. */
   function parityNumbers(n) {
-    for (let tries = 0; tries < 1000; tries++) {
-      const par = U.shuffle(Array(n).fill(0).map((_, i) => i % 2));
-      let ok = true, run = 1;
-      for (let i = 1; i < n && ok; i++) { run = par[i] === par[i - 1] ? run + 1 : 1; if (run > 4) ok = false; }
-      if (!ok) continue;
-      const nums = [];
-      par.forEach((odd, i) => { let x; do { x = 10 + 2 * U.randInt(45) + odd; } while (i && x === nums[i - 1]); nums.push(x); });
-      return nums;
+    const nums = [];
+    let run = 0;
+    for (let i = 0; i < n; i++) {
+      let odd = U.randInt(2);
+      if (i && run >= 4 && odd === nums[i - 1] % 2) odd = 1 - odd;
+      run = i && odd === nums[i - 1] % 2 ? run + 1 : 1;
+      let x;
+      do { x = 10 + 2 * U.randInt(45) + odd; } while (i && x === nums[i - 1]);
+      nums.push(x);
     }
-    throw new Error('parity: no valid sequence');
+    return nums;
   }
 
-  async function parity(el, S, ms, soa) {
-    const sec = Math.round(ms / 1000), n = Math.floor(ms / soa);
+  /* Self-paced odd/even (v3.0.4). Each number stays up until F or J is pressed, for at most maxMs (no response = a miss).
+   * The pressed key lights up briefly (an acknowledgement, not right/wrong feedback), then the next number appears.
+   * The task ends after ms; a number cut off by the end is not counted. Later presses on the same number are ignored. */
+  async function parity(el, S, ms, maxMs) {
+    const sec = Math.round(ms / 1000), ACK = 250, GAP = 150;
     await SRL.screens.message(el, S, 'Odd or even?',
       `<p class="srl-lead">Now a short number task.</p>
-       <p>A number will appear every 2 seconds. Press <b>F</b> if it is <b>odd</b> and <b>J</b> if it is <b>even</b>.
-       The numbers keep coming whether or not you answer, so answer each one as quickly and accurately as you can.</p>
-       <p>Put your fingers on the <b>F</b> and <b>J</b> keys. The task ends automatically after ${sec} seconds.</p>`, 'Start');
+       <p>Numbers will appear one at a time. Press <b>F</b> if the number is <b>odd</b> and <b>J</b> if it is <b>even</b>.
+       As soon as you answer, the next number appears. If you don't answer within ${Math.round(maxMs / 1000)} seconds, the next one appears anyway.</p>
+       <p>Answer as quickly and accurately as you can. Put your fingers on the <b>F</b> and <b>J</b> keys. The task ends automatically after ${sec} seconds.</p>`, 'Start');
     const pg = UI.page(el, `<h1>Odd or even?</h1><div class="srl-timer"><div></div></div>
       <div class="ar-eq pa-num"></div>
-      <p class="bd-keys"><span><b>F</b> = odd</span><span><b>J</b> = even</span></p>`);
-    const box = pg.querySelector('.pa-num');
-    const nums = parityNumbers(n), trials = [];
-    let cur = null;
-    const onKey = (e) => {
+      <p class="bd-keys pa-keys"><span data-k="F"><b>F</b> = odd</span><span data-k="J"><b>J</b> = even</span></p>`);
+    const box = pg.querySelector('.pa-num'), keyEl = (k) => pg.querySelector(`.pa-keys [data-k="${k}"]`);
+    const nums = parityNumbers(Math.ceil(ms / (ACK + GAP)) + 1), trials = [];
+    let cur = null, wake = null;
+    const respond = (k) => {
       if (!cur || cur.resp !== null) return;
+      cur.resp = k; cur.rt_ms = Math.round(U.now() - cur.t0);
+      keyEl(k).classList.add('hit');
+      if (wake) wake();
+    };
+    const onKey = (e) => {
       const k = e.code === 'KeyF' ? 'F' : e.code === 'KeyJ' ? 'J' : null;
       if (!k) return;
       e.preventDefault();
-      cur.resp = k; cur.rt_ms = Math.round(U.now() - cur.t0);
+      respond(k);
     };
     window.addEventListener('keydown', onKey, true);
-    const tStart = U.now();
-    const stopTotal = shrink(pg.querySelector('.srl-timer > div'), n * soa);
-    for (let i = 0; i < n; i++) {
+    const tStart = U.now(), tEnd = tStart + ms;
+    const stopTotal = shrink(pg.querySelector('.srl-timer > div'), ms);
+    const waitUntil = (t) => new Promise((r) => { const id = setTimeout(() => { wake = null; r(); }, Math.max(0, t - U.now())); wake = () => { clearTimeout(id); wake = null; r(); }; });
+    for (let i = 0; i < nums.length && U.now() < tEnd; i++) {
       const x = nums[i];
       cur = { i: i + 1, number: x, odd: x % 2, resp: null, rt_ms: null, t0: U.now() };
       box.textContent = String(x);
       if (S.auto && U.random() < 0.95) {
         const c = cur, right = U.random() < 0.9;
-        setTimeout(() => { if (c.resp === null) { c.resp = (c.odd === 1) === right ? 'F' : 'J'; c.rt_ms = 500; } }, 200);
+        setTimeout(() => { if (cur === c) respond((c.odd === 1) === right ? 'F' : 'J'); }, 300 + U.randInt(500));
       }
-      // Each number is up for one SOA, timed from the task start so the schedule never drifts.
-      await U.sleep(Math.max(0, tStart + (i + 1) * soa - U.now()));
-      trials.push({ trial: cur.i, number: x, odd: cur.odd, resp: cur.resp, rt_ms: cur.rt_ms, missed: cur.resp === null ? 1 : 0,
-        correct: cur.resp !== null && (cur.resp === 'F') === (cur.odd === 1) ? 1 : 0 });
+      const deadline = Math.min(cur.t0 + maxMs, tEnd);
+      await waitUntil(deadline);
+      const c = cur;
+      cur = null;
+      // A number the task's end cut off before its deadline (and before an answer) is not counted.
+      if (c.resp === null && deadline >= tEnd && tEnd - c.t0 < maxMs) break;
+      trials.push({ trial: c.i, number: x, odd: c.odd, resp: c.resp, rt_ms: c.rt_ms, missed: c.resp === null ? 1 : 0,
+        correct: c.resp !== null && (c.resp === 'F') === (c.odd === 1) ? 1 : 0 });
+      if (c.resp !== null) await U.sleep(Math.max(0, Math.min(ACK, tEnd - U.now())));
+      box.textContent = '';
+      pg.querySelectorAll('.pa-keys .hit').forEach((e) => e.classList.remove('hit'));
+      await U.sleep(Math.max(0, Math.min(GAP, tEnd - U.now())));
     }
-    cur = null;
     window.removeEventListener('keydown', onKey, true);
     stopTotal();
     const answered = trials.filter((t) => !t.missed), nCorrect = trials.reduce((s, t) => s + t.correct, 0);

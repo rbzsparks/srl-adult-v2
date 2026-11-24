@@ -2,7 +2,7 @@
 
 jsPsych 8.2.1 experiment, embedded in a **Qualtrics** survey (classic layout), recruited on **Prolific**. The full design
 and every decision behind it is in **[docs/V2_SPEC.md](docs/V2_SPEC.md)**; this README covers how to run, deploy and
-analyse it. Experiment version: `3.0.3` (`VERSION` in `experiment/config.js`).
+analyse it. Experiment version: `3.0.4` (`VERSION` in `experiment/config.js`).
 
 This repo started from the pilot-1 code (`rbzsparks/srl-adult-prolific`, tag `v2.4.2-pilot1`), which stays frozen
 there with its data.
@@ -193,7 +193,7 @@ Everything is in `experiment/config.js`; each entry is commented. The ones most 
 |---|---|---|
 | `COLOUR_CHOICES` | `4` | options in the colour test; `2` = target + one other (fallback if pilot 2 is at chance) |
 | `FILLER_TASK` | `'parity'` | delay task: `'parity'` (odd/even) or `'arithmetic'` (pilot 1) |
-| `TIMING.FILLER2`, `PARITY_SOA` | 30000, 2000 | delay length and the odd/even pace (15 numbers) |
+| `TIMING.FILLER2`, `PARITY_MAX_MS` | 30000, 2000 | delay length; the odd/even task is self-paced, each number up to 2 s |
 | `PARITY_FLAG_ACC`, `PARITY_FLAG_MISSES` | 0.75, 4 | `parity_flag` thresholds |
 | `STRANGER_NAMES`, `FOIL_NAMES`, `CONTROL_NAMES` | see file | names, backups and first sounds |
 | `NAME_CLASH_MAX_EDIT`, `NAME_CLASH_PREFIX` | 2, 3 | clash rule against the typed name |

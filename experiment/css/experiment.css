@@ -183,3 +183,6 @@ html.srl-active, html.srl-active body { overflow: hidden !important; }
 .vc-row .srl-btn { min-width: 128px; }
 .vc-row input:disabled + span { color: #AAA; }
 .pa-num { font-size: 88px; margin-top: 60px; }
+.pa-keys span { padding: 6px 12px; border-radius: 10px; transition: background 0.08s; }
+.pa-keys span.hit { background: #DCE6F7; color: #1F3F7A; }
+.pa-keys span.hit b { background: #2F5DA8; border-color: #2F5DA8; color: #fff; }

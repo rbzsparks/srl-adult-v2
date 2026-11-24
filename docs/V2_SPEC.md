@@ -151,8 +151,15 @@ memory only, as in pilot 1.
 
 ## 10. Odd/even delay task
 
-- **Trials:** 15 two-digit numbers, one every 2 s (1.25 s and 24 numbers until v3.0.2: too fast). Each stays up until the next, with no feedback, under the
-  same countdown bar. Odd and even are balanced, and no number repeats back to back.
+- **Trials (v3.0.4, self-paced):** two-digit numbers for 30 s under the same countdown bar.
+  - Each number stays up until F or J is pressed, for at most 2 s (`PARITY_MAX_MS`). No response in 2 s counts as a
+    miss.
+  - The pressed key lights up for 250 ms. This only shows the press was registered; there is no right/wrong
+    feedback. A 150 ms blank follows, then the next number.
+  - The number of trials depends on speed: about 30–40 for a typical responder, 15 if every number is missed. A
+    number cut off by the end of the task isn't counted.
+  - Parity is random, with no more than 4 of one parity in a row, and no number repeats back to back.
+  - History: until v3.0.3, numbers came at a fixed pace (1.25 s, then 2 s) with no sign that a press had registered.
 - **Keys:** F = odd, J = even, fixed for everyone. This is also the faster-to-respond mapping.
 - **Recorded:** `parity_trials`, `parity_correct`, `parity_misses`, `parity_acc` (among answered trials),
   `parity_rt_median`.

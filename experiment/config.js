@@ -4,7 +4,7 @@
  * Design: docs/V2_SPEC.md.
  * ===================================================================== */
 window.SRL_CONFIG = {
-  VERSION: '3.0.3',
+  VERSION: '3.0.4',
 
   /* ---------- Qualtrics ---------- */
   // 'legacy' = classic layouts: Qualtrics.SurveyEngine.setEmbeddedData. 'nste' = New Survey Taking Experience (UNTESTED).
@@ -53,7 +53,7 @@ window.SRL_CONFIG = {
     ISI: 500,
     FILLER1: 10000,             // "Get ready" countdown before the first scene
     FILLER2: 30000,             // delay task after the scenes (odd/even or arithmetic)
-    PARITY_SOA: 2000,           // odd/even: one number every 2 s (15 numbers in 30 s; 1.25 s before v3.0.2)
+    PARITY_MAX_MS: 2000,        // odd/even is self-paced: a number stays up until F/J, at most this long (then a miss)
     FILLER2_DEADLINE: 3000,     // arithmetic only: response deadline per problem
     TEST_ITI: 400
   },

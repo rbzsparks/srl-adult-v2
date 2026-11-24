@@ -297,7 +297,7 @@ SRL.main = (function () {
     timeline.push(step('filler2', 'filler2', async (el) => {
       const d = C.FILLER_TASK === 'arithmetic'
         ? await SRL.fillers.arithmetic(el, S, S.timing.FILLER2, S.timing.FILLER2_DEADLINE)
-        : await SRL.fillers.parity(el, S, S.timing.FILLER2, S.timing.PARITY_SOA);
+        : await SRL.fillers.parity(el, S, S.timing.FILLER2, S.timing.PARITY_MAX_MS);
       S.filler2Trials = d.filler2_trials;
       const out = {};
       Object.keys(d).forEach((k) => { if (k !== 'filler2_trials') { S.p[k] = d[k]; out[k] = d[k]; } });
