@@ -85,6 +85,12 @@ print(pa %>% group_by(condition) %>% summarise(match_acc = mean(match_acc_total,
   parity_acc = mean(parity_acc, na.rm = TRUE), parity_misses = mean(parity_misses, na.rm = TRUE), name_swaps = sum(name_swaps > 0, na.rm = TRUE),
   likeness = mean(likeness_rating, na.rm = TRUE), revised = sum(revised == 1, na.rm = TRUE)))
 print(with(pa, table(voice_id, condition)))
+cat("
+== Control: copy targets (balanced by the Qualtrics randomizer) and how closely they were copied ==
+")
+print(pa %>% filter(condition == "control") %>% group_by(control_target) %>%
+  summarise(n = n(), copy_err = mean(copy_err, na.rm = TRUE), features_missed = mean(copy_n_miss, na.rm = TRUE),
+            likeness_to_target = mean(likeness_rating, na.rm = TRUE), revised = sum(revised == 1, na.rm = TRUE)))
 
 ## 7. Figures -----------------------------------------------------------------------------------------------------------------
 pal <- c(control = "#7C8B95", known = "#3A9AB8")

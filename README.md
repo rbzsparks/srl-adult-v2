@@ -2,7 +2,7 @@
 
 jsPsych 8.2.1 experiment, embedded in a **Qualtrics** survey (classic layout), recruited on **Prolific**. The full design
 and every decision behind it is in **[docs/V2_SPEC.md](docs/V2_SPEC.md)**; this README covers how to run, deploy and
-analyse it. Experiment version: `3.0.5` (`VERSION` in `experiment/config.js`).
+analyse it. Experiment version: `3.1.0` (`VERSION` in `experiment/config.js`).
 
 This repo started from the pilot-1 code (`rbzsparks/srl-adult-prolific`, tag `v2.4.2-pilot1`), which stays frozen
 there with its data.
@@ -27,10 +27,13 @@ Between subjects, two conditions:
 
 | | Known | Control |
 |---|---|---|
-| The avatar stands for | one of the participant's **closest** people (first name typed) | an assigned name: Sam, Alex or Jamie |
+| The avatar stands for | one of the participant's **closest** people (first name typed) | an assigned name (Sam, Alex or Jamie), introduced with one of 6 fixed avatars |
 | Questions | relationship, closeness (1–7), contact (2), how long known | none |
-| Picture + notes (8 s minimum, notes never saved) | recall: the last time they saw them | imagine: what Sam might be like |
-| Designer, voice selector, likeness, confirmation, matching | same screens | same screens |
+| Picture + notes (8 s minimum, notes never saved) | recall: the last time they saw them | imagine: what Sam might be like, with Sam's avatar on screen |
+| Avatar | designed from memory | copied from Sam's avatar, shown beside the preview (copy error recorded) |
+| Voice | chosen from 6 | assigned: the voice that matches Sam's avatar |
+| Likeness | "How much does this avatar look like [name]?" | "How much does your avatar look like the one you copied?" |
+| Confirmation, matching | same screens | same screens |
 | Extra rating | "How close is this voice to [name]'s?" (1–7) | none |
 
 Then, for everyone:
@@ -77,6 +80,8 @@ tools/build_qsf.py          builds the .qsf
 tools/elevenlabs_tts.py     audio generation (with audio_qc.py, normalize_audio.py, audio_review.html)
 tools/dev_server.py         local server (with POST /__save for debug runs)
 tools/make_mock_export.py   mock Qualtrics export from debug runs (to test the analysis)
+tools/control_targets.html  candidate copy targets for the control condition (contact sheet + JSON)
+tools/set_control_targets.py  installs the chosen targets into stimuli.json
 tools/privacy_check.html    checks that the typed name and notes never reach the data
 analysis/reshape_qualtrics.py   Qualtrics export -> participants.csv, test_trials.csv, id_key.csv
 analysis/v2_analysis.R      exclusions, accuracy, planned models, figures
@@ -98,6 +103,7 @@ Then open `http://localhost:8000/experiment/index.html?debug=1`. URL parameters:
 | `condition` | `known` \| `control` |
 | `stranger_set` | `X` \| `Y` |
 | `test_order` | e.g. `colour-word-identity` (any order of the three) |
+| `control_target` | `1`–`6`: which fixed avatar a control participant copies |
 | `debug=1` | short fillers (countdown 5 s, delay task 10 s), IDs on screen, no DataPipe, data downloaded |
 | `auto=1` | with `debug=1`: autopilot clicks through the whole study |
 | `devsave=1` | with the dev server: write the output files into `sample_data/` instead of downloading |
@@ -132,7 +138,8 @@ Notes:
    2. Device check → screen-out redirect.
    3. Consent → no-consent redirect.
    4. **Randomizer (condition) → Group → Randomizer (stranger set) → Group → Randomizer (test order)**, every
-      randomizer "present 1", **evenly present** on.
+      randomizer "present 1", **evenly present** on. The control group also has a 6-way randomizer for
+      `control_target` (which fixed avatar to copy).
    5. Experiment (JS).
    6. Post-test questions.
    7. Demographics.
@@ -259,9 +266,11 @@ the audio check waits for them. Any clip that fails to load plays as silence and
   - `name_swaps` and `swapped_names`: which list names were replaced, never the typed name
   - `foil_name`
   - `voice_id`, `voice_order`, `voice_closeness` (known only)
+- **Control copy task:** `control_target` (1–6), `target_avatar`, `copy_err` / `copy_n_miss` / `copy_miss` (final; `_1` =
+  before any revision).
 - **Ratings:**
   - `closeness` (known only, 1–7)
-  - `likeness_rating`
+  - `likeness_rating` (known: looks like the person; control: looks like the copied avatar)
   - `represent_rating` ("felt like someone you know", both conditions)
 - **Matching:** `match_acc_kk / ff / kf / fk / total`, `match_no_response`, `match_flag` (< 0.75, flag only).
 - **Odd/even task:** `parity_trials`, `parity_correct`, `parity_misses`, `parity_acc` (among answered),

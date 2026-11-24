@@ -2,6 +2,9 @@
  * scenes, and the "felt like" rating. Known and control participants go through the same screens with the same
  * minimum times; only the wording differs (the typed name vs the assigned control name).
  *
+ * Control (v3.1): the participant meets "Sam" through one of 6 fixed avatars (S.targetSpec, stimuli.json control_targets),
+ * pictures Sam, copies the avatar (designer.js), and hears Sam's assigned voice (the target's).
+ *
  * PRIVACY: the typed name (S.knownName in the known condition) and the notes (S.notes) live only in memory. Nothing here
  * returns, logs or stores them: data objects hold labels, option text, counts and times only. The notes are deleted
  * from memory by main.js as soon as the last designer visit is over. The control name is not personal and is recorded. */
@@ -72,13 +75,15 @@ SRL.binding = (function () {
     return { contact_inperson: a, contact_remote: b, contact_max: Math.max(a, b) };
   }
 
-  /* ---------- Control: the person the avatar will be ---------- */
+  /* ---------- Control: meet the person, through the avatar to copy ---------- */
+  // Two avatars side by side with a label above each (the target and the participant's copy).
+  const pairLabeled = (a, la, b, lb, w) => `<div class="bd-pair">${[[a, la], [b, lb]].map(([sp, l]) => `<div class="bd-fig"><div class="bd-lab">${l}</div>` +
+    `<div class="bd-av" style="width:${w}px;height:${Math.round(w * 1.2)}px">${P.svg(sp, { attrs: `width="${w}" height="${Math.round(w * 1.2)}"`, label: 'avatar' })}</div></div>`).join('')}</div>`;
   async function controlIntro(el, S) {
     const t0 = U.now(), nm = esc(S.knownName);
-    const pg = UI.page(el, `<h1>Someone named ${nm}</h1>
-      <p class="srl-lead">In this study you'll create a person named <b>${nm}</b>.</p>
-      <p>You'll picture what ${nm} might be like, make a simple cartoon avatar of them, and choose a voice for them.</p>
-      <div class="srl-actions"><button class="srl-btn" id="go">Continue</button></div>`);
+    const pg = UI.page(el, `<div class="bd-center">${figure(S.targetSpec, S.knownName, 230)}
+      <p class="srl-lead bd-say">This is <b>${nm}</b>. Next you'll picture what ${nm} might be like, and then make a copy of ${nm}'s avatar.</p>
+      <div class="srl-actions bd-actions-c"><button class="srl-btn" id="go">Continue</button></div></div>`);
     await delayedButton(pg, 3000, S, true);
     return { control_intro_ms: Math.round(U.now() - t0) };
   }
@@ -91,6 +96,7 @@ SRL.binding = (function () {
   async function recall(el, S) {
     const t0 = U.now(), nm = esc(S.knownName);
     const p1 = UI.page(el, `<h1>Picture ${nm}</h1>
+      ${S.control ? `<div class="bd-center">${figure(S.targetSpec, S.knownName, 190)}</div>` : ''}
       <p class="srl-lead bd-pause">${S.control
         ? `Picture what <b>${nm}</b> might be like: where you might run into them, what they might wear, what their smile is like.`
         : `Take a moment to picture the last time you saw <b>${nm}</b>: where you were and what they were like.`}</p>
@@ -125,14 +131,36 @@ SRL.binding = (function () {
     return `<div class="dz-notes"><div class="dz-notes-h">Your notes (not saved)</div>${n.map((x, i) => (x ? `<p><b>${lab[i]}:</b> ${esc(x)}</p>` : '')).join('')}</div>`;
   }
 
-  /* ---------- Voice selector (+ voice closeness, known only) ---------- */
-  async function voice(el, S) {
-    const nm = esc(S.knownName), voices = U.shuffle(C().VOICES.map((v) => v.id));
-    const pg = UI.page(el, `<h1>${S.control ? `Choose a voice for ${nm}` : `Which voice sounds most like ${nm}?`}</h1>
+  /* ---------- Voice. Known: selector (+ voice closeness). Control: Sam's assigned voice (the target's). ---------- */
+  async function assignedVoice(el, S) {
+    const nm = esc(S.knownName), t0 = U.now();
+    const pg = UI.page(el, `<h1>${nm}'s voice</h1>
       <div class="vc-wrap">${figure(S.knownSpec, S.knownName, 200)}
-        <div class="vc-main"><p class="srl-lead">${S.control
-          ? `Listen to each voice, then choose the one you'd like ${nm} to have.`
-          : `Listen to each voice, then choose the one that sounds most like ${nm}. None will be exact; pick the closest.`}</p>
+        <div class="vc-main"><p class="srl-lead">This is how <b>${nm}</b> sounds. Click <b>Play</b> to listen. You can play it again.</p>
+          <div class="vc-list"><div class="vc-row"><button type="button" class="srl-btn srl-btn-secondary vc-play">▶ Play</button></div></div>
+          <p class="srl-note" id="hint">Play the voice to continue.</p></div></div>
+      <div class="srl-actions"><button class="srl-btn" id="go" disabled>Continue</button></div>`, { cls: 'vc-page' });
+    const btn = pg.querySelector('.vc-play'), row = pg.querySelector('.vc-row'), go = pg.querySelector('#go');
+    let plays = 0;
+    btn.onclick = async () => {
+      btn.disabled = true; row.classList.add('playing');
+      await SRL.audio.unlock();
+      plays++;
+      await SRL.audio.play('sel_' + S.voice);
+      row.classList.remove('playing'); btn.disabled = false;
+      go.disabled = false; pg.querySelector('#hint').style.visibility = 'hidden';
+    };
+    if (S.auto) (async () => { btn.click(); await U.sleep(50); while (go.disabled) await U.sleep(30); go.click(); })();
+    await UI.onClick(go);
+    return { voice_id: S.voice, voice_order: '', voice_plays: plays, voice_select_ms: Math.round(U.now() - t0) };
+  }
+
+  async function voice(el, S) {
+    if (S.control) return assignedVoice(el, S);
+    const nm = esc(S.knownName), voices = U.shuffle(C().VOICES.map((v) => v.id));
+    const pg = UI.page(el, `<h1>Which voice sounds most like ${nm}?</h1>
+      <div class="vc-wrap">${figure(S.knownSpec, S.knownName, 200)}
+        <div class="vc-main"><p class="srl-lead">Listen to each voice, then choose the one that sounds most like ${nm}. None will be exact; pick the closest.</p>
           <div class="vc-list">${voices.map((v, i) => `<div class="vc-row" data-v="${v}"><button type="button" class="srl-btn srl-btn-secondary vc-play">▶ Voice ${i + 1}</button>
             <label class="srl-radio"><input type="radio" name="vc" value="${v}" disabled> <span>Choose voice ${i + 1}</span></label></div>`).join('')}</div>
           <p class="srl-note" id="hint">Play every voice at least once to continue. You can replay them.</p></div></div>
@@ -169,20 +197,18 @@ SRL.binding = (function () {
     const chosen = pg.querySelector('input[name="vc"]:checked').value;
     const out = { voice_id: chosen, voice_order: voices.join('|'), voice_plays: voices.map((v) => plays[v] || 0).reduce((a, b) => a + b, 0),
       voice_select_ms: Math.round(U.now() - t0) };
-    if (!S.control) {
-      const a = await scale7(el, S, 'The voice', `<p class="srl-lead">How close is this voice to <b>${nm}</b>'s?</p>
-        <div class="srl-actions srl-left"><button class="srl-btn srl-btn-secondary" id="replay">▶ Play the voice again</button></div>`,
-      { 1: 'Not at all close', 7: 'Very close' }, 4,
-      (p) => { const b = p.querySelector('#replay'); b.onclick = async () => { b.disabled = true; await SRL.audio.play('sel_' + chosen); b.disabled = false; }; });
-      out.voice_closeness = a.value; out.voice_closeness_rt_ms = a.rt;
-    }
+    const a = await scale7(el, S, 'The voice', `<p class="srl-lead">How close is this voice to <b>${nm}</b>'s?</p>
+      <div class="srl-actions srl-left"><button class="srl-btn srl-btn-secondary" id="replay">▶ Play the voice again</button></div>`,
+    { 1: 'Not at all close', 7: 'Very close' }, 4,
+    (p) => { const b = p.querySelector('#replay'); b.onclick = async () => { b.disabled = true; await SRL.audio.play('sel_' + chosen); b.disabled = false; }; });
+    out.voice_closeness = a.value; out.voice_closeness_rt_ms = a.rt;
     return out;
   }
 
   /* ---------- Revision offer (after a likeness rating of 4 or lower) ---------- */
   async function revisionOffer(el, S, spec) {
-    const pg = UI.page(el, `<div class="bd-center">${figure(spec, S.knownName, 220)}
-      <p class="srl-lead">Would you like to adjust the avatar? You can make changes once.</p>
+    const pg = UI.page(el, `<div class="bd-center">${S.control ? pairLabeled(S.targetSpec, 'Avatar to copy', spec, 'Your avatar', 200) : figure(spec, S.knownName, 220)}
+      <p class="srl-lead">${S.control ? 'Would you like to adjust your avatar to look more like the one you copied? You can make changes once.' : 'Would you like to adjust the avatar? You can make changes once.'}</p>
       <div class="srl-actions bd-actions-c"><button class="srl-btn srl-btn-secondary" id="keep">Keep as is</button><button class="srl-btn" id="adj">Adjust</button></div></div>`);
     auto(S, () => pg.querySelector('#adj').click());
     return new Promise((resolve) => {

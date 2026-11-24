@@ -4,8 +4,8 @@ Autopilot runs of v3.0, saved with `devsave=1` through `tools/dev_server.py`. Th
 
 | File | What it is |
 |---|---|
-| `T_known_known_Y_identity-colour-word_*` | complete known-condition run: stranger set Y, test order identity → colour → word, loaded with Prototype.js (`prototype=1`) |
-| `T_control_control_X_word-colour-identity_*` | complete control-condition run: stranger set X, test order word → colour → identity |
+| `T_known_known_Y_identity-colour-word_*` | complete known-condition run: stranger set Y, test order identity → colour → word |
+| `T_control_control_X_word-colour-identity_*` | complete control-condition run (v3.1: copies target 5, voice fo): stranger set X, test order word → colour → identity, loaded with Prototype.js |
 | `mock_qualtrics_export.csv` | the two runs above as a Qualtrics export (3 header rows), made with `tools/make_mock_export.py` |
 
 `*_qualtrics_fields.json` is every embedded-data field the experiment would write to Qualtrics (including the

@@ -186,3 +186,14 @@ html.srl-active, html.srl-active body { overflow: hidden !important; }
 .pa-keys span { padding: 6px 12px; border-radius: 10px; transition: background 0.08s; }
 .pa-keys span.hit { background: #DCE6F7; color: #1F3F7A; }
 .pa-keys span.hit b { background: #2F5DA8; border-color: #2F5DA8; color: #fff; }
+/* v3.1: control condition copies a fixed target (as in pilot 1) */
+.dz-copy { display: flex; gap: 10px; }
+.dz-cap { font-size: 13px; font-weight: 650; color: #6A6152; margin: 0 0 3px 2px; }
+.dz-preview-xs { width: 180px; height: 216px; }
+.dz-copy-like { gap: 14px; }
+.bd-lab { font-size: 15px; font-weight: 650; color: #6A6152; margin-bottom: 4px; }
+.dz-like-wrap.dz-like-col { flex-direction: column; gap: 16px; margin-top: 6px; }
+.dz-like-col .dz-like-scale { flex: none; }
+.dz-like-col .dz-like-row { justify-content: center; }
+.dz-like-col .srl-note { text-align: center; }
+.dz-copy + .dz-notes { margin-top: 8px; width: 402px; box-sizing: border-box; max-height: 92px; }

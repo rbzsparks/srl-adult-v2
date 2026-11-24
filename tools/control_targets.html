@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Control Targets</title>
+<style>
+  body { margin: 0; padding: 16px 24px; font-family: system-ui, sans-serif; background: #fff; color: #222; }
+  h1 { font-size: 22px; margin: 0 0 4px; } p { margin: 0 0 12px; color: #444; font-size: 14px; }
+  table { border-collapse: separate; border-spacing: 10px 8px; }
+  th { font-size: 14px; color: #1F6F8B; } td.lab { font-weight: 700; font-size: 15px; padding-right: 8px; white-space: nowrap; }
+  .c { background: #F1EBE1; border-radius: 12px; padding: 6px 6px 4px; text-align: center; font-size: 13px; }
+  .c.sel { outline: 3px solid #2F5DA8; }
+  .c b { font-size: 15px; }
+</style>
+</head>
+<body>
+<!-- Candidate avatars for the control condition's fixed copy targets (v3.1). Open through python tools/dev_server.py.
+     One row per voice slot (woman/man x young/middle-aged/older), 3 candidates (A, B, C) per slot, made with the pilot-1
+     generator (SRL.avatarRules.target) with presentation and age fixed. Skin depth rotates over the six bands so each
+     column covers all six. Candidates that are near-twins of any stranger (same hair style and age, skin within 0.15) or
+     of another candidate are skipped. ?pick=A,B,C,A,B,C marks a choice per row; "Save" writes the candidates (and the
+     marked picks) to experiment/stimuli/control_target_candidates.json. -->
+<h1>Control-condition copy targets: candidates</h1>
+<p>Pick one per row. Each row's target is paired with that row's voice.</p>
+<button id="save">Save candidates JSON</button> <span id="st"></span>
+<table id="t"></table>
+<script src="../experiment/config.js"></script>
+<script src="../experiment/js/util.js"></script>
+<script src="../experiment/js/people.js"></script>
+<script src="../experiment/js/avatar_rules.js"></script>
+<script>
+(async function () {
+  const P = SRL.people, R = SRL.avatarRules;
+  const stim = await (await fetch('../experiment/stimuli/stimuli.json')).json();
+  const strangers = [].concat(...Object.values(stim.stranger_sets).map((s) => s.map((e) => e.stranger)));
+  const BANDS = [[0.02, 0.14], [0.16, 0.3], [0.32, 0.46], [0.48, 0.62], [0.64, 0.78], [0.8, 0.94]];
+  const slots = SRL_CONFIG.VOICES.map((v, k) => ({ voice: v.id, masc: v.gender === 'man', age: v.age, label: `${v.gender === 'man' ? 'Man' : 'Woman'}, ${{ young: 'young adult', middle: 'middle-aged', older: 'older adult' }[v.age]}`, k }));
+  const pickQ = (new URLSearchParams(location.search).get('pick') || '').split(',');
+  const chosen = [], out = [];
+  const twin = (a, b) => a.hairStyle === b.hairStyle && a.age === b.age && Math.abs(a.skinL - b.skinL) < 0.15;
+  slots.forEach((sl) => {
+    const row = { slot: sl.k + 1, voice: sl.voice, label: sl.label, candidates: [] };
+    ['A', 'B', 'C'].forEach((col, j) => {
+      const band = BANDS[(sl.k + 2 * j) % 6];
+      for (let seed = 1; seed < 5000; seed++) {
+        const q = R.target(P.rng(1000 * (sl.k + 1) + 100 * j + seed), strangers, { masc: sl.masc, age: sl.age });
+        if (q.skinL < band[0] || q.skinL > band[1]) continue;
+        if (strangers.concat(chosen).some((s) => twin(s, q))) continue;
+        chosen.push(q); row.candidates.push({ id: `${sl.k + 1}${col}`, seed, spec: q, vec: P.vecString(q) });
+        break;
+      }
+    });
+    row.pick = pickQ[sl.k] || '';
+    out.push(row);
+  });
+  const t = document.getElementById('t');
+  t.innerHTML = '<tr><th></th><th>A</th><th>B</th><th>C</th></tr>' + out.map((r) => `<tr><td class="lab">${r.slot}. ${r.label}<br><span style="font-weight:400;color:#666">voice ${r.voice}</span></td>` +
+    r.candidates.map((c) => `<td><div class="c${r.pick === c.id.slice(-1) ? ' sel' : ''}">${P.svg(c.spec, { attrs: 'width="150" height="180"' })}<div><b>${c.id}</b></div></div></td>`).join('') + '</tr>').join('');
+  document.getElementById('save').onclick = async () => {
+    const body = JSON.stringify(out.map((r) => ({ slot: r.slot, voice: r.voice, label: r.label, pick: r.pick, candidates: r.candidates.map((c) => ({ id: c.id, seed: c.seed, avatar: c.spec })) })), null, 1);
+    const res = await fetch('/__save?path=' + encodeURIComponent('experiment/stimuli/control_target_candidates.json'), { method: 'POST', body });
+    document.getElementById('st').textContent = res.ok ? 'saved' : 'save failed (' + res.status + ')';
+  };
+  window.CANDIDATES = out;
+})();
+</script>
+</body>
+</html>

@@ -8,6 +8,7 @@ checkins
 condition
 stranger_set
 test_order
+control_target
 device_ok
 device_reason
 device_screen
@@ -30,6 +31,13 @@ name_flagged_title
 name_suspect
 control_name
 control_intro_ms
+target_avatar
+copy_err_1
+copy_n_miss_1
+copy_miss_1
+copy_err
+copy_n_miss
+copy_miss
 name_swaps
 swapped_names
 name_face_map

@@ -1,5 +1,5 @@
-/* designer.js: "Make an avatar that looks like [name]" (known) or "Make an avatar of [name]" (control: the person the
- * participant pictured), then the likeness rating. Both conditions design from the same neutral start.
+/* designer.js: "Make an avatar that looks like [name]" (known) or "Copy [name]'s avatar" (control, v3.1: one of 6 fixed
+ * targets shown beside the preview, as in pilot 1), then the likeness rating. Both start from the same neutral face.
  * Six tabs in a fixed order (Skin → Face → Eyes → Nose & mouth → Hair → Extras), 16 sliders (0–1) plus categorical
  * options. Each tab has "Reset this section"; no randomize. The notes (memory only) are shown beside the preview.
  * Records: total and per-tab time, edits (a released slider or a clicked option) and resets, tabs visited. */
@@ -44,11 +44,16 @@ SRL.designer = (function () {
     let tab = 0, tabT0 = U.now();
     const t0 = U.now();
     const notes = SRL.binding ? SRL.binding.notesPanel(S) : '';
-    const pw = notes ? 230 : 290, ph = Math.round(pw * 1.2);
+    // Control: the avatar to copy stays beside the preview, at the same size, with the notes underneath.
+    const tgt = S.control && S.targetSpec;
+    const pw = tgt ? 196 : notes ? 230 : 290, ph = Math.round(pw * 1.2);
     const who = esc(S.knownName);
-    const title = (opts.revision ? 'Adjust the avatar of ' : S.control ? 'Make an avatar of ' : 'Make an avatar that looks like ') + who;
-    const goal = S.control ? `looks the way you picture ${who}` : `looks as much like ${who} as you can make it`;
-    const side = `<div class="dz-preview" style="width:${pw}px;height:${ph}px"></div>${notes}`;
+    const title = tgt ? (opts.revision ? 'Adjust your avatar' : `Copy ${who}'s avatar`) : (opts.revision ? 'Adjust the avatar of ' : 'Make an avatar that looks like ') + who;
+    const goal = tgt ? `looks as much like ${who}'s avatar (on the left) as you can make it` : `looks as much like ${who} as you can make it`;
+    const side = tgt
+      ? `<div class="dz-copy"><div><div class="dz-cap">${who}'s avatar</div><div class="dz-preview dz-target" style="width:${pw}px;height:${ph}px">${P.svg(tgt, { attrs: `width="${pw}" height="${ph}"`, label: 'avatar to copy' })}</div></div>` +
+        `<div><div class="dz-cap">Your avatar</div><div class="dz-preview" style="width:${pw}px;height:${ph}px"></div></div></div>${notes}`
+      : `<div class="dz-preview" style="width:${pw}px;height:${ph}px"></div>${notes}`;
     el.innerHTML = `<div class="srl-page srl-designer">
       <h1>${title}</h1>
       <p class="dz-intro">${opts.revision
@@ -67,7 +72,7 @@ SRL.designer = (function () {
         <button type="button" class="srl-btn srl-btn-secondary" id="dz-back">Back</button>
         <button type="button" class="srl-btn" id="dz-next">Next</button>
       </div></div>`;
-    const preview = el.querySelector('.dz-preview'), panel = el.querySelector('.dz-panel');
+    const preview = el.querySelector('.dz-preview:not(.dz-target)'), panel = el.querySelector('.dz-panel');
     const btnNext = el.querySelector('#dz-next'), btnBack = el.querySelector('#dz-back');
 
     const drawPreview = () => { preview.innerHTML = P.svg(spec, { attrs: `width="${pw}" height="${ph}"`, label: 'avatar preview' }); };
@@ -189,15 +194,18 @@ SRL.designer = (function () {
     return out;
   }
 
-  /* Known: "How much does this avatar look like [name]?"; control: "How much does this avatar look the way you pictured
-   * [name]?" 1–7. */
+  /* Known: "How much does this avatar look like [name]?" Control: "How much does your avatar look like the one you
+   * copied?", with both avatars shown above the scale (pilot 1). 1–7. */
   async function likeness(el, S, spec) {
-    const anchors = { 1: 'Not at all', 4: 'Somewhat', 7: 'Very much' }, who = esc(S.knownName);
-    const q = S.control ? `How much does this avatar look the way you pictured ${who}?` : `How much does this avatar look like ${who}?`;
-    const pics = `<div class="dz-preview dz-preview-sm">${P.svg(spec, { attrs: 'width="240" height="288"' })}</div>`;
+    const anchors = { 1: 'Not at all', 4: 'Somewhat', 7: 'Very much' }, who = esc(S.knownName), tgt = S.control && S.targetSpec;
+    const q = tgt ? 'How much does your avatar look like the one you copied?' : `How much does this avatar look like ${who}?`;
+    const pics = tgt
+      ? `<div class="dz-copy dz-copy-like"><div><div class="dz-cap">${who}'s avatar</div><div class="dz-preview dz-preview-xs">${P.svg(tgt, { attrs: 'width="180" height="216"' })}</div></div>` +
+        `<div><div class="dz-cap">Your avatar</div><div class="dz-preview dz-preview-xs">${P.svg(spec, { attrs: 'width="180" height="216"' })}</div></div></div>`
+      : `<div class="dz-preview dz-preview-sm">${P.svg(spec, { attrs: 'width="240" height="288"' })}</div>`;
     el.innerHTML = `<div class="srl-page dz-like">
       <h1>${q}</h1>
-      <div class="dz-like-wrap">${pics}
+      <div class="dz-like-wrap${tgt ? ' dz-like-col' : ''}">${pics}
         <div class="dz-like-scale"><div class="dz-like-row">${[1, 2, 3, 4, 5, 6, 7].map((k) => `<button type="button" class="dz-like-btn" data-k="${k}"><b>${k}</b><span>${anchors[k] || ''}</span></button>`).join('')}</div>
         <p class="srl-note">Choose a number from 1 (not at all) to 7 (very much).</p></div></div>
       <div class="srl-actions"><button class="srl-btn" id="go" disabled>Continue</button></div></div>`;

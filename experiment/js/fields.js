@@ -6,6 +6,7 @@ window.SRL_FIELDS = {
     "condition", "stranger_set", "test_order", "pos_word", "pos_identity", "pos_colour", "assign_fallback",
     "relationship_type", "is_kin", "closeness", "closeness_rt_ms", "contact_inperson", "contact_remote", "contact_max", "duration",
     "name_length", "name_flagged_title", "name_suspect", "control_name", "control_intro_ms",
+    "control_target", "target_avatar", "copy_err_1", "copy_n_miss_1", "copy_miss_1", "copy_err", "copy_n_miss", "copy_miss",
     "name_swaps", "swapped_names", "name_face_map", "foil_name",
     "recall_enabled", "revision_enabled", "matching_enabled", "checkins_enabled", "steps_source",
     "recall_ms", "recall_chars_1", "recall_chars_2", "recall_chars_3",

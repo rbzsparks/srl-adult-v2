@@ -21,6 +21,7 @@ a bosa! A bosa!"). A 30 s odd/even task follows, then three surprise 4-option te
 | Test order | all 6 orders of word / identity / colour | nested randomizer inside each condition × set |
 | Name → face mapping | 6 names shuffled over the 6 strangers | JS, per participant (seeded) |
 | Control name | Sam, Alex, Jamie | JS, random (control only) |
+| Control copy target | 6 fixed avatars, one per voice (v3.1) | Qualtrics randomizer inside the control branch, evenly presented (not crossed with set × order) |
 | Matching keymap | F = match / J = match | JS, random (as in pilot 1) |
 
 - **Nested randomizer:** 2 → 2 → 6 = 24 leaves. Each inner randomizer counts on its own, so even presentation balances
@@ -37,12 +38,12 @@ a bosa! A bosa!"). A 30 s odd/even task follows, then three surprise 4-option te
 |---|---|---|---|
 | 1 | Consent, device check (Qualtrics) | same | same |
 | 2 | Intro | same | same |
-| 3 | Person setup | "Think of one of your **closest** friends or family members" → first name (no family titles, no romantic partner) → relationship type → closeness 1–7 → contact (in person, remote) → how long known | "In this study you'll create a person named **Sam**" (no questions) |
-| 4 | Picture page (8 s minimum) | "Picture the last time you saw [name]…" | "Picture what Sam might be like: where you might run into them, what they might wear, what their smile is like." |
+| 3 | Person setup | "Think of one of your **closest** friends or family members" → first name (no family titles, no romantic partner) → relationship type → closeness 1–7 → contact (in person, remote) → how long known | "This is **Sam**", with Sam's avatar (one of the 6 fixed targets); no questions |
+| 4 | Picture page (8 s minimum) | "Picture the last time you saw [name]…" | Sam's avatar on screen: "Picture what Sam might be like: where you might run into them, what they might wear, what their smile is like." |
 | 5 | Notes beside the designer (never saved) | Where were you? / What was [name] doing or wearing? / What does [name]'s face look like when they smile or laugh? | Where might you run into Sam? / What might Sam be doing or wearing? / What does Sam's face look like when they smile or laugh? |
-| 6 | Designer | design [name] | design Sam (pilot-1 controls copied a random avatar; v2 controls design freely) |
-| 7 | Voice selector | pick the voice closest to [name]'s, then "How close is this voice to [name]'s?" (1–7) | pick a voice for Sam |
-| 8 | Likeness (+ the existing revision offer) | "How much does this avatar look like [name]?" | "How much does this avatar look the way you pictured Sam?" |
+| 6 | Designer | design [name] | copy Sam's avatar, shown beside the preview (as in pilot 1), with the notes underneath |
+| 7 | Voice | pick the voice closest to [name]'s, then "How close is this voice to [name]'s?" (1–7) | "Sam's voice": the target's assigned voice plays (replayable); Continue after it has played |
+| 8 | Likeness (+ the existing revision offer) | "How much does this avatar look like [name]?" | "How much does your avatar look like the one you copied?" (both avatars shown; the revision offer shows both too); copy error recorded |
 | 9 | Confirmation | "From here on, this avatar is [name]" | "From here on, this avatar is Sam" |
 | 10 | Matching task (24 trials) | see §5 | same, with Sam |
 | 11 | Audio check (2 attempts) | same | same |
@@ -206,7 +207,7 @@ Not exclusions:
 - **N:** 100, with 50 per condition.
 - **Expected duration:** the pilot-1 median was 14.0 min.
   - v2 adds the voice selector (about +1 min).
-  - Controls now get the picture/notes pages and design freely, so the control condition gets about 1.5–2 min longer.
+  - Controls now get the picture/notes pages (and copy, as in pilot 1), so the control condition gets about 1–1.5 min longer.
   - The odd/even task is about 15 s shorter than arithmetic.
   - Expected median: about 15–16 min. Set Prolific's estimate to **17 min** and the consent text to "about 17 minutes".
     Pay at the pilot-1 hourly rate.
@@ -237,3 +238,27 @@ Changed during the build:
 
 - Relationship duration is kept, known condition only.
 - Avery is not swapped when the control name is Alex.
+
+## 16. Control condition copies a fixed avatar (v3.1, 2026-11-24)
+
+Changed after sign-off, to control what avatars the control group ends up with:
+- **Targets.** 6 fixed copy targets, one per voice slot (woman/man × young, middle-aged, older), so each target has
+  exactly one matching voice.
+  - They were made with the pilot-1 generator, with presentation and age fixed, no near-twins of any stranger, and no
+    head coverings.
+  - The candidates are in `experiment/stimuli/control_target_candidates.json` (sheet: `tools/control_targets.html`).
+  - The chosen six are in `stimuli.json` `control_targets`; install a choice with
+    `python tools/set_control_targets.py --pick A,B,...`.
+  - Default picks: column A (1A–6A), until the final picks are made.
+- **Balance.** A 6-way, evenly presented Qualtrics randomizer inside the control branch sets `control_target` (1–6).
+- **Order of steps:**
+  1. "This is Sam" with the target;
+  2. picture + notes, with the target on screen;
+  3. copy the target in the designer (notes underneath);
+  4. Sam's assigned voice;
+  5. likeness to the target (+ revision showing both);
+  6. confirmation;
+  7. the rest unchanged.
+- **Recorded:** `control_target`, `target_avatar`, `copy_err(_1)`, `copy_n_miss(_1)`, `copy_miss(_1)` (as in pilot 1).
+  `voice_id` is the assigned voice, and `voice_order` is blank for controls.
+

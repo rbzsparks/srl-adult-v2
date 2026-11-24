@@ -3,7 +3,8 @@
  *          voice (+ voice closeness) → likeness (+ one-time revision*) → confirmation → matching* → audio check →
  *          scene instructions → "get ready" → 12 scenes (check-ins* after 3, 6, 9) → "felt like" → delay task →
  *          3 tests in the assigned order → end.
- * Control: intro → "you'll create a person named Sam" → picture + notes* (imagine) → the rest as above.
+ * Control: intro → "This is Sam" (one of 6 fixed avatars) → picture + notes* (imagine) → copy Sam's avatar → Sam's
+ *          assigned voice (the target's) → likeness to the target (+ revision) → the rest as above.
  * (* = can be switched off: config, or binding=0/1 / checkins=0/1 per participant)
  * start(opts): opts = { base, mode: 'qualtrics'|'local', params: {...}, finish: function } */
 SRL.main = (function () {
@@ -118,6 +119,15 @@ SRL.main = (function () {
     const ld = canvas.querySelector('.srl-timer > div');
     try {
       await SRL.stimuli.load(opts.base, S.strangerSet);
+      if (S.control) {
+        // Control (v3.1): one of the fixed copy targets, from the Qualtrics randomizer (control_target = 1..6) or the URL;
+        // missing: random here, flagged. The target's voice is Sam's voice.
+        const T = SRL.stimuli.data().control_targets, k = parseInt(params.control_target, 10);
+        const tg = T.filter((t) => t.id === k)[0] || T[Math.floor(rng3() * T.length)];
+        if (!T.filter((t) => t.id === k)[0]) S.p.assign_fallback = 1;
+        S.targetSpec = tg.avatar; S.voice = tg.voice;
+        Object.assign(S.p, { control_target: tg.id, target_avatar: SRL.people.vecString(tg.avatar) });
+      }
       const errs = await SRL.audio.preload(opts.base, SRL.stimuli.narratorClipIds(), (d, n) => (ld.style.width = (100 * d / n) + '%'));
       S.p.audio_load_errors = errs.length;
     } catch (e) {
@@ -171,7 +181,7 @@ SRL.main = (function () {
       await finish('reloaded_post_fam');
       return;
     }
-    if (debug) UI.debug(`DEBUG | ${S.condition}${S.control ? ' (' + S.knownName + ')' : ''} | set ${S.strangerSet} | ${order.join('>')} | seed ${seed}`);
+    if (debug) UI.debug(`DEBUG | ${S.condition}${S.control ? ' (' + S.knownName + ', target ' + S.p.control_target + ')' : ''} | set ${S.strangerSet} | ${order.join('>')} | seed ${seed}`);
 
     S.running = true;
     SRL.progress.guard(true);
@@ -236,6 +246,12 @@ SRL.main = (function () {
       step('likeness', 'designer', async (el) => {
         const a = await SRL.designer.likeness(el, S, S.knownSpec);
         Object.assign(S.p, { likeness_1: a.likeness_rating, likeness_rating: a.likeness_rating, likeness_rt_ms: a.likeness_rt_ms });
+        const copyErr = (k) => {   // control: how close the copy is to the target (final values overwrite after a revision)
+          if (!S.control) return;
+          const e = SRL.avatarRules.copyError(S.targetSpec, S.knownSpec);
+          Object.assign(S.p, { ['copy_err' + k]: e.err, ['copy_n_miss' + k]: e.miss.length, ['copy_miss' + k]: e.miss.join('|') });
+        };
+        copyErr('_1'); copyErr('');
         if (S.steps.revision) {
           S.p.revised = 0;
           S.p.revision_offered = a.likeness_rating <= C.REVISION_MAX_RATING ? 1 : 0;
@@ -246,11 +262,13 @@ SRL.main = (function () {
             Object.assign(S.p, { designer_ms_2: d2.designer_ms, designer_edits_2: d2.designer_edits });
             const b = await SRL.designer.likeness(el, S, S.knownSpec);
             Object.assign(S.p, { likeness_2: b.likeness_rating, likeness_rating: b.likeness_rating });
+            copyErr('');
           }
         }
         S.notes = null;   // the notes leave memory once the last designer visit is over
         const out = {};
-        ['likeness_1', 'likeness_rt_ms', 'revision_offered', 'revised', 'likeness_2', 'likeness_rating', 'designer_ms_2', 'designer_edits_2']
+        ['likeness_1', 'likeness_rt_ms', 'revision_offered', 'revised', 'likeness_2', 'likeness_rating', 'designer_ms_2', 'designer_edits_2',
+          'copy_err_1', 'copy_n_miss_1', 'copy_miss_1', 'copy_err', 'copy_n_miss', 'copy_miss']
           .forEach((k) => { if (S.p[k] !== undefined) out[k] = S.p[k]; });
         return out;
       }),

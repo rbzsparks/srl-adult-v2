@@ -9,6 +9,7 @@ Survey flow:
          -> stranger_set (X / Y): a separate randomizer inside each condition
            -> test_order (all 6 orders of word / identity / colour): a separate randomizer inside each condition x set
      Each inner randomizer keeps its own counts, so set is balanced within condition and order within condition x set.
+     The control group also has a 6-way randomizer for control_target (the fixed avatar to copy), evenly presented.
   5. Experiment block (one question whose JS loads the experiment from BASE_URL; Next button hidden)
   6. Post-test questions, demographics, debrief
   7. End of Survey: redirect to Prolific completion URL
@@ -65,7 +66,7 @@ EXPERIMENT_JS = r"""Qualtrics.SurveyEngine.addOnload(function () {
   var VERSION = '__VERSION__';
   var params = {
     PROLIFIC_PID: "${e://Field/PROLIFIC_PID}", STUDY_ID: "${e://Field/STUDY_ID}", SESSION_ID: "${e://Field/SESSION_ID}",
-    condition: "${e://Field/condition}", stranger_set: "${e://Field/stranger_set}", test_order: "${e://Field/test_order}", debug: "${e://Field/debug}", name_label: "${e://Field/name_label}", binding: "${e://Field/binding}", checkins: "${e://Field/checkins}", ResponseID: "${e://Field/ResponseID}"
+    condition: "${e://Field/condition}", stranger_set: "${e://Field/stranger_set}", test_order: "${e://Field/test_order}", control_target: "${e://Field/control_target}", debug: "${e://Field/debug}", name_label: "${e://Field/name_label}", binding: "${e://Field/binding}", checkins: "${e://Field/checkins}", ResponseID: "${e://Field/ResponseID}"
   };
   function fail(e) {
     var c = q.getQuestionContainer ? q.getQuestionContainer() : document.body;
@@ -244,7 +245,7 @@ def main():
     exp_fields = [pre + n for n in all_field_names(f)]
     device_fields = [pre + n for n in ['device_ok', 'device_reason', 'device_screen', 'device_window', 'device_pointer']]
     # binding / checkins: optional per-participant switches (blank = config); set them in a pilot copy of the survey.
-    declared = (['PROLIFIC_PID', 'STUDY_ID', 'SESSION_ID', 'debug', 'name_label', 'binding', 'checkins', 'condition', 'stranger_set', 'test_order']
+    declared = (['PROLIFIC_PID', 'STUDY_ID', 'SESSION_ID', 'debug', 'name_label', 'binding', 'checkins', 'condition', 'stranger_set', 'test_order', 'control_target']
                 + device_fields + exp_fields)
     # condition / stranger_set / test_order are written by the randomizers; the experiment writes them back.
     declared = list(dict.fromkeys(declared))
@@ -278,7 +279,11 @@ def main():
             order_children = [ed(['test_order'], {'test_order': o}) for o in orders]
             leaves += len(order_children)
             set_children.append(group(f'{cond} / set {ss}', [ed(['stranger_set'], {'stranger_set': ss}), randomizer(order_children)]))
-        cond_children.append(group(f'condition {cond}', [ed(['condition'], {'condition': cond}), randomizer(set_children)]))
+        flow = [ed(['condition'], {'condition': cond}), randomizer(set_children)]
+        if cond == 'control':
+            # The 6 fixed copy targets, balanced across control participants (not crossed with set x order).
+            flow.append(randomizer([ed(['control_target'], {'control_target': str(k)}) for k in range(1, 7)]))
+        cond_children.append(group(f'condition {cond}', flow))
     assign = randomizer(cond_children)
 
     flow = [ed(declared), blk(b_dev), branch_dev, blk(b_cons), branch_cons, assign, blk(b_exp), blk(b_post), blk(b_demo), blk(b_debrief),
