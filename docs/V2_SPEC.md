@@ -151,7 +151,7 @@ memory only, as in pilot 1.
 
 ## 10. Odd/even delay task
 
-- **Trials:** about 24 two-digit numbers, one every 1.25 s. Each stays up until the next, with no feedback, under the
+- **Trials:** 15 two-digit numbers, one every 2 s (1.25 s and 24 numbers until v3.0.2: too fast). Each stays up until the next, with no feedback, under the
   same countdown bar. Odd and even are balanced, and no number repeats back to back.
 - **Keys:** F = odd, J = even, fixed for everyone. This is also the faster-to-respond mapping.
 - **Recorded:** `parity_trials`, `parity_correct`, `parity_misses`, `parity_acc` (among answered trials),

@@ -128,7 +128,7 @@ SRL.fillers = (function () {
     const sec = Math.round(ms / 1000), n = Math.floor(ms / soa);
     await SRL.screens.message(el, S, 'Odd or even?',
       `<p class="srl-lead">Now a short number task.</p>
-       <p>A number will appear about once a second. Press <b>F</b> if it is <b>odd</b> and <b>J</b> if it is <b>even</b>.
+       <p>A number will appear every 2 seconds. Press <b>F</b> if it is <b>odd</b> and <b>J</b> if it is <b>even</b>.
        The numbers keep coming whether or not you answer, so answer each one as quickly and accurately as you can.</p>
        <p>Put your fingers on the <b>F</b> and <b>J</b> keys. The task ends automatically after ${sec} seconds.</p>`, 'Start');
     const pg = UI.page(el, `<h1>Odd or even?</h1><div class="srl-timer"><div></div></div>
