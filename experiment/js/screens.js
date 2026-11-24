@@ -13,10 +13,10 @@ SRL.screens = (function () {
       <h1>Welcome</h1>
       <p>In this part of the study you will:</p>
       <ol>
-        <li>${S.control ? 'make a simple cartoon avatar by copying one we show you, and do a short matching task,'
-          : 'answer a few questions about someone you know, make a simple cartoon avatar of them, and do a short matching task,'}</li>
+        <li>${S.control ? 'picture a person we name for you, make a simple cartoon avatar of them, choose a voice for them, and do a short matching task,'
+          : 'answer a few questions about someone you know, make a simple cartoon avatar of them, choose a voice for them, and do a short matching task,'}</li>
         <li>watch short animated scenes,</li>
-        <li>do a short arithmetic task, and answer some questions.</li>
+        <li>do a short ${C().FILLER_TASK === 'arithmetic' ? 'arithmetic' : 'number'} task, and answer some questions.</li>
       </ol>
       <p><b>Sound is required.</b> Please use headphones or speakers and keep them on throughout.</p>
       <p>The study runs in full screen. Please don't switch tabs or windows until you're finished.</p>
@@ -58,7 +58,7 @@ SRL.screens = (function () {
   }
 
   async function nameEntry(el, S) {
-    const prompt = C().CATEGORIES[S.category];
+    const prompt = C().KNOWN_PROMPT;
     const pg = UI.page(el, `
       <h1>Someone you know</h1>
       <p class="srl-lead">${prompt}</p>
@@ -111,33 +111,6 @@ SRL.screens = (function () {
   }
   const duration = (el, S) => choice(el, S, 'How long', `How long have you known <b>${nm(S)}</b>?`, C().DURATION, 'duration', 1);
 
-  function iosSvg(level, name) {
-    // Seven pairs of circles with increasing overlap (Aron, Aron & Smollan, 1992).
-    const dist = [62, 50, 40, 30, 21, 13, 6][level - 1];
-    const r = 27, cy = 40, c1 = 70 - dist / 2 - 0, cx1 = 70 - dist / 2 - 0;
-    const lab = name.length > 9 ? name.slice(0, 8) + '…' : name;
-    return `<svg viewBox="0 0 140 80" width="112" height="64"><circle cx="${cx1 - 0}" cy="${cy}" r="${r}" fill="none" stroke="#333" stroke-width="1.6"/>
-      <circle cx="${70 + dist / 2}" cy="${cy}" r="${r}" fill="none" stroke="#333" stroke-width="1.6"/>
-      <text x="${cx1 - 8}" y="${cy + 4}" text-anchor="middle" font-size="10">Self</text>
-      <text x="${70 + dist / 2 + 8}" y="${cy + 4}" text-anchor="middle" font-size="10">${esc(lab)}</text></svg>`;
-  }
-  async function ios(el, S) {
-    const opts = [1, 2, 3, 4, 5, 6, 7].map((k) => `<button type="button" class="srl-ios" data-k="${k}">${iosSvg(k, S.knownName)}<span>${k}</span></button>`).join('');
-    const pg = UI.page(el, `<h1>Closeness</h1>
-      <p class="srl-lead">Which picture best describes your relationship with <b>${nm(S)}</b>?</p>
-      <p class="srl-note">In each picture, one circle is you and the other is ${nm(S)}. Click the picture that fits best.</p>
-      <div class="srl-ios-row">${opts}</div>
-      <div class="srl-actions"><button class="srl-btn" id="go" disabled>Continue</button></div>`);
-    const btn = pg.querySelector('#go'); let sel = null;
-    pg.querySelectorAll('.srl-ios').forEach((b) => (b.onclick = () => {
-      pg.querySelectorAll('.srl-ios').forEach((x) => x.classList.remove('sel'));
-      b.classList.add('sel'); sel = +b.dataset.k; btn.disabled = false;
-    }));
-    auto(S, () => { pg.querySelectorAll('.srl-ios')[S.category === 'close' ? 5 : S.category === 'moderate' ? 3 : 1].click(); btn.click(); });
-    await UI.onClick(btn);
-    return { ios: sel };
-  }
-
   async function audioCheck(el, S) {
     const words = C().AUDIO_CHECK_WORDS;
     let pass = 0, attempts = 0, plays = 0;
@@ -154,7 +127,7 @@ SRL.screens = (function () {
       let played = false;
       play.onclick = async () => {
         await SRL.audio.unlock(); plays++; played = true; play.disabled = true;
-        await SRL.audio.play('check_' + words[i]); play.disabled = false; go.disabled = !ans.value.trim();
+        await SRL.audio.play('check_' + words[i] + '_' + S.voice); play.disabled = false; go.disabled = !ans.value.trim();
       };
       ans.addEventListener('input', () => (go.disabled = !played || !ans.value.trim()));
       ans.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !go.disabled) go.click(); });
@@ -181,12 +154,12 @@ SRL.screens = (function () {
   }
 
   const famInstructions = (el, S) => message(el, S, 'Watching scenes',
-    `<p class="srl-lead">Next you'll watch short moments from <b>${nm(S)}</b>'s and <b>${esc(S.unfamiliarName)}</b>'s days, as they run into people they know. Imagine you're really watching ${nm(S)} and ${esc(S.unfamiliarName)}.</p>
-     ${S.design && S.design.design_version === 'repeat6' ? '<p>Scenes may be shown more than once.</p>' : ''}
-     ${S.steps && S.steps.checkins ? `<p>Every few scenes, we'll ask a quick question about ${nm(S)} and about ${esc(S.unfamiliarName)}. There are no right answers.</p>` : ''}
+    `<p class="srl-lead">Next you'll watch short moments from <b>${nm(S)}</b>'s day, as ${nm(S)} runs into people they know. Imagine you're really watching ${nm(S)}.</p>
+     <p>Scenes may be shown more than once.</p>
+     ${S.steps && S.steps.checkins ? `<p>Every few scenes, we'll ask a quick question about ${nm(S)}. There are no right answers.</p>` : ''}
      <p>Please watch each scene carefully. When a scene is finished, press <b>SPACE</b> when you're ready to continue.</p>
      ${C().SURPRISE_TEST ? '' : '<p><b>Afterwards, we will test your memory for what you saw.</b></p>'}
      <p class="srl-note">Make sure your sound is on.</p>`, 'Start the scenes');
 
-  return { intro, nameEntry, relationship, ios, duration, audioCheck, message, famInstructions, isTitle };
+  return { intro, nameEntry, relationship, duration, audioCheck, message, famInstructions, isTitle };
 })();

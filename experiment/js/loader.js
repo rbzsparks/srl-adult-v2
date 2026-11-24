@@ -4,7 +4,7 @@
 (function () {
   const FILES = [
     'config.js', 'lib/jspsych.js',
-    'js/util.js', 'js/fields.js', 'js/people.js', 'js/avatar_rules.js', 'js/objects.js', 'js/stimuli.js', 'js/audio.js', 'js/ui.js',
+    'js/util.js', 'js/fields.js', 'js/people.js', 'js/avatar_rules.js', 'js/objects.js', 'js/names.js', 'js/stimuli.js', 'js/audio.js', 'js/ui.js',
     'js/scene.js', 'js/screens.js', 'js/binding.js', 'js/designer.js', 'js/fillers.js', 'js/tests.js', 'js/data.js', 'js/progress.js', 'js/main.js'
   ];
   function loadScript(src) {

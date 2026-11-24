@@ -1,5 +1,5 @@
 {
- "str01": {
+ "fy": {
   "voice_id": "EXAVITQu4vr4xnSDxMaL",
   "name": "Sarah - Mature, Reassuring, Confident",
   "source": "account",
@@ -10,18 +10,7 @@
   "preview_url": "https://storage.googleapis.com/eleven-public-prod/premade/voices/EXAVITQu4vr4xnSDxMaL/01a3e33c-6e99-4ee7-8543-ff2216a32186.mp3",
   "want": "female, young"
  },
- "str07": {
-  "voice_id": "cgSgspJ2msm6clMCkdW9",
-  "name": "Jessica - Playful, Bright, Warm",
-  "source": "account",
-  "gender": "female",
-  "age": "young",
-  "accent": "american",
-  "public_owner_id": null,
-  "preview_url": "https://storage.googleapis.com/eleven-public-prod/premade/voices/cgSgspJ2msm6clMCkdW9/56a97bf8-b69b-448f-846c-c3a11683d45a.mp3",
-  "want": "female, young"
- },
- "str02": {
+ "my": {
   "voice_id": "bIHbv24MWmeRgasZH58o",
   "name": "Will - Relaxed Optimist",
   "source": "account",
@@ -32,18 +21,7 @@
   "preview_url": "https://storage.googleapis.com/eleven-public-prod/premade/voices/bIHbv24MWmeRgasZH58o/8caf8f3d-ad29-4980-af41-53f20c72d7a4.mp3",
   "want": "male, young"
  },
- "str08": {
-  "voice_id": "TX3LPaxmHKxFdv7VOQHJ",
-  "name": "Liam - Energetic, Social Media Creator",
-  "source": "account",
-  "gender": "male",
-  "age": "young",
-  "accent": "american",
-  "public_owner_id": null,
-  "preview_url": "https://storage.googleapis.com/eleven-public-prod/premade/voices/TX3LPaxmHKxFdv7VOQHJ/63148076-6363-42db-aea8-31424308b92c.mp3",
-  "want": "male, young"
- },
- "str03": {
+ "fm": {
   "voice_id": "hpp4J3VqNfWAUOO0d1Us",
   "name": "Bella - Professional, Bright, Warm",
   "source": "account",
@@ -54,18 +32,7 @@
   "preview_url": "https://storage.googleapis.com/eleven-public-prod/premade/voices/hpp4J3VqNfWAUOO0d1Us/dab0f5ba-3aa4-48a8-9fad-f138fea1126d.mp3",
   "want": "female, middle"
  },
- "str09": {
-  "voice_id": "5l5f8iK3YPeGga21rQIX",
-  "name": "Adeline - Feminine and Conversational",
-  "source": "library",
-  "gender": "female",
-  "age": "middle_aged",
-  "accent": "american",
-  "public_owner_id": "b6be235a2cedf5966fa8e92fcf4b0deae8a9f4586c39518614d69dcde4e977ba",
-  "preview_url": "https://storage.googleapis.com/eleven-public-prod/database/workspace/f021b68953424a4a8ee93f30771e783b/voices/5l5f8iK3YPeGga21rQIX/IWGwBNrRKUNn0fVDInY5.mp3",
-  "want": "female, middle"
- },
- "str04": {
+ "mm": {
   "voice_id": "iP95p4xoKVk53GoZ742B",
   "name": "Chris - Charming, Down-to-Earth",
   "source": "account",
@@ -76,18 +43,7 @@
   "preview_url": "https://storage.googleapis.com/eleven-public-prod/premade/voices/iP95p4xoKVk53GoZ742B/3f4bde72-cc48-40dd-829f-57fbf906f4d7.mp3",
   "want": "male, middle"
  },
- "str10": {
-  "voice_id": "cjVigY5qzO86Huf0OWal",
-  "name": "Eric - Smooth, Trustworthy",
-  "source": "account",
-  "gender": "male",
-  "age": "middle_aged",
-  "accent": "american",
-  "public_owner_id": null,
-  "preview_url": "https://storage.googleapis.com/eleven-public-prod/premade/voices/cjVigY5qzO86Huf0OWal/d098fda0-6456-4030-b3d8-63aa048c9070.mp3",
-  "want": "male, middle"
- },
- "str05": {
+ "fo": {
   "voice_id": "5u41aNhyCU6hXOcjPPv0",
   "name": "Carol - Relatable, Real, Likeable Grandma",
   "source": "library",
@@ -98,18 +54,7 @@
   "preview_url": "https://storage.googleapis.com/eleven-public-prod/database/user/user_0801kdv521s4fe0s61ww7j0apae0/voices/5u41aNhyCU6hXOcjPPv0/uiFOGdNpWUK1TMPqu6iM.mp3",
   "want": "female, older"
  },
- "str11": {
-  "voice_id": "g12yXXabMWeFoLMzxPrF",
-  "name": "Julie - Warm, Mature",
-  "source": "library",
-  "gender": "female",
-  "age": "old",
-  "accent": "american",
-  "public_owner_id": "bf6e42a20a691e123db74ee577f6b579d9beebb6d60a9c8898390ba9de72ca4a",
-  "preview_url": "https://api.us.elevenlabs.io/v1/voices/g12yXXabMWeFoLMzxPrF/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiJiMTcwMDI1ZDM2OTI0MTNmOWIyYjQ2ZGVjMjc1ZTc1NCIsImZpbGVuYW1lIjoiYmExYzc1ZWItNzJkNC00N2VkLThjNDUtZjEyMzM1ZWNhYTAxLm1wMyIsInRpbWVzdGFtcCI6MTc5NDYwNzIwMDAwMDAwMH0%3D",
-  "want": "female, older"
- },
- "str06": {
+ "mo": {
   "voice_id": "pqHfZKP75CvOlQylNhV4",
   "name": "Bill - Wise, Mature, Balanced",
   "source": "account",
@@ -118,17 +63,6 @@
   "accent": "american",
   "public_owner_id": null,
   "preview_url": "https://storage.googleapis.com/eleven-public-prod/premade/voices/pqHfZKP75CvOlQylNhV4/d782b3ff-84ba-4029-848c-acf01285524d.mp3",
-  "want": "male, older"
- },
- "str12": {
-  "voice_id": "3HVqMrtg7gWyWkIQWUAC",
-  "name": "Marv ",
-  "source": "library",
-  "gender": "male",
-  "age": "old",
-  "accent": "american",
-  "public_owner_id": "54af6381c4f9f77f196720e59390cd569bc8f050b898cebdce38bb10184cc7fd",
-  "preview_url": "https://storage.googleapis.com/eleven-public-prod/database/workspace/d4125c2836084aac9ac387959911fef7/voices/3HVqMrtg7gWyWkIQWUAC/Pdv4IzoEEZBls49MaFS8.mp3",
   "want": "male, older"
  },
  "narrator": {

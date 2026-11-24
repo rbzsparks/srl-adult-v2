@@ -43,10 +43,6 @@ html.srl-active, html.srl-active body { overflow: hidden !important; }
 .srl-radio:has(input:checked) { border-color: #2F5DA8; background: #EEF3FB; }
 
 /* IOS */
-.srl-ios-row { display: flex; justify-content: space-between; gap: 4px; margin: 14px 0; }
-.srl-ios { background: #fff; border: 2px solid #E3DACB; border-radius: 10px; padding: 6px 2px 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; font: inherit; font-size: 15px; color: #444; }
-.srl-ios:hover { border-color: #9DB3D9; }
-.srl-ios.sel { border-color: #2F5DA8; background: #EEF3FB; }
 
 /* Timer bar */
 .srl-timer { height: 8px; background: #E7E1D6; border-radius: 4px; overflow: hidden; margin: 2px 0 16px; }
@@ -129,7 +125,7 @@ html.srl-active, html.srl-active body { overflow: hidden !important; }
 .ts-opt { background: #fff; border: 2.5px solid #E3DACB; border-radius: 16px; padding: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ts-opt:hover { border-color: #9DB3D9; }
 .ts-opt.sel { border-color: #2F5DA8; background: #EEF3FB; }
-.ts-face .ts-opt { padding: 14px 24px 0; background: #F1EBE1; }
+.ts-identity .ts-opt { padding: 8px 6px 0; background: #F1EBE1; }
 
 /* ---------- Person binding (binding.js) ---------- */
 .dz-side { flex: none; display: flex; flex-direction: column; gap: 8px; width: auto; }
@@ -173,12 +169,18 @@ html.srl-active, html.srl-active body { overflow: hidden !important; }
 .bd-ci-btn:hover { border-color: #2F5DA8; background: #EEF3FB; }
 .bd-center .srl-actions { margin-top: 18px; }
 /* Control condition (v2.4): the avatar to copy beside the participant's avatar */
-.dz-copy { display: flex; gap: 10px; }
-.dz-cap { font-size: 13px; font-weight: 650; color: #6A6152; margin: 0 0 3px 2px; }
 .dz-preview-xs { width: 180px; height: 216px; }
-.dz-copy-like { gap: 14px; }
 .bd-lab { font-size: 15px; font-weight: 650; color: #6A6152; margin-bottom: 4px; }
-.dz-like-wrap.dz-like-col { flex-direction: column; gap: 16px; margin-top: 6px; }
-.dz-like-col .dz-like-scale { flex: none; }
-.dz-like-col .dz-like-row { justify-content: center; }
-.dz-like-col .srl-note { text-align: center; }
+.dz-like-wrap
+/* v3.0: 1-7 scales, voice selector, odd/even task, identity test */
+.bd-scale { display: flex; gap: 8px; justify-content: center; margin: 22px 0 10px; }
+.bd-scale-page .bd-center { margin-bottom: 8px; }
+.vc-wrap { display: flex; gap: 40px; align-items: flex-start; margin-top: 10px; }
+.vc-main { flex: 1; }
+.vc-list { display: flex; flex-direction: column; gap: 6px; margin: 12px 0 6px; }
+.vc-row { display: flex; align-items: center; gap: 16px; padding: 3px 8px; border-radius: 10px; }
+.vc-row .srl-radio { white-space: nowrap; margin: 0; }
+.vc-row.playing { background: #EEF3FB; }
+.vc-row .srl-btn { min-width: 128px; }
+.vc-row input:disabled + span { color: #AAA; }
+.pa-num { font-size: 88px; margin-top: 60px; }

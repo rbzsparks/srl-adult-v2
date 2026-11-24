@@ -3,11 +3,11 @@ Qualtrics.SurveyEngine.addOnload(function () {
   var q = this;
   q.hideNextButton();
   if (q.hidePreviousButton) { q.hidePreviousButton(); }
-  var BASE_URL = 'https://rbzsparks.github.io/srl-adult-prolific/experiment/';
-  var VERSION = '2.4.2';
+  var BASE_URL = 'https://rbzsparks.github.io/srl-adult-v2/experiment/';
+  var VERSION = '3.0.0';
   var params = {
     PROLIFIC_PID: "${e://Field/PROLIFIC_PID}", STUDY_ID: "${e://Field/STUDY_ID}", SESSION_ID: "${e://Field/SESSION_ID}",
-    category: "${e://Field/category}", list: "${e://Field/list}", design_version: "${e://Field/design_version}", stranger_set: "${e://Field/stranger_set}", debug: "${e://Field/debug}", name_label: "${e://Field/name_label}", binding: "${e://Field/binding}", checkins: "${e://Field/checkins}", ResponseID: "${e://Field/ResponseID}"
+    condition: "${e://Field/condition}", stranger_set: "${e://Field/stranger_set}", test_order: "${e://Field/test_order}", debug: "${e://Field/debug}", name_label: "${e://Field/name_label}", binding: "${e://Field/binding}", checkins: "${e://Field/checkins}", ResponseID: "${e://Field/ResponseID}"
   };
   function fail(e) {
     var c = q.getQuestionContainer ? q.getQuestionContainer() : document.body;

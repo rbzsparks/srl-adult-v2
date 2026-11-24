@@ -1,18 +1,20 @@
-"""Build qualtrics/survey.qsf (importable Qualtrics survey) from experiment/js/fields.js and config.js.
+"""Build qualtrics/survey.qsf (importable Qualtrics survey) from experiment/js/fields.js and config.js (v3.0).
 
 Survey flow:
   1. Embedded Data: PROLIFIC_PID, STUDY_ID, SESSION_ID, debug (from URL) + every field the experiment writes
   2. Device check block (JS) -> Branch: device_ok = 0 -> message + End of Survey (redirect SCREENOUT_CODE)
   3. Consent block -> Branch: declined -> message + End of Survey (redirect NOCONSENT_CODE; Prolific path "Request a return")
-  4. Randomizer (evenly present): category x list (8 branches); repeat6: category x list x stranger_set (16 branches).
-     category: acquaintance / moderate / close / control (v2.4: copy a random avatar; no known person)
+  4. Nested randomizers, each evenly presented (24 leaves):
+       condition (known / control)
+         -> stranger_set (X / Y): a separate randomizer inside each condition
+           -> test_order (all 6 orders of word / identity / colour): a separate randomizer inside each condition x set
+     Each inner randomizer keeps its own counts, so set is balanced within condition and order within condition x set.
   5. Experiment block (one question whose JS loads the experiment from BASE_URL; Next button hidden)
   6. Post-test questions, demographics, debrief
   7. End of Survey: redirect to Prolific completion URL
 
 Usage:
-  python tools/build_qsf.py --base-url https://rbzsparks.github.io/<repo>/experiment/ [--engine legacy|nste]
-  python tools/build_qsf.py --design repeat6        (writes qualtrics/repeat6/; a separate Prolific study)
+  python tools/build_qsf.py [--base-url https://rbzsparks.github.io/srl-adult-v2/experiment/] [--engine legacy|nste]
                             [--completion-code CODE] [--screenout-code CODE] [--noconsent-code CODE] [--out PATH]
   With real Prolific codes, pass --out to a folder outside the repo (the repo is public).
 """
@@ -27,23 +29,10 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 EXP = os.path.join(ROOT, 'experiment')
 
 
-def load_fields(design='unique12'):
+def load_fields():
     txt = open(os.path.join(EXP, 'js', 'fields.js'), encoding='utf-8').read()
     start = txt.index('{', txt.index('window.SRL_FIELDS'))
-    return fields_for(json.loads(txt[start: txt.rindex('}') + 1]), design)
-
-
-def fields_for(f, design):
-    """Same as SRL.data.fieldsFor: the unique12 lists with the design's overrides from fields.js "designs"."""
-    o = (f.get('designs') or {}).get(design)
-    if not o:
-        return f
-    f = dict(f)
-    f['participant'] = f['participant'] + o.get('participant_extra', [])
-    for k in ('fam_per_scene', 'scene_set_ids'):
-        if k in o:
-            f[k] = o[k]
-    return f
+    return json.loads(txt[start: txt.rindex('}') + 1])
 
 
 def all_field_names(f):
@@ -76,7 +65,7 @@ EXPERIMENT_JS = r"""Qualtrics.SurveyEngine.addOnload(function () {
   var VERSION = '__VERSION__';
   var params = {
     PROLIFIC_PID: "${e://Field/PROLIFIC_PID}", STUDY_ID: "${e://Field/STUDY_ID}", SESSION_ID: "${e://Field/SESSION_ID}",
-    category: "${e://Field/category}", list: "${e://Field/list}", design_version: "${e://Field/design_version}", stranger_set: "${e://Field/stranger_set}", debug: "${e://Field/debug}", name_label: "${e://Field/name_label}", binding: "${e://Field/binding}", checkins: "${e://Field/checkins}", ResponseID: "${e://Field/ResponseID}"
+    condition: "${e://Field/condition}", stranger_set: "${e://Field/stranger_set}", test_order: "${e://Field/test_order}", debug: "${e://Field/debug}", name_label: "${e://Field/name_label}", binding: "${e://Field/binding}", checkins: "${e://Field/checkins}", ResponseID: "${e://Field/ResponseID}"
   };
   function fail(e) {
     var c = q.getQuestionContainer ? q.getQuestionContainer() : document.body;
@@ -124,20 +113,18 @@ DEVICE_JS = r"""Qualtrics.SurveyEngine.addOnload(function () {
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--base-url', default='https://rbzsparks.github.io/srl-adult-prolific/experiment/')
+    ap.add_argument('--base-url', default='https://rbzsparks.github.io/srl-adult-v2/experiment/')
     ap.add_argument('--engine', choices=['legacy', 'nste'], default='legacy')
     ap.add_argument('--completion-code', default=config_value('COMPLETION_CODE') or 'COMPLETION_CODE')
     ap.add_argument('--screenout-code', default=config_value('SCREENOUT_CODE') or 'SCREENOUT_CODE')
     ap.add_argument('--noconsent-code', default=config_value('NOCONSENT_CODE') or 'NOCONSENT_CODE')
-    ap.add_argument('--design', choices=['unique12', 'repeat6'], default='unique12')
     ap.add_argument('--out', default='')
     a = ap.parse_args()
-    r6 = a.design == 'repeat6'
-    a.out = a.out or os.path.join(ROOT, 'qualtrics', *(['repeat6'] if r6 else []), 'survey.qsf')
+    a.out = a.out or os.path.join(ROOT, 'qualtrics', 'survey.qsf')
     random.seed(20261113)
     base = a.base_url if a.base_url.endswith('/') else a.base_url + '/'
     version = config_value('VERSION') or '1.0.0'
-    est = (config_value('ESTIMATED_MINUTES_REPEAT6') if r6 else config_value('ESTIMATED_MINUTES')) or '18'
+    est = config_value('ESTIMATED_MINUTES') or '17'
     W, H = config_value('MIN_SCREEN_W') or '1024', config_value('MIN_SCREEN_H') or '650'
     pre = '__js_' if a.engine == 'nste' else ''
     setter = 'Qualtrics.SurveyEngine.setJSEmbeddedData' if a.engine == 'nste' else 'Qualtrics.SurveyEngine.setEmbeddedData'
@@ -187,9 +174,9 @@ def main():
 
     q_cons_text = q({'QuestionText': '<p><b>[PLACEHOLDER: IRB-APPROVED CONSENT TEXT]</b></p>'
                                      f'<p>This study takes about <b>{est} minutes</b>. It requires <b>sound</b> (headphones or speakers) and a desktop or laptop computer.</p>'
-                                     '<p>You\'ll make a simple cartoon avatar. Some participants design it to look like someone they know, first typing '
-                                     'that person\'s first name and some brief notes about them; others copy an avatar we show them. '
-                                     'Any name and notes you type are not saved.</p>'
+                                     '<p>You\'ll make a simple cartoon avatar and choose a voice for it. Some participants design it to look like '
+                                     'someone they know, first typing that person\'s first name and some brief notes about them; others design an '
+                                     'avatar for a person we name, with brief notes about how they picture them. Any name and notes you type are not saved.</p>'
                                      '<p>[Purpose, procedures, risks, benefits, compensation, confidentiality, voluntary participation, contact information.]</p>'}, 'consent_text')
     q_cons = mc('Do you agree to take part in this study?', 'consent', ['I agree to take part', 'I do not agree'])
     b_cons = block('Consent', [q_cons_text, q_cons])
@@ -221,8 +208,9 @@ def main():
     q_gender = mc('What is your gender?', 'gender', ['Woman', 'Man', 'Non-binary', 'Prefer to self-describe:', 'Prefer not to say'], text_entry=4)
     b_demo = block('Demographics [confirm list with IRB]', [q_age, q_gender])
     q_debrief = q({'QuestionText': '<p><b>[PLACEHOLDER: IRB-APPROVED DEBRIEF TEXT]</b></p>'
-                                   '<p>[Explain the purpose: whether seeing someone you know changes what people notice and remember about a stranger, '
-                                   'the words they teach, and background details. Explain the surprise memory test. Contact information.]</p>'
+                                   '<p>[Explain the purpose: whether watching someone you know (compared with a person you imagined) changes what '
+                                   'people remember about the strangers they meet: their names, the words taught to them, and background details. '
+                                   'Explain the surprise memory test. Contact information.]</p>'
                                    '<p>Click the arrow to finish and return to Prolific.</p>'}, 'debrief')
     b_debrief = block('Debrief', [q_debrief])
     block('Trash / Unused Questions', [], 'Trash')
@@ -252,14 +240,13 @@ def main():
         return e
 
     prolific = 'https://app.prolific.com/submissions/complete?cc='
-    f = load_fields(a.design)
+    f = load_fields()
     exp_fields = [pre + n for n in all_field_names(f)]
     device_fields = [pre + n for n in ['device_ok', 'device_reason', 'device_screen', 'device_window', 'device_pointer']]
     # binding / checkins: optional per-participant switches (blank = config); set them in a pilot copy of the survey.
-    declared = (['PROLIFIC_PID', 'STUDY_ID', 'SESSION_ID', 'debug', 'name_label', 'binding', 'checkins', 'design_version', 'category', 'list']
-                + (['stranger_set'] if r6 else []) + device_fields + exp_fields)
-    # category/list (and stranger_set) are written by the Randomizer; the experiment also writes them back (as written fields).
-    # design_version is set in the first flow element, so the experiment knows which version to run.
+    declared = (['PROLIFIC_PID', 'STUDY_ID', 'SESSION_ID', 'debug', 'name_label', 'binding', 'checkins', 'condition', 'stranger_set', 'test_order']
+                + device_fields + exp_fields)
+    # condition / stranger_set / test_order are written by the randomizers; the experiment writes them back.
     declared = list(dict.fromkeys(declared))
 
     branch_dev = {'Type': 'Branch', 'FlowID': fid(), 'Description': 'New Branch',
@@ -275,17 +262,26 @@ def main():
                                                'Description': '<span class="ConjDesc">If</span> <span class="QuestionDesc">consent</span> <span class="LeftOpDesc">I do not agree</span> <span class="OpDesc">Is Selected</span> '},
                                          'Type': 'If'}, 'Type': 'BooleanExpression'},
                    'Flow': [blk(b_decl), end(prolific + a.noconsent_code)]}
-    rand_children = []
-    for cat in ['acquaintance', 'moderate', 'close', 'control']:
-        for lst in ['A', 'B']:
-            if r6:
-                for ss in ['X', 'Y']:
-                    rand_children.append(ed(['category', 'list', 'stranger_set'], {'category': cat, 'list': lst, 'stranger_set': ss}))
-            else:
-                rand_children.append(ed(['category', 'list'], {'category': cat, 'list': lst}))
-    randomizer = {'Type': 'BlockRandomizer', 'FlowID': fid(), 'SubSet': '1', 'EvenPresentation': True, 'Flow': rand_children}
+    def group(desc, flow):
+        return {'Type': 'Group', 'FlowID': fid(), 'Description': desc, 'Flow': flow}
 
-    flow = [ed(declared, {'design_version': a.design}), blk(b_dev), branch_dev, blk(b_cons), branch_cons, randomizer, blk(b_exp), blk(b_post), blk(b_demo), blk(b_debrief),
+    def randomizer(children):
+        return {'Type': 'BlockRandomizer', 'FlowID': fid(), 'SubSet': '1', 'EvenPresentation': True, 'Flow': children}
+
+    orders = ['word>identity>colour', 'word>colour>identity', 'identity>word>colour',
+              'identity>colour>word', 'colour>word>identity', 'colour>identity>word']
+    leaves = 0
+    cond_children = []
+    for cond in ['known', 'control']:
+        set_children = []
+        for ss in ['X', 'Y']:
+            order_children = [ed(['test_order'], {'test_order': o}) for o in orders]
+            leaves += len(order_children)
+            set_children.append(group(f'{cond} / set {ss}', [ed(['stranger_set'], {'stranger_set': ss}), randomizer(order_children)]))
+        cond_children.append(group(f'condition {cond}', [ed(['condition'], {'condition': cond}), randomizer(set_children)]))
+    assign = randomizer(cond_children)
+
+    flow = [ed(declared), blk(b_dev), branch_dev, blk(b_cons), branch_cons, assign, blk(b_exp), blk(b_post), blk(b_demo), blk(b_debrief),
             end(prolific + a.completion_code)]
     flow_el = {'SurveyID': SID, 'Element': 'FL', 'PrimaryAttribute': 'Survey Flow', 'SecondaryAttribute': None, 'TertiaryAttribute': None,
                'Payload': {'Type': 'Root', 'FlowID': 'FL_1', 'Flow': flow, 'Properties': {'Count': fl[0], 'RemovedFieldsets': []}}}
@@ -302,10 +298,10 @@ def main():
     rs_el = {'SurveyID': SID, 'Element': 'RS', 'PrimaryAttribute': rid('RS_'), 'SecondaryAttribute': 'Default Response Set', 'TertiaryAttribute': None, 'Payload': None}
     qc_el = {'SurveyID': SID, 'Element': 'QC', 'PrimaryAttribute': 'Survey Question Count', 'SecondaryAttribute': str(len(questions)), 'TertiaryAttribute': None, 'Payload': None}
 
-    qsf = {'SurveyEntry': {'SurveyID': SID, 'SurveyName': 'Social relevance study (Prolific)' + (' - repeat6' if r6 else ''), 'SurveyDescription': None, 'SurveyOwnerID': 'UR_placeholder',
+    qsf = {'SurveyEntry': {'SurveyID': SID, 'SurveyName': 'Social relevance study v2 (Prolific)', 'SurveyDescription': None, 'SurveyOwnerID': 'UR_placeholder',
                            'SurveyBrandID': 'placeholder', 'DivisionID': None, 'SurveyLanguage': 'EN', 'SurveyActiveResponseSet': rs_el['PrimaryAttribute'],
                            'SurveyStatus': 'Inactive', 'SurveyStartDate': '0000-00-00 00:00:00', 'SurveyExpirationDate': '0000-00-00 00:00:00',
-                           'SurveyCreationDate': '2026-11-13 00:00:00', 'CreatorID': 'UR_placeholder', 'LastModified': '2026-11-13 00:00:00',
+                           'SurveyCreationDate': '2026-11-24 00:00:00', 'CreatorID': 'UR_placeholder', 'LastModified': '2026-11-24 00:00:00',
                            'LastAccessed': '0000-00-00 00:00:00', 'LastActivated': '0000-00-00 00:00:00', 'Deleted': None},
            'SurveyElements': [blocks_el, flow_el, options, rs_el, qc_el] + questions}
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
@@ -317,7 +313,7 @@ def main():
     open(os.path.join(jsdir, 'device_check_question.js'), 'w', encoding='utf-8').write(DEVICE_JS.replace('__W__', W).replace('__H__', H).replace('__SET__', setter))
     with open(os.path.join(jsdir, 'embedded_data_fields.txt'), 'w', encoding='utf-8') as fh:
         fh.write('\n'.join(declared) + '\n')
-    print(f'wrote {a.out}: design {a.design}, {len(questions)} questions, {len(blocks)} blocks, {len(rand_children)} randomizer branches, '
+    print(f'wrote {a.out}: {len(questions)} questions, {len(blocks)} blocks, {leaves} randomizer leaves (2 x 2 x 6), '
           f'{len(declared)} embedded-data fields, engine={a.engine}')
 
 

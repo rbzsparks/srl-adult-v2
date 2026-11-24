@@ -219,6 +219,12 @@ Not exclusions:
 - The 45 s arithmetic as the default.
 - The unique12 design.
 
+Changed during the build:
+- **Stranger sets.** In pilot 1, set X had 4 women and 2 men, and set Y had 2 women and 4 men. They are now
+  rebalanced to 3 + 3, with one woman and one man per age band, using the same 12 faces:
+  - X: str01, str13, str04, str03, str05, str06
+  - Y: str07, str14, str10, str09, str11, str12
+
 ## 15. Decided at sign-off (2026-11-24)
 
 - Relationship duration is kept, known condition only.

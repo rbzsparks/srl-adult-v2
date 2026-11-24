@@ -6,17 +6,7 @@
  *  - Local runs: download (or POST to the dev server with ?devsave=1).
  * PRIVACY: nothing here ever receives the typed name or the recall notes (tools/privacy_check.html tests this). */
 SRL.data = (function () {
-  /* Field lists for a design: the unique12 lists, with the repeat6 overrides from fields.js "designs". */
-  function fieldsFor(design) {
-    const base = window.SRL_FIELDS, o = (base.designs || {})[design];
-    if (!o) return base;
-    const f = Object.assign({}, base);
-    f.participant = base.participant.concat(o.participant_extra || []);
-    if (o.fam_per_scene) f.fam_per_scene = o.fam_per_scene;
-    if (o.scene_set_ids) f.scene_set_ids = o.scene_set_ids;
-    return f;
-  }
-  const F = () => fieldsFor(SRL.stimuli.designVersion());
+  const F = () => window.SRL_FIELDS;
   const pad = (n) => String(n).padStart(2, '0');
 
   function allFieldNames() {
@@ -102,7 +92,7 @@ SRL.data = (function () {
       setQualtrics(fields);
     } else {
       const csv = jsPsych.data.get().csv();
-      const tag = (S.params.PROLIFIC_PID || 'local') + '_' + S.category + '_' + S.list + (S.strangerSet ? S.strangerSet : '');
+      const tag = (S.params.PROLIFIC_PID || 'local') + '_' + S.condition + '_' + S.strangerSet + '_' + S.p.test_order.replace(/>/g, '-');
       if (S.params.devsave === '1') {
         await devSave(`sample_data/${tag}_trials.csv`, csv);
         await devSave(`sample_data/${tag}_qualtrics_fields.json`, stringify(fields, 1));
@@ -115,5 +105,5 @@ SRL.data = (function () {
     return fields;
   }
 
-  return { fieldsFor, fields: F, allFieldNames, wide, fullJson, chunks, finalSave, dataPipe, setQualtrics, stringify };
+  return { fields: F, allFieldNames, wide, fullJson, chunks, finalSave, dataPipe, setQualtrics, stringify };
 })();

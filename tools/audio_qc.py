@@ -46,7 +46,7 @@ def pauses(x):
 
 
 def kind(cid):
-    for k in ('greet', 'label', 'test_word', 'test_incid', 'test_face', 'check'):
+    for k in ('sel', 'greet', 'label', 'test_word', 'test_incid', 'test_identity', 'check'):
         if cid.startswith(k):
             return k
     return cid

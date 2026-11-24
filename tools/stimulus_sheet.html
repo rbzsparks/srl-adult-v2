@@ -37,11 +37,14 @@
     const c = document.createElement('div'); c.className = 'cell ' + cls; c.innerHTML = svg + '<div>' + label + '</div>'; row.appendChild(c);
     if (file) files[file] = svg;
   };
-  let r = sec('Strangers (front / facing right) and matched foils (front)');
-  stim.scene_sets.forEach((s) => {
-    cell(r, 'p', P.svg(s.stranger), s.stranger.id, `people/${s.stranger.id}_front.svg`);
-    cell(r, 'p', P.svg(s.stranger, { facing: 1 }), s.stranger.id + ' turned right', `people/${s.stranger.id}_right.svg`);
-    cell(r, 'p', P.svg(s.foil), s.foil.id + ' · ' + s.foil_change.join(' → '), `people/${s.foil.id}_front.svg`);
+  let r;
+  Object.keys(stim.stranger_sets).forEach((k) => {
+    r = sec(`Stranger set ${k} (front / turned left, as in the scenes, with the hand raised)`);
+    stim.stranger_sets[k].forEach((e) => {
+      const st = e.stranger, tag = `${st.id} · ${st.gender} ${st.age} · ${e.scene_set_id}`;
+      cell(r, 'p', P.svg(st), tag, `people/${st.id}_front.svg`);
+      cell(r, 'p', P.svg(st, { facing: -1, hands: true, hand: 1, handRot: 10 }), st.id + ' waving', `people/${st.id}_wave.svg`);
+    });
   });
   const N = (o) => Object.assign({}, P.NEUTRAL, o);
   r = sec('Hair styles (by texture)');

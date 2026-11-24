@@ -10,12 +10,12 @@
      exactly as the Qualtrics question does. Serve with tools/dev_server.py and open
      http://localhost:8000/tools/remote_load_test.html (add ?auto=1 for an autopilot run). -->
 <script>
-  const BASE_URL = 'https://rbzsparks.github.io/srl-adult-prolific/experiment/';
+  const BASE_URL = 'https://rbzsparks.github.io/srl-adult-v2/experiment/';
   const q = new URLSearchParams(location.search);
   const s = document.createElement('script');
   s.src = BASE_URL + 'js/loader.js?v=' + Date.now();
   s.onload = () => window.SRL_LOAD({ base: BASE_URL, mode: 'local', version: String(Date.now()),
-    params: { PROLIFIC_PID: 'REMOTETEST', STUDY_ID: 'S1', category: 'close', list: 'A', debug: '1', auto: q.get('auto') || '', reset: '1' },
+    params: { PROLIFIC_PID: 'REMOTETEST', STUDY_ID: 'S1', condition: 'known', stranger_set: 'X', debug: '1', auto: q.get('auto') || '', reset: '1' },
     finish: () => { document.body.innerHTML = '<p>Finished (remote load).</p>'; },
     onError: (e) => { document.body.innerHTML = '<p>Load error: ' + e.message + '</p>'; } });
   s.onerror = () => { document.body.innerHTML = '<p>Could not load loader.js from GitHub Pages.</p>'; };

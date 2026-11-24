@@ -999,8 +999,18 @@ SRL.people = (function () {
     head += `<g clip-path="url(#${id}hd)">${model}</g>`;
     const nFreck = Math.round((p.freckles || 0) * FRECKLES.length);
     const freck = nFreck ? `<g fill="${C.freckle}">` + FRECKLES.slice(0, nFreck).map(([x, y, k]) => `<circle cx="${f((k === 'n' ? g.nx : 100 + g.dx) + x)}" cy="${f(y)}" r="0.8"/>`).join('') + '</g>' : '';
+    // A raised hand for waving (scenes only, v3.0): forearm in the shirt colour, palm and fingers in skin colour, drawn on
+    // the side away from the way the figure faces so it never covers the face. Pivot at the elbow (173, 250), below the
+    // frame; state.hand (0 down and out of view .. 1 raised to head height) and state.handRot (degrees) move it.
+    const sk = `fill="${C.skin}" stroke="${C.l10}" stroke-width="0.9"`;
+    let hand = `<path d="M162 254 L165 212 L181 212 L185 254Z" fill="${lv >= 2 ? `url(#${id}s)` : C.shirt}"/>` +
+      `<path d="M166 214 L168.5 130 L179.5 130 L180.5 214Z" ${sk}/>` +
+      [[164.6, 99, 17], [170.2, 94.5, 20], [175.8, 95.5, 19], [181.2, 100.5, 15]].map(([x, y, h]) => `<rect x="${x}" y="${y}" width="5.4" height="${h}" rx="2.7" ${sk}/>`).join('') +
+      `<rect x="156.5" y="116" width="5.4" height="15" rx="2.7" transform="rotate(-48 159.2 123.5)" ${sk}/>` +
+      `<ellipse cx="174" cy="121" rx="12" ry="13" ${sk}/>`;
+    if ((o.facing || 0) > 0) hand = `<g transform="translate(200 0) scale(-1 1)">${hand}</g>`;
     const out = {
-      g, C, lv, defs, id, back: hairP.back, body, neck, over: hairP.over, front: hairP.front + (hijab ? coverW : ''),
+      g, C, lv, defs, id, hand, back: hairP.back, body, neck, over: hairP.over, front: hairP.front + (hijab ? coverW : ''),
       hang: hijab ? HANG.hijab : HANG[p.hairStyle] || null,
       headUnder: (hijab ? '' : ears) + head + ageLines(p, g, C) + freck + facialW + nose(g, C, lv),
       headOver: glasses(p, g, C, lv) + (hijab ? '' : coverW),
@@ -1015,7 +1025,8 @@ SRL.people = (function () {
     return eye(-1, S.g, p, o, S.C, id, S.lv) + eye(1, S.g, p, o, S.C, id, S.lv) + mouth(S.g, o, S.C, S.lv, S.halo) +
       `<g transform="translate(0 ${f(-3 * (o.brow || 0))})">${brow(-1, S.g, p, S.C)}${brow(1, S.g, p, S.C)}</g>`;
   }
-  const DEFAULT_STATE = { level: 2, gaze: [0, 0], mouth: 0, smile: 0.55, brow: 0, facing: 0, rot: 0, nod: 0, bounce: 0 };
+  const DEFAULT_STATE = { level: 2, gaze: [0, 0], mouth: 0, smile: 0.55, brow: 0, facing: 0, rot: 0, nod: 0, bounce: 0, hand: 0, handRot: 0 };
+  const handT = (o, facing) => `translate(0 ${f((1 - (o.hand || 0)) * 170)}) rotate(${f((facing > 0 ? -1 : 1) * (o.handRot || 0))} ${facing > 0 ? 27 : 173} 250)`;
   const headT = (o) => `translate(0 ${f(o.nod || 0)}) rotate(${f(o.rot || 0)} 100 165)`;
   /* Hanging hair. Short and rounded styles move rigidly with the head. Hair that hangs below the jaw is drawn in
    * horizontal bands: above y0 it turns with the head; from y0 to y1 the turn fades out; below y1 the hair only moves
@@ -1123,7 +1134,8 @@ SRL.people = (function () {
     return `<svg viewBox="${o.viewBox || '0 0 200 240'}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${o.label || 'person'}" ${o.attrs || ''}>` +
       `<defs>${S.defs}</defs><g class="p-bounce" transform="${bounceT(o)}">${hairLayer(S, o, 'b', S.back)}${S.body}${S.neck}` +
       `<g class="p-head" transform="${headT(o)}">${S.headUnder}<g class="p-dyn">${dynamicPart(p, o, S)}</g>${S.headOver}</g>` +
-      `${hairLayer(S, o, 'f', S.front)}${hairLayer(S, o, 'o', S.over)}</g></svg>`;
+      `${hairLayer(S, o, 'f', S.front)}${hairLayer(S, o, 'o', S.over)}` +
+      `${o.hands ? `<g class="p-hand" transform="${handT(o, o.facing)}">${S.hand}</g>` : ''}</g></svg>`;
   }
 
   /* Live, animatable figure. el = the <svg> element produced by svg(p, { facing }). */
@@ -1133,13 +1145,14 @@ SRL.people = (function () {
       this.s = Object.assign({}, DEFAULT_STATE, { facing: facing || 0 }, state || {});
       this.S = staticParts(p, this.s);
       this.bounceEl = el.querySelector('.p-bounce'); this.hairEls = Array.prototype.slice.call(el.querySelectorAll('.p-hair'));
-      this.headEl = el.querySelector('.p-head'); this.dynEl = el.querySelector('.p-dyn');
+      this.headEl = el.querySelector('.p-head'); this.dynEl = el.querySelector('.p-dyn'); this.handEl = el.querySelector('.p-hand');
       this.render();
     }
     set(st) { Object.assign(this.s, st); this.render(); }
     render() {
       const s = this.s, t = headT(s);
       this.bounceEl.setAttribute('transform', bounceT(s));
+      if (this.handEl) this.handEl.setAttribute('transform', handT(s, s.facing));
       this.headEl.setAttribute('transform', t);
       for (let i = 0; i < this.hairEls.length; i++) this.hairEls[i].setAttribute('transform', hairT(s, +this.hairEls[i].getAttribute('data-w')));
       this.dynEl.innerHTML = dynamicPart(this.p, s, this.S);

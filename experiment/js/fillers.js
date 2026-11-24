@@ -1,8 +1,10 @@
 /* fillers.js
  * Filler 1: "Get ready" screen with a countdown (TIMING.FILLER1), shown after the scene instructions; the first scene starts automatically.
- * Filler 2: arithmetic verification ("7 + 5 = 13?") for TIMING.FILLER2, with a per-problem response deadline
- * (TIMING.FILLER2_DEADLINE) shown as a countdown bar. A problem not answered in time counts as an error.
- * Accuracy = correct / attempted; below FILLER2_ENGAGEMENT_MIN sets the engagement flag. */
+ * Filler 2 (the delay after the scenes, TIMING.FILLER2), one of (config FILLER_TASK):
+ *   parity (v3.0, default): a two-digit number every TIMING.PARITY_SOA ms; F = odd, J = even; each number stays up until
+ *     the next, no feedback. parity_flag = accuracy among answered < PARITY_FLAG_ACC or misses >= PARITY_FLAG_MISSES.
+ *   arithmetic (pilot 1): verification ("7 + 5 = 13?") with a per-problem deadline (TIMING.FILLER2_DEADLINE); a problem
+ *     not answered in time counts as an error. Below FILLER2_ENGAGEMENT_MIN sets filler2_low_engagement. */
 SRL.fillers = (function () {
   const U = SRL.util, UI = SRL.ui;
 
@@ -107,5 +109,71 @@ SRL.fillers = (function () {
     };
   }
 
-  return { getReady, arithmetic };
+  /* Odd/even. Numbers 10-99, half odd and half even in random order, no more than 4 of one parity in a row, and never
+   * the same number twice in a row. The first F/J press per number counts; later presses are ignored. */
+  function parityNumbers(n) {
+    for (let tries = 0; tries < 1000; tries++) {
+      const par = U.shuffle(Array(n).fill(0).map((_, i) => i % 2));
+      let ok = true, run = 1;
+      for (let i = 1; i < n && ok; i++) { run = par[i] === par[i - 1] ? run + 1 : 1; if (run > 4) ok = false; }
+      if (!ok) continue;
+      const nums = [];
+      par.forEach((odd, i) => { let x; do { x = 10 + 2 * U.randInt(45) + odd; } while (i && x === nums[i - 1]); nums.push(x); });
+      return nums;
+    }
+    throw new Error('parity: no valid sequence');
+  }
+
+  async function parity(el, S, ms, soa) {
+    const sec = Math.round(ms / 1000), n = Math.floor(ms / soa);
+    await SRL.screens.message(el, S, 'Odd or even?',
+      `<p class="srl-lead">Now a short number task.</p>
+       <p>A number will appear about once a second. Press <b>F</b> if it is <b>odd</b> and <b>J</b> if it is <b>even</b>.
+       The numbers keep coming whether or not you answer, so answer each one as quickly and accurately as you can.</p>
+       <p>Put your fingers on the <b>F</b> and <b>J</b> keys. The task ends automatically after ${sec} seconds.</p>`, 'Start');
+    const pg = UI.page(el, `<h1>Odd or even?</h1><div class="srl-timer"><div></div></div>
+      <div class="ar-eq pa-num"></div>
+      <p class="bd-keys"><span><b>F</b> = odd</span><span><b>J</b> = even</span></p>`);
+    const box = pg.querySelector('.pa-num');
+    const nums = parityNumbers(n), trials = [];
+    let cur = null;
+    const onKey = (e) => {
+      if (!cur || cur.resp !== null) return;
+      const k = e.code === 'KeyF' ? 'F' : e.code === 'KeyJ' ? 'J' : null;
+      if (!k) return;
+      e.preventDefault();
+      cur.resp = k; cur.rt_ms = Math.round(U.now() - cur.t0);
+    };
+    window.addEventListener('keydown', onKey, true);
+    const tStart = U.now();
+    const stopTotal = shrink(pg.querySelector('.srl-timer > div'), n * soa);
+    for (let i = 0; i < n; i++) {
+      const x = nums[i];
+      cur = { i: i + 1, number: x, odd: x % 2, resp: null, rt_ms: null, t0: U.now() };
+      box.textContent = String(x);
+      if (S.auto && U.random() < 0.95) {
+        const c = cur, right = U.random() < 0.9;
+        setTimeout(() => { if (c.resp === null) { c.resp = (c.odd === 1) === right ? 'F' : 'J'; c.rt_ms = 500; } }, 200);
+      }
+      // Each number is up for one SOA, timed from the task start so the schedule never drifts.
+      await U.sleep(Math.max(0, tStart + (i + 1) * soa - U.now()));
+      trials.push({ trial: cur.i, number: x, odd: cur.odd, resp: cur.resp, rt_ms: cur.rt_ms, missed: cur.resp === null ? 1 : 0,
+        correct: cur.resp !== null && (cur.resp === 'F') === (cur.odd === 1) ? 1 : 0 });
+    }
+    cur = null;
+    window.removeEventListener('keydown', onKey, true);
+    stopTotal();
+    const answered = trials.filter((t) => !t.missed), nCorrect = trials.reduce((s, t) => s + t.correct, 0);
+    const acc = answered.length ? nCorrect / answered.length : null, misses = trials.length - answered.length;
+    const rts = answered.map((t) => t.rt_ms).sort((a, b) => a - b), m = rts.length >> 1;
+    const med = rts.length ? (rts.length % 2 ? rts[m] : Math.round((rts[m - 1] + rts[m]) / 2)) : null;
+    return {
+      parity_trials: trials.length, parity_correct: nCorrect, parity_misses: misses,
+      parity_acc: acc === null ? null : +acc.toFixed(3), parity_rt_median: med,
+      parity_flag: acc === null || acc < SRL_CONFIG.PARITY_FLAG_ACC || misses >= SRL_CONFIG.PARITY_FLAG_MISSES ? 1 : 0,
+      filler2_ms: Math.round(U.now() - tStart), filler2_trials: trials
+    };
+  }
+
+  return { getReady, arithmetic, parity };
 })();

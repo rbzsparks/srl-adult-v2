@@ -21,7 +21,7 @@
   trial data, localStorage, sessionStorage, cookies, every network request made during the run, the page DOM, and
   (for the notes) the experiment's in-memory state. It must find neither the name nor any part of the notes.
 
-  Open through python tools/dev_server.py:  tools/privacy_check.html?design=repeat6   (or unique12)
+  Open through python tools/dev_server.py:  tools/privacy_check.html   (&condition=control for the control condition)
   Options: &binding=0|1  &checkins=0|1  &prototype=1 (load Qualtrics' Prototype.js 1.7.1 first)
 -->
 <h1 style="font-size:20px">Privacy check: typed name and recall notes</h1>
@@ -32,7 +32,7 @@
 <script>
 (function () {
   const q = new URLSearchParams(location.search);
-  const design = q.get('design') === 'unique12' ? 'unique12' : 'repeat6';
+  const condition = q.get('condition') === 'control' ? 'control' : 'known';
   // Random made-up name and notes: letters only, so the name passes the name-entry check; long distinctive tokens so
   // a match cannot be a coincidence.
   const syl = ['ka', 'zo', 'mir', 'vel', 'tha', 'quo', 'rin', 'dax', 'plo', 'shu', 'nev', 'gor'];
@@ -58,8 +58,7 @@
   XMLHttpRequest.prototype.send = function (b) { net.push(String(this._u) + ' ' + (b ? String(b) : '')); return os.apply(this, arguments); };
   if (navigator.sendBeacon) { const ob = navigator.sendBeacon.bind(navigator); navigator.sendBeacon = (url, b) => { net.push(String(url) + ' ' + String(b || '')); return ob(url, b); }; }
 
-  const params = { debug: '1', auto: '1', reset: '1', PROLIFIC_PID: 'privacycheck', STUDY_ID: 'privacy', category: 'close', list: 'A', design_version: design };
-  if (design === 'repeat6') params.stranger_set = 'X';
+  const params = { debug: '1', auto: '1', reset: '1', PROLIFIC_PID: 'privacycheck', STUDY_ID: 'privacy', condition, stranger_set: 'X', test_order: 'word-identity-colour' };
   ['binding', 'checkins'].forEach((k) => { if (q.has(k)) params[k] = q.get(k); });
 
   const contains = (hay, needle) => String(hay).toLowerCase().indexOf(needle.toLowerCase()) >= 0;
@@ -94,17 +93,17 @@
     if (memHits.length) bad++;
     lines.push(`<li class="${memHits.length ? 'bad' : 'ok'}">${memHits.length ? '✗' : '✓'} experiment state in memory after the run: ${memHits.length ? 'notes still held: ' + memHits.join(', ') : 'notes cleared'} (S.notes = ${S ? JSON.stringify(S.notes) : '?'})</li>`);
     const steps = ['recall_enabled', 'revision_enabled', 'revised', 'matching_enabled', 'checkins_enabled'].map((k) => k + '=' + captured[k]).join(', ');
-    lines.push(`<li>Run: ${design}, ${steps}, recall_chars = ${captured.recall_chars_1}/${captured.recall_chars_2}/${captured.recall_chars_3}; made-up name <code>${name}</code>, notes <code>${notes.join(' | ')}</code></li>`);
+    lines.push(`<li>Run: ${condition}, ${steps}, recall_chars = ${captured.recall_chars_1}/${captured.recall_chars_2}/${captured.recall_chars_3}; made-up name <code>${name}</code>, notes <code>${notes.join(' | ')}</code></li>`);
     document.getElementById('checks').innerHTML = lines.join('');
     document.getElementById('status').textContent = bad ? `FAILED: ${bad} source(s) contain the name or notes.` : 'PASSED: the name and notes were found nowhere.';
-    window.PRIVACY_RESULT = { ok: !bad, bad, design, fields: Object.keys(captured).length };
+    window.PRIVACY_RESULT = { ok: !bad, bad, condition, fields: Object.keys(captured).length };
     wording();
   }
 
   // Check-in questions and options must not mention or imply any tested item, colours, objects, meeting people or learning.
   async function wording() {
-    const stim = await Promise.all(['stimuli.json', 'stimuli_repeat6.json'].map((f) => fetch('../experiment/stimuli/' + f).then((r) => r.json())));
-    const banned = new Set(['colour', 'color', 'object', 'objects', 'meet', 'meeting', 'met', 'learn', 'learning', 'word', 'words', 'remember', 'memory', 'test', 'stranger', 'strangers', 'scene', 'scenes', 'new']);
+    const stim = [await fetch('../experiment/stimuli/stimuli.json').then((r) => r.json())];
+    const banned = new Set(SRL.names.allStrangerNames().map((n) => n.toLowerCase()).concat(['colour', 'color', 'object', 'objects', 'meet', 'meeting', 'met', 'learn', 'learning', 'word', 'words', 'remember', 'memory', 'test', 'stranger', 'strangers', 'scene', 'scenes', 'new']));
     stim.forEach((d) => {
       Object.keys(d.incidental_colors || {}).forEach((c) => banned.add(c));
       d.scene_sets.forEach((s) => { banned.add(s.word); banned.add(String(s.incidental).replace(/_/g, ' ')); String(s.incidental).split('_').forEach((w) => banned.add(w)); });
@@ -119,7 +118,7 @@
       banned.forEach((b) => { if (b && (b.indexOf(' ') >= 0 ? text.indexOf(b) >= 0 : words.indexOf(b) >= 0)) hits.push(b); });
       out.push(`<li class="${hits.length ? 'bad' : 'ok'}">${hits.length ? '✗' : '✓'} <b>${id}</b>: "${Q.q('[name]')}" (${Q.opts.join(' / ')}) ${hits.length ? '— mentions ' + hits.join(', ') : ''}</li>`);
     });
-    out.push(`<li>Checked against ${banned.size} terms: the novel words, incidental objects and colours of both versions, plus colour/object/meeting/learning/memory/test terms.</li>`);
+    out.push(`<li>Checked against ${banned.size} terms: the novel words, incidental objects, colours and stranger names, plus colour/object/meeting/learning/memory/test terms.</li>`);
     document.getElementById('wording').innerHTML = out.join('');
   }
 

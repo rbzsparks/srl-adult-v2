@@ -11,10 +11,9 @@
   Local runner (same code the Qualtrics question loads).
   URL parameters:
     PROLIFIC_PID, STUDY_ID, SESSION_ID   as Prolific sends them
-    category = acquaintance | moderate | close   (random if missing)
-    list     = A | B                             (random if missing)
-    design_version = unique12 | repeat6          (missing: config DESIGN_VERSION, recorded as design_version_source = config_fallback)
-    stranger_set   = X | Y                       (repeat6 only; random if missing)
+    condition    = known | control                    (random if missing; assign_fallback = 1)
+    stranger_set = X | Y                              (random if missing)
+    test_order   = e.g. colour-word-identity          (any order of word, identity, colour; random if missing)
     debug=1    shortened fillers, on-screen condition/stimulus IDs, data downloaded instead of saved
     auto=1     (with debug=1) auto-pilot: clicks through the whole study by itself
     devsave=1  (with tools/dev_server.py) write the output files into sample_data/ instead of downloading
@@ -28,7 +27,7 @@
 <script>
   const q = new URLSearchParams(location.search);
   const params = {};
-  ['PROLIFIC_PID', 'STUDY_ID', 'SESSION_ID', 'category', 'list', 'design_version', 'stranger_set', 'debug', 'auto', 'devsave', 'reset', 'name_label', 'binding', 'checkins'].forEach((k) => { if (q.has(k)) params[k] = q.get(k); });
+  ['PROLIFIC_PID', 'STUDY_ID', 'SESSION_ID', 'condition', 'stranger_set', 'test_order', 'debug', 'auto', 'devsave', 'reset', 'name_label', 'binding', 'checkins'].forEach((k) => { if (q.has(k)) params[k] = q.get(k); });
   const start = () => window.SRL_LOAD({
     base: './', mode: 'local', params, version: String(Date.now()),
     finish: () => { document.body.innerHTML = '<p style="padding:24px">Finished. (In Qualtrics, the survey would now advance to the post-test questions.)</p>'; },

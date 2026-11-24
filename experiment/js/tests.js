@@ -1,16 +1,18 @@
-/* tests.js: memory tests. Word (4-AFC objects), Face (2-AFC stranger vs matched foil), Incidental (4-AFC colors).
+/* tests.js: the three surprise 4-AFC memory tests (v3.0), in the participant's test order:
+ *   word:     "Which one is the bosa?"  4 objects from the scenes
+ *   identity: "Which one is Riley?"     4 strangers from the scenes (the other options are strangers the participant saw)
+ *   colour:   "What color was the mug?" 4 colours (or 2, config COLOUR_CHOICES)
  * Prompts are spoken by the narrator and shown as text. RT is measured from option onset to click. */
 SRL.tests = (function () {
   const U = SRL.util, UI = SRL.ui, P = SRL.people, O = SRL.objects;
-  // Familiarization positions (1-12) of a scene set: [first showing, second showing (repeat6 only)].
-  // A plain loop: Qualtrics' Prototype.js replaces Array.prototype.find.
+  // Familiarization positions (1-12) of a scene set: [first showing, second showing]. A plain loop (Prototype.js).
   const famPos = (S, id) => { const out = []; for (let i = 0; i < S.design.fam.length; i++) if (S.design.fam[i].id === id) out.push(i + 1); return out; };
   const esc = U.escapeHtml;
 
   const BLOCK_INTRO = {
     word: 'Each question shows four objects from the scenes. Click the object that was given the name.',
-    face: 'Each question shows two people. Click the person you saw in the scenes.',
-    incid: 'Each question asks about an object that was on the shelf in one of the scenes. Click the color it was.'
+    identity: 'Each question shows four people from the scenes. Click the person with the name you hear.',
+    colour: 'Each question asks about an object that was on the shelf in one of the scenes. Click the color it was.'
   };
 
   async function blockIntro(el, S, type, idx) {
@@ -18,26 +20,15 @@ SRL.tests = (function () {
       <p>Each question is read aloud. Please answer as accurately as you can. If you're not sure, make your best guess.</p>`, 'Begin');
   }
 
-  function optionHtml(trial, opt) {
-    const s = trial.set;
-    if (trial.type === 'word') return O.novelSvg(opt.id, 'width="170" height="170"');
-    if (trial.type === 'face') {
-      const spec = opt.target ? s.stranger : s.foil;
-      return P.svg(spec, { attrs: 'width="220" height="264"' });
-    }
-    return O.incidentalSvg(s.incidental, SRL.stimuli.data().incidental_colors[opt.id], 'width="130" height="130"');
+  function optionHtml(t, opt) {
+    if (t.type === 'word') return O.novelSvg(opt.id, 'width="170" height="170"');
+    if (t.type === 'identity') return P.svg(SRL.stimuli.strangers().filter((x) => x.id === opt.id)[0], { attrs: 'width="190" height="228"' });
+    return O.incidentalSvg(t.set.incidental, SRL.stimuli.data().incidental_colors[opt.id], 'width="130" height="130"');
   }
-
-  function promptText(trial) {
-    if (trial.type === 'word') return `Which one is the <b>${esc(trial.set.word)}</b>?`;
-    if (trial.type === 'face') return 'Which of these people did you see?';
-    return `What color was the <b>${esc(trial.set.incidental_label)}</b>?`;
-  }
-  function clipId(trial) {
-    if (trial.type === 'word') return 'test_word_' + trial.set.word;
-    if (trial.type === 'face') return 'test_face';
-    return 'test_incid_' + trial.set.incidental;
-  }
+  const promptText = (t) => (t.type === 'word' ? `Which one is the <b>${esc(t.set.word)}</b>?`
+    : t.type === 'identity' ? `Which one is <b>${esc(t.set.stranger_name)}</b>?` : `What color was the <b>${esc(t.set.incidental_label)}</b>?`);
+  const clipId = (t) => (t.type === 'word' ? 'test_word_' + t.set.word
+    : t.type === 'identity' ? 'test_identity_' + SRL.names.clipKey(t.set.stranger_name) : 'test_incid_' + t.set.incidental);
 
   async function confidence(el, S) {
     const pg = UI.page(el, `<p class="srl-lead">How confident are you in that answer?</p>
@@ -52,39 +43,33 @@ SRL.tests = (function () {
     const s = t.set;
     const pg = UI.page(el, `<div class="ts-prompt">${promptText(t)}</div>
       <div class="ts-options ts-${t.type}">${t.options.map((o, i) => `<button type="button" class="ts-opt" data-i="${i}">${optionHtml(t, o)}</button>`).join('')}</div>`, { cls: 'srl-test' });
-    if (S.debug) UI.debug(`${t.type} | ${s.id} | ${s.condition} | target pos ${t.options.findIndex((o) => (t.type === 'word' ? o.set_id === s.id : o.target)) + 1}`);
+    const targetPos = t.options.findIndex((o) => o.target) + 1;
+    if (S.debug) UI.debug(`${t.type} | ${s.id} | target pos ${targetPos}`);
     const t0 = U.now();
-    const audioP = SRL.audio.play(clipId(t));
-    let audioDone = false; audioP.then(() => (audioDone = true));
+    let audioDone = false;
+    SRL.audio.play(clipId(t)).then(() => (audioDone = true));
     const idx = await new Promise((resolve) => {
       pg.querySelectorAll('.ts-opt').forEach((b) => (b.onclick = () => resolve(+b.dataset.i)));
       if (S.auto) setTimeout(() => resolve(U.randInt(t.options.length)), 200);
     });
     const rt = Math.round(U.now() - t0);
     pg.querySelectorAll('.ts-opt')[idx].classList.add('sel');
-    const isTarget = (o) => (t.type === 'word' ? o.set_id === s.id : o.target);
-    const targetPos = t.options.findIndex(isTarget) + 1;
-    const resp = t.options[idx];
     let conf = null;
     await U.sleep(150);
     if (SRL_CONFIG.CONFIDENCE_RATINGS) conf = await confidence(el, S);
     UI.debug('');
     el.innerHTML = '';
     await U.sleep(S.timing.TEST_ITI);
-    const foilOpts = t.options.filter((o) => !isTarget(o));
-    const idOf = (o) => (t.type === 'face' ? (o.target ? s.stranger.id : s.foil.id) : o.id);
+    const resp = t.options[idx], fp = famPos(S, s.id);
     return {
-      test_type: t.type, scene_set_id: s.id, condition: s.condition, serial_position: famPos(S, s.id)[0] || null,
-      serial_position_2: famPos(S, s.id)[1] || null,
-      target_id: t.type === 'word' ? s.object_id : t.type === 'face' ? s.stranger.id : s.incidental_color,
-      foil_ids: foilOpts.map(idOf).join('|'),
-      foil_conditions: t.type === 'word' ? foilOpts.map((o) => o.condition).join('|') : '',
-      foil_scene_sets: t.type === 'word' ? foilOpts.map((o) => o.set_id).join('|') : '',
-      option_order: t.options.map(idOf).join('|'),
-      target_position: targetPos, response_position: idx + 1, response_id: idOf(resp),
-      correct: isTarget(resp) ? 1 : 0, rt_ms: rt, responded_before_prompt_end: audioDone ? 0 : 1,
-      vowel_rule_met: t.type === 'word' ? (t.vowel_rule_met ? 1 : 0) : null,
-      word: s.word, incidental_type: s.incidental, confidence: conf
+      test_type: t.type, scene_set_id: s.id, serial_position: fp[0] || null, serial_position_2: fp[1] || null,
+      target_id: t.type === 'word' ? s.object_id : t.type === 'identity' ? s.stranger.id : s.incidental_color,
+      target_name: t.type === 'identity' ? s.stranger_name : '',
+      foil_ids: t.options.filter((o) => !o.target).map((o) => o.id).join('|'),
+      option_order: t.options.map((o) => o.id).join('|'),
+      target_position: targetPos, response_position: idx + 1, response_id: resp.id,
+      correct: resp.target ? 1 : 0, rt_ms: rt, responded_before_prompt_end: audioDone ? 0 : 1,
+      word: s.word, incidental_type: s.incidental, stranger_id: s.stranger.id, confidence: conf
     };
   }
 
