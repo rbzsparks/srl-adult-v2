@@ -4,7 +4,7 @@ Qualtrics.SurveyEngine.addOnload(function () {
   q.hideNextButton();
   if (q.hidePreviousButton) { q.hidePreviousButton(); }
   var BASE_URL = 'https://rbzsparks.github.io/srl-adult-v2/experiment/';
-  var VERSION = '3.1.0';
+  var VERSION = '3.1.1';
   var params = {
     PROLIFIC_PID: "${e://Field/PROLIFIC_PID}", STUDY_ID: "${e://Field/STUDY_ID}", SESSION_ID: "${e://Field/SESSION_ID}",
     condition: "${e://Field/condition}", stranger_set: "${e://Field/stranger_set}", test_order: "${e://Field/test_order}", control_target: "${e://Field/control_target}", debug: "${e://Field/debug}", name_label: "${e://Field/name_label}", binding: "${e://Field/binding}", checkins: "${e://Field/checkins}", ResponseID: "${e://Field/ResponseID}"

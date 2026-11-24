@@ -175,9 +175,10 @@ def main():
 
     q_cons_text = q({'QuestionText': '<p><b>[PLACEHOLDER: IRB-APPROVED CONSENT TEXT]</b></p>'
                                      f'<p>This study takes about <b>{est} minutes</b>. It requires <b>sound</b> (headphones or speakers) and a desktop or laptop computer.</p>'
-                                     '<p>You\'ll make a simple cartoon avatar and choose a voice for it. Some participants design it to look like '
-                                     'someone they know, first typing that person\'s first name and some brief notes about them; others design an '
-                                     'avatar for a person we name, with brief notes about how they picture them. Any name and notes you type are not saved.</p>'
+                                     '<p>You\'ll make a simple cartoon avatar. Some participants design it to look like someone they know, first '
+                                     'typing that person\'s first name and some brief notes about them, and choose a voice for it; others copy an '
+                                     'avatar we show them, of a person we name, with brief notes about how they picture that person. Any name and '
+                                     'notes you type are not saved.</p>'
                                      '<p>[Purpose, procedures, risks, benefits, compensation, confidentiality, voluntary participation, contact information.]</p>'}, 'consent_text')
     q_cons = mc('Do you agree to take part in this study?', 'consent', ['I agree to take part', 'I do not agree'])
     b_cons = block('Consent', [q_cons_text, q_cons])

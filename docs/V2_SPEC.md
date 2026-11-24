@@ -249,7 +249,7 @@ Changed after sign-off, to control what avatars the control group ends up with:
   - The candidates are in `experiment/stimuli/control_target_candidates.json` (sheet: `tools/control_targets.html`).
   - The chosen six are in `stimuli.json` `control_targets`; install a choice with
     `python tools/set_control_targets.py --pick A,B,...`.
-  - Default picks: column A (1A–6A), until the final picks are made.
+  - Picks (2026-11-24): 1B, 2A, 3C, 4A, 5B, 6A.
 - **Balance.** A 6-way, evenly presented Qualtrics randomizer inside the control branch sets `control_target` (1–6).
 - **Order of steps:**
   1. "This is Sam" with the target;
