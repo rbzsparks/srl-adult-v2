@@ -1,17 +1,17 @@
 clip_id,speaker_id,speaker_gender,speaker_age,text,pronunciation,file,duration_ms,is_placeholder,ipa,stress,notes,source
 sel_fy,fy,female,young,Hi! It's so nice to see you.,,sel_fy.mp3 | sel_fy.ogg,2489,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_riley_fy,fy,female,young,"Hi, Riley!",,greet_riley_fy.mp3 | greet_riley_fy.ogg,917,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_rowan_fy,fy,female,young,"Hi, Rowan!",,greet_rowan_fy.mp3 | greet_rowan_fy.ogg,907,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_quinn_fy,fy,female,young,"Hi, Quinn!",,greet_quinn_fy.mp3 | greet_quinn_fy.ogg,863,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_blair_fy,fy,female,young,"Hi, Blair!",,greet_blair_fy.mp3 | greet_blair_fy.ogg,878,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_drew_fy,fy,female,young,"Hi, Drew!",,greet_drew_fy.mp3 | greet_drew_fy.ogg,820,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_jesse_fy,fy,female,young,"Hi, Jesse!",,greet_jesse_fy.mp3 | greet_jesse_fy.ogg,1084,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_parker_fy,fy,female,young,"Hi, Parker!",,greet_parker_fy.mp3 | greet_parker_fy.ogg,948,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_charlie_fy,fy,female,young,"Hi, Charlie!",,greet_charlie_fy.mp3 | greet_charlie_fy.ogg,1027,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_avery_fy,fy,female,young,"Hi, Avery!",,greet_avery_fy.mp3 | greet_avery_fy.ogg,1137,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_hayden_fy,fy,female,young,"Hi, Hayden!",,greet_hayden_fy.mp3 | greet_hayden_fy.ogg,848,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_frankie_fy,fy,female,young,"Hi, Frankie!",,greet_frankie_fy.mp3 | greet_frankie_fy.ogg,1020,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
-greet_jordan_fy,fy,female,young,"Hi, Jordan!",,greet_jordan_fy.mp3 | greet_jordan_fy.ogg,963,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
+greet_riley_fy,fy,female,young,Hi Riley!,,greet_riley_fy.mp3 | greet_riley_fy.ogg,963,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 3"
+greet_rowan_fy,fy,female,young,Hi Rowan!,,greet_rowan_fy.mp3 | greet_rowan_fy.ogg,1008,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 2"
+greet_quinn_fy,fy,female,young,Hi Quinn!,,greet_quinn_fy.mp3 | greet_quinn_fy.ogg,868,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
+greet_blair_fy,fy,female,young,Hi Blair!,,greet_blair_fy.mp3 | greet_blair_fy.ogg,865,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 2"
+greet_drew_fy,fy,female,young,Hi Drew!,,greet_drew_fy.mp3 | greet_drew_fy.ogg,827,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
+greet_jesse_fy,fy,female,young,Hi Jesse!,,greet_jesse_fy.mp3 | greet_jesse_fy.ogg,892,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 3"
+greet_parker_fy,fy,female,young,Hi Parker!,,greet_parker_fy.mp3 | greet_parker_fy.ogg,947,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
+greet_charlie_fy,fy,female,young,Hi Charlie!,,greet_charlie_fy.mp3 | greet_charlie_fy.ogg,939,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 2"
+greet_avery_fy,fy,female,young,Hi Avery!,,greet_avery_fy.mp3 | greet_avery_fy.ogg,1084,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
+greet_hayden_fy,fy,female,young,Hi Hayden!,,greet_hayden_fy.mp3 | greet_hayden_fy.ogg,902,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 2"
+greet_frankie_fy,fy,female,young,Hi Frankie!,,greet_frankie_fy.mp3 | greet_frankie_fy.ogg,977,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 2"
+greet_jordan_fy,fy,female,young,Hi Jordan!,,greet_jordan_fy.mp3 | greet_jordan_fy.ogg,907,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
 label_bosa_fy,fy,female,young,Look! It's a bosa! A bosa!,bosa = BOH-sah,label_bosa_fy.mp3 | label_bosa_fy.ogg,3197,0,ˈboʊ.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
 label_daxa_fy,fy,female,young,Look! It's a daxa! A daxa!,daxa = DAK-sah,label_daxa_fy.mp3 | label_daxa_fy.ogg,3206,0,ˈdæk.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
 label_lufi_fy,fy,female,young,Look! It's a lufi! A lufi!,lufi = LOO-fee,label_lufi_fy.mp3 | label_lufi_fy.ogg,3164,0,ˈlu.fi,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
@@ -21,18 +21,18 @@ label_gimu_fy,fy,female,young,Look! It's a gimu! A gimu!,gimu = GEE-moo (hard g)
 check_window_fy,fy,female,young,window,,check_window_fy.mp3 | check_window_fy.ogg,738,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
 check_garden_fy,fy,female,young,garden,,check_garden_fy.mp3 | check_garden_fy.ogg,753,0,,,,"ElevenLabs eleven_v4 / Sarah - Mature, Reassuring, Confident / take 1"
 sel_my,my,male,young,Hi! It's so nice to see you.,,sel_my.mp3 | sel_my.ogg,2249,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_riley_my,my,male,young,"Hi, Riley!",,greet_riley_my.mp3 | greet_riley_my.ogg,1081,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_rowan_my,my,male,young,"Hi, Rowan!",,greet_rowan_my.mp3 | greet_rowan_my.ogg,786,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_quinn_my,my,male,young,"Hi, Quinn!",,greet_quinn_my.mp3 | greet_quinn_my.ogg,911,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_blair_my,my,male,young,"Hi, Blair!",,greet_blair_my.mp3 | greet_blair_my.ogg,759,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_drew_my,my,male,young,"Hi, Drew!",,greet_drew_my.mp3 | greet_drew_my.ogg,792,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_jesse_my,my,male,young,"Hi, Jesse!",,greet_jesse_my.mp3 | greet_jesse_my.ogg,850,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_parker_my,my,male,young,"Hi, Parker!",,greet_parker_my.mp3 | greet_parker_my.ogg,917,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_charlie_my,my,male,young,"Hi, Charlie!",,greet_charlie_my.mp3 | greet_charlie_my.ogg,823,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_avery_my,my,male,young,"Hi, Avery!",,greet_avery_my.mp3 | greet_avery_my.ogg,1395,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_hayden_my,my,male,young,"Hi, Hayden!",,greet_hayden_my.mp3 | greet_hayden_my.ogg,1161,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_frankie_my,my,male,young,"Hi, Frankie!",,greet_frankie_my.mp3 | greet_frankie_my.ogg,1218,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
-greet_jordan_my,my,male,young,"Hi, Jordan!",,greet_jordan_my.mp3 | greet_jordan_my.ogg,935,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
+greet_riley_my,my,male,young,Hi Riley!,,greet_riley_my.mp3 | greet_riley_my.ogg,841,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
+greet_rowan_my,my,male,young,Hi Rowan!,,greet_rowan_my.mp3 | greet_rowan_my.ogg,1079,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 2
+greet_quinn_my,my,male,young,Hi Quinn!,,greet_quinn_my.mp3 | greet_quinn_my.ogg,904,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
+greet_blair_my,my,male,young,Hi Blair!,,greet_blair_my.mp3 | greet_blair_my.ogg,751,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
+greet_drew_my,my,male,young,Hi Drew!,,greet_drew_my.mp3 | greet_drew_my.ogg,775,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 3
+greet_jesse_my,my,male,young,Hi Jesse!,,greet_jesse_my.mp3 | greet_jesse_my.ogg,965,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
+greet_parker_my,my,male,young,Hi Parker!,,greet_parker_my.mp3 | greet_parker_my.ogg,809,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
+greet_charlie_my,my,male,young,Hi Charlie!,,greet_charlie_my.mp3 | greet_charlie_my.ogg,854,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 2
+greet_avery_my,my,male,young,Hi Avery!,,greet_avery_my.mp3 | greet_avery_my.ogg,868,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
+greet_hayden_my,my,male,young,Hi Hayden!,,greet_hayden_my.mp3 | greet_hayden_my.ogg,777,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 2
+greet_frankie_my,my,male,young,Hi Frankie!,,greet_frankie_my.mp3 | greet_frankie_my.ogg,898,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
+greet_jordan_my,my,male,young,Hi Jordan!,,greet_jordan_my.mp3 | greet_jordan_my.ogg,797,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
 label_bosa_my,my,male,young,Look! It's a bosa! A bosa!,bosa = BOH-sah,label_bosa_my.mp3 | label_bosa_my.ogg,3061,0,ˈboʊ.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.",ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
 label_daxa_my,my,male,young,Look! It's a daxa! A daxa!,daxa = DAK-sah,label_daxa_my.mp3 | label_daxa_my.ogg,3148,0,ˈdæk.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.",ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
 label_lufi_my,my,male,young,Look! It's a lufi! A lufi!,lufi = LOO-fee,label_lufi_my.mp3 | label_lufi_my.ogg,2952,0,ˈlu.fi,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.",ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
@@ -42,18 +42,18 @@ label_gimu_my,my,male,young,Look! It's a gimu! A gimu!,gimu = GEE-moo (hard g),l
 check_window_my,my,male,young,window,,check_window_my.mp3 | check_window_my.ogg,649,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
 check_garden_my,my,male,young,garden,,check_garden_my.mp3 | check_garden_my.ogg,998,0,,,,ElevenLabs eleven_v4 / Will - Relaxed Optimist / take 1
 sel_fm,fm,female,middle,Hi! It's so nice to see you.,,sel_fm.mp3 | sel_fm.ogg,2427,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_riley_fm,fm,female,middle,"Hi, Riley!",,greet_riley_fm.mp3 | greet_riley_fm.ogg,956,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_rowan_fm,fm,female,middle,"Hi, Rowan!",,greet_rowan_fm.mp3 | greet_rowan_fm.ogg,1161,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_quinn_fm,fm,female,middle,"Hi, Quinn!",,greet_quinn_fm.mp3 | greet_quinn_fm.ogg,847,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_blair_fm,fm,female,middle,"Hi, Blair!",,greet_blair_fm.mp3 | greet_blair_fm.ogg,857,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_drew_fm,fm,female,middle,"Hi, Drew!",,greet_drew_fm.mp3 | greet_drew_fm.ogg,831,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_jesse_fm,fm,female,middle,"Hi, Jesse!",,greet_jesse_fm.mp3 | greet_jesse_fm.ogg,932,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_parker_fm,fm,female,middle,"Hi, Parker!",,greet_parker_fm.mp3 | greet_parker_fm.ogg,944,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_charlie_fm,fm,female,middle,"Hi, Charlie!",,greet_charlie_fm.mp3 | greet_charlie_fm.ogg,922,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_avery_fm,fm,female,middle,"Hi, Avery!",,greet_avery_fm.mp3 | greet_avery_fm.ogg,1242,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_hayden_fm,fm,female,middle,"Hi, Hayden!",,greet_hayden_fm.mp3 | greet_hayden_fm.ogg,861,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_frankie_fm,fm,female,middle,"Hi, Frankie!",,greet_frankie_fm.mp3 | greet_frankie_fm.ogg,961,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
-greet_jordan_fm,fm,female,middle,"Hi, Jordan!",,greet_jordan_fm.mp3 | greet_jordan_fm.ogg,885,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
+greet_riley_fm,fm,female,middle,Hi Riley!,,greet_riley_fm.mp3 | greet_riley_fm.ogg,1156,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
+greet_rowan_fm,fm,female,middle,Hi Rowan!,,greet_rowan_fm.mp3 | greet_rowan_fm.ogg,852,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
+greet_quinn_fm,fm,female,middle,Hi Quinn!,,greet_quinn_fm.mp3 | greet_quinn_fm.ogg,805,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
+greet_blair_fm,fm,female,middle,Hi Blair!,,greet_blair_fm.mp3 | greet_blair_fm.ogg,1076,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
+greet_drew_fm,fm,female,middle,Hi Drew!,,greet_drew_fm.mp3 | greet_drew_fm.ogg,821,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 3"
+greet_jesse_fm,fm,female,middle,Hi Jesse!,,greet_jesse_fm.mp3 | greet_jesse_fm.ogg,860,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
+greet_parker_fm,fm,female,middle,Hi Parker!,,greet_parker_fm.mp3 | greet_parker_fm.ogg,871,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
+greet_charlie_fm,fm,female,middle,Hi Charlie!,,greet_charlie_fm.mp3 | greet_charlie_fm.ogg,937,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
+greet_avery_fm,fm,female,middle,Hi Avery!,,greet_avery_fm.mp3 | greet_avery_fm.ogg,1008,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 2"
+greet_hayden_fm,fm,female,middle,Hi Hayden!,,greet_hayden_fm.mp3 | greet_hayden_fm.ogg,862,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
+greet_frankie_fm,fm,female,middle,Hi Frankie!,,greet_frankie_fm.mp3 | greet_frankie_fm.ogg,939,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
+greet_jordan_fm,fm,female,middle,Hi Jordan!,,greet_jordan_fm.mp3 | greet_jordan_fm.ogg,862,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
 label_bosa_fm,fm,female,middle,Look! It's a bosa! A bosa!,bosa = BOH-sah,label_bosa_fm.mp3 | label_bosa_fm.ogg,3080,0,ˈboʊ.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
 label_daxa_fm,fm,female,middle,Look! It's a daxa! A daxa!,daxa = DAK-sah,label_daxa_fm.mp3 | label_daxa_fm.ogg,3134,0,ˈdæk.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
 label_lufi_fm,fm,female,middle,Look! It's a lufi! A lufi!,lufi = LOO-fee,label_lufi_fm.mp3 | label_lufi_fm.ogg,3002,0,ˈlu.fi,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
@@ -63,18 +63,18 @@ label_gimu_fm,fm,female,middle,Look! It's a gimu! A gimu!,gimu = GEE-moo (hard g
 check_window_fm,fm,female,middle,window,,check_window_fm.mp3 | check_window_fm.ogg,665,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
 check_garden_fm,fm,female,middle,garden,,check_garden_fm.mp3 | check_garden_fm.ogg,704,0,,,,"ElevenLabs eleven_v4 / Bella - Professional, Bright, Warm / take 1"
 sel_mm,mm,male,middle,Hi! It's so nice to see you.,,sel_mm.mp3 | sel_mm.ogg,2301,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_riley_mm,mm,male,middle,"Hi, Riley!",,greet_riley_mm.mp3 | greet_riley_mm.ogg,853,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_rowan_mm,mm,male,middle,"Hi, Rowan!",,greet_rowan_mm.mp3 | greet_rowan_mm.ogg,1005,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_quinn_mm,mm,male,middle,"Hi, Quinn!",,greet_quinn_mm.mp3 | greet_quinn_mm.ogg,801,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_blair_mm,mm,male,middle,"Hi, Blair!",,greet_blair_mm.mp3 | greet_blair_mm.ogg,892,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_drew_mm,mm,male,middle,"Hi, Drew!",,greet_drew_mm.mp3 | greet_drew_mm.ogg,872,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_jesse_mm,mm,male,middle,"Hi, Jesse!",,greet_jesse_mm.mp3 | greet_jesse_mm.ogg,803,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_parker_mm,mm,male,middle,"Hi, Parker!",,greet_parker_mm.mp3 | greet_parker_mm.ogg,883,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_charlie_mm,mm,male,middle,"Hi, Charlie!",,greet_charlie_mm.mp3 | greet_charlie_mm.ogg,880,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_avery_mm,mm,male,middle,"Hi, Avery!",,greet_avery_mm.mp3 | greet_avery_mm.ogg,1010,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_hayden_mm,mm,male,middle,"Hi, Hayden!",,greet_hayden_mm.mp3 | greet_hayden_mm.ogg,957,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_frankie_mm,mm,male,middle,"Hi, Frankie!",,greet_frankie_mm.mp3 | greet_frankie_mm.ogg,929,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
-greet_jordan_mm,mm,male,middle,"Hi, Jordan!",,greet_jordan_mm.mp3 | greet_jordan_mm.ogg,1058,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
+greet_riley_mm,mm,male,middle,Hi Riley!,,greet_riley_mm.mp3 | greet_riley_mm.ogg,736,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
+greet_rowan_mm,mm,male,middle,Hi Rowan!,,greet_rowan_mm.mp3 | greet_rowan_mm.ogg,741,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
+greet_quinn_mm,mm,male,middle,Hi Quinn!,,greet_quinn_mm.mp3 | greet_quinn_mm.ogg,701,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 2"
+greet_blair_mm,mm,male,middle,Hi Blair!,,greet_blair_mm.mp3 | greet_blair_mm.ogg,703,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 2"
+greet_drew_mm,mm,male,middle,Hi Drew!,,greet_drew_mm.mp3 | greet_drew_mm.ogg,729,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
+greet_jesse_mm,mm,male,middle,Hi Jesse!,,greet_jesse_mm.mp3 | greet_jesse_mm.ogg,1076,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
+greet_parker_mm,mm,male,middle,Hi Parker!,,greet_parker_mm.mp3 | greet_parker_mm.ogg,789,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
+greet_charlie_mm,mm,male,middle,Hi Charlie!,,greet_charlie_mm.mp3 | greet_charlie_mm.ogg,818,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
+greet_avery_mm,mm,male,middle,Hi Avery!,,greet_avery_mm.mp3 | greet_avery_mm.ogg,871,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 3"
+greet_hayden_mm,mm,male,middle,Hi Hayden!,,greet_hayden_mm.mp3 | greet_hayden_mm.ogg,775,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 2"
+greet_frankie_mm,mm,male,middle,Hi Frankie!,,greet_frankie_mm.mp3 | greet_frankie_mm.ogg,820,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
+greet_jordan_mm,mm,male,middle,Hi Jordan!,,greet_jordan_mm.mp3 | greet_jordan_mm.ogg,781,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 2"
 label_bosa_mm,mm,male,middle,Look! It's a bosa! A bosa!,bosa = BOH-sah,label_bosa_mm.mp3 | label_bosa_mm.ogg,2965,0,ˈboʊ.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
 label_daxa_mm,mm,male,middle,Look! It's a daxa! A daxa!,daxa = DAK-sah,label_daxa_mm.mp3 | label_daxa_mm.ogg,3006,0,ˈdæk.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
 label_lufi_mm,mm,male,middle,Look! It's a lufi! A lufi!,lufi = LOO-fee,label_lufi_mm.mp3 | label_lufi_mm.ogg,2889,0,ˈlu.fi,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
@@ -84,18 +84,18 @@ label_gimu_mm,mm,male,middle,Look! It's a gimu! A gimu!,gimu = GEE-moo (hard g),
 check_window_mm,mm,male,middle,window,,check_window_mm.mp3 | check_window_mm.ogg,662,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
 check_garden_mm,mm,male,middle,garden,,check_garden_mm.mp3 | check_garden_mm.ogg,673,0,,,,"ElevenLabs eleven_v4 / Chris - Charming, Down-to-Earth / take 1"
 sel_fo,fo,female,older,Hi! It's so nice to see you.,,sel_fo.mp3 | sel_fo.ogg,2513,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_riley_fo,fo,female,older,"Hi, Riley!",,greet_riley_fo.mp3 | greet_riley_fo.ogg,961,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_rowan_fo,fo,female,older,"Hi, Rowan!",,greet_rowan_fo.mp3 | greet_rowan_fo.ogg,995,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_quinn_fo,fo,female,older,"Hi, Quinn!",,greet_quinn_fo.mp3 | greet_quinn_fo.ogg,1009,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_blair_fo,fo,female,older,"Hi, Blair!",,greet_blair_fo.mp3 | greet_blair_fo.ogg,968,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_drew_fo,fo,female,older,"Hi, Drew!",,greet_drew_fo.mp3 | greet_drew_fo.ogg,872,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_jesse_fo,fo,female,older,"Hi, Jesse!",,greet_jesse_fo.mp3 | greet_jesse_fo.ogg,968,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_parker_fo,fo,female,older,"Hi, Parker!",,greet_parker_fo.mp3 | greet_parker_fo.ogg,968,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_charlie_fo,fo,female,older,"Hi, Charlie!",,greet_charlie_fo.mp3 | greet_charlie_fo.ogg,973,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_avery_fo,fo,female,older,"Hi, Avery!",,greet_avery_fo.mp3 | greet_avery_fo.ogg,1092,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_hayden_fo,fo,female,older,"Hi, Hayden!",,greet_hayden_fo.mp3 | greet_hayden_fo.ogg,1280,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_frankie_fo,fo,female,older,"Hi, Frankie!",,greet_frankie_fo.mp3 | greet_frankie_fo.ogg,1064,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
-greet_jordan_fo,fo,female,older,"Hi, Jordan!",,greet_jordan_fo.mp3 | greet_jordan_fo.ogg,945,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
+greet_riley_fo,fo,female,older,Hi Riley!,,greet_riley_fo.mp3 | greet_riley_fo.ogg,968,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
+greet_rowan_fo,fo,female,older,Hi Rowan!,,greet_rowan_fo.mp3 | greet_rowan_fo.ogg,980,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
+greet_quinn_fo,fo,female,older,Hi Quinn!,,greet_quinn_fo.mp3 | greet_quinn_fo.ogg,864,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 2"
+greet_blair_fo,fo,female,older,Hi Blair!,,greet_blair_fo.mp3 | greet_blair_fo.ogg,909,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 3"
+greet_drew_fo,fo,female,older,Hi Drew!,,greet_drew_fo.mp3 | greet_drew_fo.ogg,881,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
+greet_jesse_fo,fo,female,older,Hi Jesse!,,greet_jesse_fo.mp3 | greet_jesse_fo.ogg,977,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
+greet_parker_fo,fo,female,older,Hi Parker!,,greet_parker_fo.mp3 | greet_parker_fo.ogg,945,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
+greet_charlie_fo,fo,female,older,Hi Charlie!,,greet_charlie_fo.mp3 | greet_charlie_fo.ogg,1229,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
+greet_avery_fo,fo,female,older,Hi Avery!,,greet_avery_fo.mp3 | greet_avery_fo.ogg,1043,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 2"
+greet_hayden_fo,fo,female,older,Hi Hayden!,,greet_hayden_fo.mp3 | greet_hayden_fo.ogg,944,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 2"
+greet_frankie_fo,fo,female,older,Hi Frankie!,,greet_frankie_fo.mp3 | greet_frankie_fo.ogg,966,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
+greet_jordan_fo,fo,female,older,Hi Jordan!,,greet_jordan_fo.mp3 | greet_jordan_fo.ogg,898,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
 label_bosa_fo,fo,female,older,Look! It's a bosa! A bosa!,bosa = BOH-sah,label_bosa_fo.mp3 | label_bosa_fo.ogg,3352,0,ˈboʊ.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
 label_daxa_fo,fo,female,older,Look! It's a daxa! A daxa!,daxa = DAK-sah,label_daxa_fo.mp3 | label_daxa_fo.ogg,3719,0,ˈdæk.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
 label_lufi_fo,fo,female,older,Look! It's a lufi! A lufi!,lufi = LOO-fee,label_lufi_fo.mp3 | label_lufi_fo.ogg,3311,0,ˈlu.fi,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
@@ -105,18 +105,18 @@ label_gimu_fo,fo,female,older,Look! It's a gimu! A gimu!,gimu = GEE-moo (hard g)
 check_window_fo,fo,female,older,window,,check_window_fo.mp3 | check_window_fo.ogg,1046,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
 check_garden_fo,fo,female,older,garden,,check_garden_fo.mp3 | check_garden_fo.ogg,736,0,,,,"ElevenLabs eleven_v4 / Carol - Relatable, Real, Likeable Grandma / take 1"
 sel_mo,mo,male,older,Hi! It's so nice to see you.,,sel_mo.mp3 | sel_mo.ogg,2431,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_riley_mo,mo,male,older,"Hi, Riley!",,greet_riley_mo.mp3 | greet_riley_mo.ogg,932,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_rowan_mo,mo,male,older,"Hi, Rowan!",,greet_rowan_mo.mp3 | greet_rowan_mo.ogg,881,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_quinn_mo,mo,male,older,"Hi, Quinn!",,greet_quinn_mo.mp3 | greet_quinn_mo.ogg,838,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_blair_mo,mo,male,older,"Hi, Blair!",,greet_blair_mo.mp3 | greet_blair_mo.ogg,805,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_drew_mo,mo,male,older,"Hi, Drew!",,greet_drew_mo.mp3 | greet_drew_mo.ogg,855,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_jesse_mo,mo,male,older,"Hi, Jesse!",,greet_jesse_mo.mp3 | greet_jesse_mo.ogg,932,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_parker_mo,mo,male,older,"Hi, Parker!",,greet_parker_mo.mp3 | greet_parker_mo.ogg,1223,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_charlie_mo,mo,male,older,"Hi, Charlie!",,greet_charlie_mo.mp3 | greet_charlie_mo.ogg,1163,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_avery_mo,mo,male,older,"Hi, Avery!",,greet_avery_mo.mp3 | greet_avery_mo.ogg,1074,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_hayden_mo,mo,male,older,"Hi, Hayden!",,greet_hayden_mo.mp3 | greet_hayden_mo.ogg,845,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_frankie_mo,mo,male,older,"Hi, Frankie!",,greet_frankie_mo.mp3 | greet_frankie_mo.ogg,1277,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
-greet_jordan_mo,mo,male,older,"Hi, Jordan!",,greet_jordan_mo.mp3 | greet_jordan_mo.ogg,869,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
+greet_riley_mo,mo,male,older,Hi Riley!,,greet_riley_mo.mp3 | greet_riley_mo.ogg,911,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 2"
+greet_rowan_mo,mo,male,older,Hi Rowan!,,greet_rowan_mo.mp3 | greet_rowan_mo.ogg,852,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
+greet_quinn_mo,mo,male,older,Hi Quinn!,,greet_quinn_mo.mp3 | greet_quinn_mo.ogg,797,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 2"
+greet_blair_mo,mo,male,older,Hi Blair!,,greet_blair_mo.mp3 | greet_blair_mo.ogg,787,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 2"
+greet_drew_mo,mo,male,older,Hi Drew!,,greet_drew_mo.mp3 | greet_drew_mo.ogg,765,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
+greet_jesse_mo,mo,male,older,Hi Jesse!,,greet_jesse_mo.mp3 | greet_jesse_mo.ogg,841,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
+greet_parker_mo,mo,male,older,Hi Parker!,,greet_parker_mo.mp3 | greet_parker_mo.ogg,877,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 2"
+greet_charlie_mo,mo,male,older,Hi Charlie!,,greet_charlie_mo.mp3 | greet_charlie_mo.ogg,855,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
+greet_avery_mo,mo,male,older,Hi Avery!,,greet_avery_mo.mp3 | greet_avery_mo.ogg,927,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 3"
+greet_hayden_mo,mo,male,older,Hi Hayden!,,greet_hayden_mo.mp3 | greet_hayden_mo.ogg,1168,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
+greet_frankie_mo,mo,male,older,Hi Frankie!,,greet_frankie_mo.mp3 | greet_frankie_mo.ogg,891,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 3"
+greet_jordan_mo,mo,male,older,Hi Jordan!,,greet_jordan_mo.mp3 | greet_jordan_mo.ogg,835,0,,,,"ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
 label_bosa_mo,mo,male,older,Look! It's a bosa! A bosa!,bosa = BOH-sah,label_bosa_mo.mp3 | label_bosa_mo.ogg,3175,0,ˈboʊ.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
 label_daxa_mo,mo,male,older,Look! It's a daxa! A daxa!,daxa = DAK-sah,label_daxa_mo.mp3 | label_daxa_mo.ogg,3364,0,ˈdæk.sɑ,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"
 label_lufi_mo,mo,male,older,Look! It's a lufi! A lufi!,lufi = LOO-fee,label_lufi_mo.mp3 | label_lufi_mo.ogg,3143,0,ˈlu.fi,first syllable,"Keep clear pauses after ""Look!"" and after the first word token: the animation finds them to time the gaze shifts.","ElevenLabs eleven_v4 / Bill - Wise, Mature, Balanced / take 1"

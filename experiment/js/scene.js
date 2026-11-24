@@ -4,7 +4,7 @@
  * shown); novel object on a low table between them, below eye level, so a look at the object reads differently from a
  * look at the partner; the background (colour-test) object on a wall shelf, top right, above the stranger's head and
  * never covered. Gaze is aimed at the actual position of its target (look()).
- * Timeline: avatar slides in → "Hi, [stranger]!" → stranger smiles and nods → "Look! It's a X! A X!"
+ * Timeline: avatar slides in → "Hi [stranger]!" → stranger smiles and nods → "Look! It's a X! A X!"
  * with the avatar's gaze sequence; the stranger's eyes follow to the object → stranger nods → SPACE enabled 1 s after
  * the label ends → auto-advance 15 s after. Identical in both conditions; only the avatar, its name and voice differ. */
 SRL.scene = (function () {
@@ -133,7 +133,7 @@ SRL.scene = (function () {
     A.set({ bounce: 0 });
     await U.sleep(T.AFTER_ENTER_PAUSE);
 
-    // 2. Greeting: "Hi, [stranger]!" with lip-sync and a slight head bob.
+    // 2. Greeting: "Hi [stranger]!" with lip-sync and a slight head bob.
     const tg = U.now();
     const greet = await SRL.audio.play(greetClip, {
       onAmp: (a) => { const e = (U.now() - tg) / 1000; A.set({ mouth: a, nod: GAZE.talker.listener.nod + Math.sin(e * 7) * 0.7 }); }

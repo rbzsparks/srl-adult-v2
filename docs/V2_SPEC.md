@@ -8,7 +8,7 @@ Status: **signed off** (2026-11-24). Pilot 1 code is frozen at `rbzsparks/srl-ad
 Between subjects, two conditions: **known** (the avatar stands for one of the participant's closest people) and
 **control** (the avatar stands for an assigned name: Sam, Alex or Jamie). Each participant designs one avatar, picks a
 voice for it, and links it to its name in a matching task. In all 12 familiarization scenes (repeat6: 6 scene sets,
-each shown twice), that avatar walks in, greets a stranger by name ("Hi, Riley!"), and labels a novel object ("Look! It's
+each shown twice), that avatar walks in, greets a stranger by name ("Hi Riley!"), and labels a novel object ("Look! It's
 a bosa! A bosa!"). A 30 s odd/even task follows, then three surprise 4-option tests in one of 6 counterbalanced orders:
 **word** (which object was the bosa), **identity** (which one is Riley), **colour** (what colour was the background object).
 
@@ -84,7 +84,7 @@ memory only, as in pilot 1.
   conditions are dropped. Kept: block 2 doesn't start with block 1's last set.
 - **Timeline per scene:**
   1. The stranger is in place.
-  2. The avatar enters and says "Hi, [stranger name]!"
+  2. The avatar enters and says "Hi [stranger name]!"
   3. The stranger smiles and gives one small nod (0.9 s). Since v3.0.5 there is no wave and no eyebrow raise, so the
      stranger moves about as much as the object does: extra movement on the stranger could act as an attention cue.
   4. The avatar looks at the object: "Look! It's a [word]! A [word]!"
@@ -140,7 +140,7 @@ memory only, as in pilot 1.
 ## 9. Audio inventory
 
 - **Per voice (6 voices):**
-  - 12 greetings ("Hi, [name]!" for the 6 names + 6 backups)
+  - 12 greetings ("Hi [name]!", no comma since v3.1.2 so it is one continuous utterance; for the 6 names + 6 backups)
   - 6 label lines
   - 2 audio-check clips
   - 1 selector line

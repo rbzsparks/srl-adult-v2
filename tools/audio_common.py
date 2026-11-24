@@ -70,7 +70,7 @@ def clips():
         spk = dict(speaker_id=vid, speaker_gender=g[gender], speaker_age=age)
         out.append(dict(clip_id='sel_' + vid, text=voice_sample_text(), word=None, kind='sel', **spk))
         for n in stranger_names():
-            out.append(dict(clip_id=f'greet_{n.lower()}_{vid}', text=f'Hi, {n}!', word=None, kind='greet', **spk))
+            out.append(dict(clip_id=f'greet_{n.lower()}_{vid}', text=f'Hi {n}!', word=None, kind='greet', **spk))  # no comma: one continuous utterance (v3.1.2)
         for s in st['scene_sets']:
             w = s['word']
             out.append(dict(clip_id=f'label_{w}_{vid}', text=f"Look! It's a {w}! A {w}!", pronunciation=pron(w), ipa=words[w]['ipa'],

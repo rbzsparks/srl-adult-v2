@@ -2,7 +2,7 @@
 
 jsPsych 8.2.1 experiment, embedded in a **Qualtrics** survey (classic layout), recruited on **Prolific**. The full design
 and every decision behind it is in **[docs/V2_SPEC.md](docs/V2_SPEC.md)**; this README covers how to run, deploy and
-analyse it. Experiment version: `3.1.1` (`VERSION` in `experiment/config.js`).
+analyse it. Experiment version: `3.1.2` (`VERSION` in `experiment/config.js`).
 
 This repo started from the pilot-1 code (`rbzsparks/srl-adult-prolific`, tag `v2.4.2-pilot1`), which stays frozen
 there with its data.
@@ -39,7 +39,7 @@ Between subjects, two conditions:
 Then, for everyone:
 1. An audio check in the chosen voice.
 2. A 10 s countdown.
-3. **12 scenes** (6 scene sets × 2). The avatar walks in and says **"Hi, [stranger]!"**. The stranger smiles and gives
+3. **12 scenes** (6 scene sets × 2). The avatar walks in and says **"Hi [stranger]!"**. The stranger smiles and gives
    one small nod. Then the avatar says **"Look! It's a bosa! A bosa!"**, and the stranger follows the
    avatar's gaze and nods.
 4. Three check-ins about the avatar person.
@@ -215,7 +215,7 @@ Everything is in `experiment/config.js`; each entry is commented. The ones most 
 
 **Per avatar voice** (`fy my fm mm fo mo` = woman/man × young/middle-aged/older):
 - `sel_<voice>`: the selector sample
-- `greet_<name>_<voice>`: "Hi, Riley!", for all 12 names
+- `greet_<name>_<voice>`: "Hi Riley!", for all 12 names
 - `label_<word>_<voice>`: "Look! It's a bosa! A bosa!", for 6 words
 - `check_<word>_<voice>`: the audio check, 2 words
 
@@ -238,7 +238,8 @@ python tools/audio_qc.py
 python tools/elevenlabs_tts.py finalize
 ```
 
-`audio_qc.py` checks the pause structure of each label clip (the gaze timing needs 2 pauses) and flags long takes. It
+`audio_qc.py` checks the pause structure of each label clip (the gaze timing needs 2 pauses), flags long takes, and flags
+greetings with a break inside "Hi Name!" (`--reselect-greetings` picks the smoothest take of each greeting). It
 then writes a suggested `selection.json`. Listen and change the picks in `tools/audio_review.html` before `finalize`.
 `finalize` trims each clip, normalizes it to −16 LUFS, writes MP3 + OGG into `experiment/audio/`, and updates the
 manifest. Sources are under `audio_src/` (gitignored).

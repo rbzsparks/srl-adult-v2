@@ -8,7 +8,7 @@ For each take: duration and the pause structure found by the same detector the e
                such takes sound like two separate utterances. gap_s is recorded for every take.
 Writes takes/qc.json and, unless selection.json exists, a suggested selection.json (first take that passes).
 
-Usage: python tools/audio_qc.py
+Usage: python tools/audio_qc.py [--reselect-greetings]   (the option overwrites the greeting picks in selection.json)
 """
 import json
 import os
@@ -104,6 +104,19 @@ def main():
             sel[cid] = (good[0] if good else 0) + 1
         json.dump(sel, open(SEL, 'w', encoding='utf-8'), indent=1)
         print('suggested selection written (first passing take per clip); confirm it in tools/audio_review.html')
+    if '--reselect-greetings' in sys.argv:
+        # Greetings: use the take with the smallest internal break among those that pass QC (all takes if none pass);
+        # ties go to the duration closest to the median greeting.
+        sel = json.load(open(SEL, encoding='utf-8')) if os.path.exists(SEL) else {}
+        for cid, e in index.items():
+            if not cid.startswith('greet'):
+                continue
+            qs = [(i, qc[t['file']]) for i, t in enumerate(e['takes'])]
+            pool = [x for x in qs if x[1]['ok']] or qs
+            best = min(pool, key=lambda x: (x[1]['gap_s'], abs(x[1]['dur'] - med['greet'])))
+            sel[cid] = best[0] + 1
+        json.dump(sel, open(SEL, 'w', encoding='utf-8'), indent=1)
+        print('greetings reselected: smallest internal break per clip')
     no_good = [cid for cid, e in index.items() if not any(qc[t['file']]['ok'] for t in e['takes'])]
     if no_good:
         print('clips with no passing take (consider: generate --only ... --force):', ', '.join(no_good))
