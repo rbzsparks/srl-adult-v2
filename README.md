@@ -273,9 +273,9 @@ the audio check waits for them. Any clip that fails to load plays as silence and
   - `closeness` (known only, 1–7)
   - `likeness_rating` (known: looks like the person; control: looks like the copied avatar)
   - `represent_rating` ("felt like someone you know", both conditions)
-- **Matching:** `match_acc_kk / ff / kf / fk / total`, `match_no_response`, `match_flag` (< 0.75, flag only).
+- **Matching:** `match_acc_kk / ff / kf / fk / total`, `match_no_response`, `match_flag` (< 0.75, descriptive only).
 - **Odd/even task:** `parity_trials`, `parity_correct`, `parity_misses`, `parity_acc` (among answered),
-  `parity_rt_median`, `parity_flag`.
+  `parity_rt_median`, `parity_flag` (descriptive only).
 - **Quality:** `audio_check_pass`, `fam_timeout_count`, `reloaded_post_fam`, `tab_switches`, `fullscreen_exits`,
   `audio_load_errors`, `js_error`.
 
@@ -291,14 +291,14 @@ python analysis/reshape_qualtrics.py <export.csv> -o data/pilot2
 **Preregistered exclusions** (`analysis/v2_analysis.R`). These are **analysis exclusions only: nobody is rejected
 or paid less on Prolific because of them.** A participant is excluded for any of:
 1. failed either attention check;
-2. `parity_flag` (accuracy < 75% among answered, or ≥ 4 misses);
-3. matching accuracy < 50%, or no matching responses;
-4. self-reported external aid;
-5. 3 or more scene timeouts;
-6. failed the audio check on both attempts;
-7. reloaded the page after the scenes started.
+2. **non-response:** timed out on at least half the trials of any one timed task (the scenes, the matching task or the
+   odd/even task), not counting each task's first trial (`timeout_rate_max >= 0.5`; the rates come from the reshape);
+3. self-reported external aid;
+4. failed the audio check on both attempts;
+5. reloaded the page after the scenes started.
 
-Low closeness is **not** an exclusion (it's a covariate), and `match_flag` is a flag only.
+Matching and odd/even accuracy are **not** exclusions (changed after pilot 2: see `docs/V2_SPEC.md` §11). Neither is
+low closeness (it's a covariate).
 
 **Analysis.**
 ```bash
@@ -309,6 +309,7 @@ It reports:
 - cell balance;
 - accuracy by condition × test and by test × position, including colour when it came first vs chance;
 - the planned models `correct ~ condition + test_position + (1 | subject) + (1 | item)` per test;
+- the same models with the pilot-2 performance exclusions added (sensitivity);
 - the exploratory condition × position model;
 - the "felt like" manipulation check;
 - known-condition rating covariates.

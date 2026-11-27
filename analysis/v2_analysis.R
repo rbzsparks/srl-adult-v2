@@ -9,6 +9,7 @@ fig_dir <- if (length(args) >= 2) args[2] else file.path(data_dir, "figures")
 dir.create(fig_dir, showWarnings = FALSE, recursive = TRUE)
 CHANCE <- c(word = 0.25, identity = 0.25, colour = 0.25)   # colour: 0.5 if colour_choices = 2
 TESTS <- c("word", "identity", "colour")
+TIMEOUT_MAX <- 0.5   # exclude at >= this share of timed-out trials in any one timed task (first trial of each not counted)
 
 p <- read.csv(file.path(data_dir, "participants.csv"), stringsAsFactors = FALSE)
 tr <- read.csv(file.path(data_dir, "test_trials.csv"), stringsAsFactors = FALSE)
@@ -18,13 +19,13 @@ if (any(p$colour_choices == 2, na.rm = TRUE)) CHANCE["colour"] <- 0.5
 is1 <- function(x) !is.na(x) & x == 1
 p <- p %>% mutate(
   ex_attention = is1(1 - attention_check_1_pass) | is1(1 - attention_check_2_pass),
-  ex_delay     = ifelse(filler_task == "arithmetic", !is.na(filler2_accuracy) & filler2_accuracy < 0.6, is1(parity_flag)),
-  ex_matching  = (!is.na(match_acc_total) & match_acc_total < 0.5) | is1(match_no_response),
+  # Non-response, not performance: timed out on at least half the trials of the scenes, the matching task or the
+  # odd/even task (timeout_rate_max, from reshape_qualtrics.py). Matching and odd/even accuracy are descriptives only.
+  ex_timeouts  = !is.na(timeout_rate_max) & timeout_rate_max >= TIMEOUT_MAX,
   ex_aid       = is1(external_aid),
-  ex_timeouts  = !is.na(fam_timeout_count) & fam_timeout_count >= 3,
   ex_audio     = !is.na(audio_check_pass) & audio_check_pass == 0,
   ex_reload    = is1(reloaded_post_fam),
-  excluded     = ex_attention | ex_delay | ex_matching | ex_aid | ex_timeouts | ex_audio | ex_reload)
+  excluded     = ex_attention | ex_timeouts | ex_aid | ex_audio | ex_reload)
 if (all(is.na(p$external_aid))) message("NOTE: external_aid is not coded yet (all blank): code it from `strategy`.")
 cat("\n== Exclusions (a participant can meet several rules) ==\n")
 print(p %>% group_by(condition) %>% summarise(n = n(), across(starts_with("ex_"), sum), excluded = sum(excluded)), width = 200)
@@ -64,6 +65,14 @@ report <- function(m, term) {
 }
 cat("\n== Planned: condition effect (known vs control), adjusting for test position ==\n")
 for (t in TESTS) { cat(t, "\n"); report(fit(correct ~ condition + position + (1 | subject) + (1 | item), filter(d, test == t)), "condition|position") }
+cat("\n== Sensitivity: planned model with the original task-performance exclusions added ==\n")
+# Pilot-2 rules, replaced by the timeout rule above: parity_flag (odd/even < 75% correct or >= 4 misses), matching < 50%,
+# and >= 3 scene timeouts.
+old_ex <- p %>% filter(is1(parity_flag) | (!is.na(match_acc_total) & match_acc_total < 0.5) |
+                         (!is.na(fam_timeout_count) & fam_timeout_count >= 3)) %>% pull(subject)
+ds <- filter(d, !subject %in% old_ex)
+cat(sprintf("  n = %d (a further %d excluded)\n", n_distinct(ds$subject), n_distinct(d$subject) - n_distinct(ds$subject)))
+for (t in TESTS) { cat(t, "\n"); report(fit(correct ~ condition + position + (1 | subject) + (1 | item), filter(ds, test == t)), "condition") }
 cat("\n== Exploratory: condition x position ==\n")
 for (t in TESTS) { cat(t, "\n"); report(fit(correct ~ condition * position + (1 | subject) + (1 | item), filter(d, test == t)), ":") }
 

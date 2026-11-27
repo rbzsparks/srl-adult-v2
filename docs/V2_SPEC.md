@@ -75,7 +75,7 @@ memory only, as in pilot 1.
   - avatar + foil name (mismatch)
   - foil + avatar's name (mismatch)
 - **Timing, feedback and keys:** as in pilot 1 (2.5 s limit; F on the left, J on the right; keymap randomized).
-- **Flag:** `match_flag` = accuracy < 75% (flag only).
+- **Flag:** `match_flag` = accuracy < 75% (flag only). Matching accuracy is not an exclusion (§11).
 - The foil avatar and foil name appear nowhere else.
 
 ## 6. Scenes
@@ -99,7 +99,8 @@ memory only, as in pilot 1.
 - **Colours:** red `#B3122E`, blue `#2D6FD6`, yellow `#FFD000`, green `#2FB36A`. The smallest pairwise OKLab ΔE is
   26 with normal vision, 16 protan, 18 deutan and 12 tritan (target ≥ 8).
   Each colour is the target 1–2 times across the 6 sets, balanced. `COLOUR_CHOICES` in config (4 now; 2 is the fallback).
-- **Timeouts:** `fam_timeout_count` is kept, as are view times and fast advances (recorded, not used as attention measures).
+- **Timeouts:** `fam_timeout_count` is kept, as are view times and fast advances. Scene timeouts feed the non-response
+  exclusion (§11).
 
 ## 7. Tests
 
@@ -165,7 +166,7 @@ memory only, as in pilot 1.
 - **Keys:** F = odd, J = even, fixed for everyone. This is also the faster-to-respond mapping.
 - **Recorded:** `parity_trials`, `parity_correct`, `parity_misses`, `parity_acc` (among answered trials),
   `parity_rt_median`.
-- **Flag:** `parity_flag` = accuracy < 75% or 4 or more misses.
+- **Flag:** `parity_flag` = accuracy < 75% or 4 or more misses (flag only since pilot 2; see §11).
 - **Config:** `FILLER_TASK: 'parity' | 'arithmetic'`. Arithmetic is kept as the alternative.
 
 ## 11. Exclusions (preregistration) and flags
@@ -175,16 +176,26 @@ preregistration draft will both say this.
 
 A participant is excluded if any of these apply:
 1. failed either attention check
-2. `parity_flag`
-3. matching accuracy < 50%, or no matching responses
-4. self-reported external aid (coded from the strategy question)
-5. 3 or more scene timeouts
-6. failed the audio check on both attempts
-7. reloaded the page after familiarization started
+2. **non-response:** timed out on at least half the trials of any one timed task: the familiarization scenes, the
+   matching task, or the odd/even task. The first trial of each task is not counted (about a third of pilot-2
+   participants missed it while getting ready). `reshape_qualtrics.py` writes `timeout_rate_scenes`,
+   `timeout_rate_matching`, `timeout_rate_filler` and `timeout_rate_max`; the rule is `timeout_rate_max >= 0.5`
+   (`TIMEOUT_MAX` in `v2_analysis.R`).
+3. self-reported external aid (coded from the strategy question)
+4. failed the audio check on both attempts
+5. reloaded the page after familiarization started
 
 Not exclusions:
 - **Low closeness:** closeness is a covariate.
-- **`match_flag`** (matching < 75%): a flag only.
+- **Matching and odd/even accuracy** (`match_flag`, `parity_flag`): reported as descriptives.
+- **Sensitivity analysis:** the planned models are also run with the pilot-2 performance rules added (`parity_flag`,
+  matching < 50%, 3 or more scene timeouts).
+
+Why (pilot 2, N = 102): the performance rules excluded 27%, but every one of those people passed both attention checks,
+and most were plainly engaged (odd/even 88–100% correct, every matching trial answered); they just found the task hard.
+Timeouts separate cleanly: nearly everyone missed 0–3 trials per task, while 4 people missed all or nearly all of a task.
+The 50% line sits in that gap (the next highest rate is 44%). It excludes those 4, and 7% overall with the attention,
+audio and reload rules. Condition results were the same under every rule (n = 74, 89, 95 and 97).
 
 ## 12. Analysis plan (for the preregistration)
 
@@ -198,6 +209,7 @@ Not exclusions:
 - **Power** (`analysis/power_v2.R`, 1,000 simulations per cell; results in `analysis/power_out/`):
   - Effect: a 10-point difference in mean accuracy between conditions, word and identity tested separately.
   - Total N needed (half per condition): 80% power at about 290, 90% at about 400–420.
+    These are analysable N. Pilot 2 excluded 7% under the §11 rules, so recruit about 1.08× (about 315 for 290).
   - If the participant SD is 1.0 rather than the pilot's 1.59: 80% at about 210–225, 90% at about 300.
   - Pilot 2 (N = 100) has 80% power only for a difference of about 17 points. It is sized for feasibility, not for the
     confirmatory test.

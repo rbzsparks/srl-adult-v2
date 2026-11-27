@@ -3,8 +3,12 @@
 Writes three files into the output folder (keep it out of the repo: data/ is gitignored):
   participants.csv  one row per participant who reached the experiment: subject (S001, ...), every experiment field
                     from fields.js, the Qualtrics post-test answers, and the inputs to the exclusion rules
-                    (attention checks as pass/fail, parity_flag, match_acc_total / match_no_response, fam_timeout_count,
-                    audio_check_pass, reloaded_post_fam). external_aid is left blank: code it from `strategy`.
+                    (attention checks as pass/fail, the timeout rates below, audio_check_pass, reloaded_post_fam).
+                    external_aid is left blank: code it from `strategy`.
+                    Timeout rates (from the JSON backup; the first trial of each task is not counted, because many
+                    people miss it while getting ready): timeout_rate_scenes (of scenes 2-12), timeout_rate_matching
+                    (of matching trials 2-24), timeout_rate_filler (odd/even numbers missed, or arithmetic timeouts,
+                    after the first), and timeout_rate_max, the highest of the three (the exclusion rule uses it).
   test_trials.csv   one row per test trial (18 per participant), in presentation order, from the full_data_json backup:
                     subject, condition, stranger_set, test, test_position (1-3, the block), trial_in_block, scene_set,
                     serial_position(_2), target, choice, target_position, correct, rt_ms, stranger_name (identity), ...
@@ -30,6 +34,7 @@ QUALTRICS_COLS = ['expected_test', 'strategy', 'exp_easy', 'exp_sound', 'attenti
                   'gender_4_TEXT', 'Duration (in seconds)', 'Finished', 'device_ok', 'device_reason']
 # Attention checks: item 1 asks for "Strongly disagree" (choice 1), item 2 for "Somewhat agree" (choice 4).
 AC_PASS = {'attention_check_1': ('1', 'Strongly disagree'), 'attention_check_2': ('4', 'Somewhat agree')}
+TIMEOUT_COLS = ['timeout_rate_scenes', 'timeout_rate_matching', 'timeout_rate_filler', 'timeout_rate_max']
 TRIAL_COLS = ['subject', 'condition', 'stranger_set', 'test_order', 'test', 'test_position', 'trial_in_block', 'scene_set', 'serial_position',
               'serial_position_2', 'target', 'stranger_id', 'stranger_name', 'word', 'incidental_type', 'choice', 'foils', 'option_order',
               'target_position', 'response_position', 'correct', 'rt_ms', 'responded_before_prompt_end']
@@ -51,6 +56,20 @@ def read_export(path):
     return [{(k[5:] if k.startswith('__js_') else k): v for k, v in zip(header, r)} for r in body]
 
 
+def timeout_rates(j):
+    """Share of trials with no response in each timed task, not counting the first trial (see the docstring)."""
+    def rate(trials, flag):
+        rest = trials[1:]
+        return round(sum(int(t.get(flag) or 0) for t in rest) / len(rest), 3) if rest else ''
+    fam = sorted(j.get('fam', []), key=lambda t: t.get('serial_position') or 0)
+    filler = j.get('filler2', [])
+    r = {'timeout_rate_scenes': rate(fam, 'timed_out'), 'timeout_rate_matching': rate(j.get('match', []), 'timed_out'),
+         'timeout_rate_filler': rate(filler, 'missed' if filler and 'missed' in filler[0] else 'timed_out')}
+    vals = [v for v in r.values() if v != '']
+    r['timeout_rate_max'] = max(vals) if vals else ''
+    return r
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('export')
@@ -61,7 +80,7 @@ def main():
     recs = [d for d in read_export(a.export) if d.get('condition') and d.get('exp_version') and (a.include_debug or d.get('debug') != '1')]
     recs.sort(key=lambda d: d.get('js_start_epoch_ms') or d.get('StartDate', ''))
     os.makedirs(a.out, exist_ok=True)
-    pcols = ['subject'] + F['participant'] + QUALTRICS_COLS + ['attention_check_1_pass', 'attention_check_2_pass', 'external_aid']
+    pcols = ['subject'] + F['participant'] + QUALTRICS_COLS + ['attention_check_1_pass', 'attention_check_2_pass', 'external_aid'] + TIMEOUT_COLS
     prows, trows, keys, problems = [], [], [], []
     for i, d in enumerate(recs):
         subj = f'S{i + 1:03d}'
@@ -74,12 +93,19 @@ def main():
         keys.append({'subject': subj, 'prolific_pid': d.get('PROLIFIC_PID', ''), 'response_id': d.get('ResponseId', '')})
         js = ''.join(d.get(f"{F['json_prefix']}{k}", '') for k in range(1, F['json_chunks'] + 1))
         if not js:
+            problems.append(f'{subj}: no full_data_json backup (no test trials or timeout rates)')
             continue
         try:
             j = json.loads(js)
         except json.JSONDecodeError:
             problems.append(f'{subj}: full_data_json could not be parsed (truncated={d.get("full_data_json_truncated")})')
             continue
+        # Fill participant fields missing from the export from the JSON backup. Qualtrics drops the embedded-data field
+        # "duration" (relationship duration) from exports, apparently because it clashes with its own "Duration (in seconds)".
+        for c, v in (j.get('p') or {}).items():
+            if c in p and p[c] == '' and v not in (None, ''):
+                p[c] = v
+        p.update(timeout_rates(j))
         n_in_block = {}
         for t in j.get('test', []):
             b = t['block_index']
